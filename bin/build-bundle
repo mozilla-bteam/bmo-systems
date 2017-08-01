@@ -1,0 +1,16 @@
+#!/bin/bash
+
+set -euo pipefail
+set -x
+
+fetch-pari
+
+$PERL $CARTON install
+wget -q -Olocal/cache/authors/id/S/SR/SROMANOV/Crypt-OpenPGP-1.12.tar.gz \
+    http://s3.amazonaws.com/moz-devservices-bmocartons/third-party/Crypt-OpenPGP-1.15.tar.gz
+$PERL $CARTON bundle
+$PERL $CARTON fatpack
+rm -vfr local/lib/perl5
+$SYSTEM_PERL ./vendor/bin/carton install --cached --deployment
+
+package-bundle

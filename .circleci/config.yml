@@ -1,0 +1,66 @@
+# References:
+# 1. https://circleci.com/blog/how-to-build-a-docker-image-on-circleci-2-0/
+# 2. https://circleci.com/docs/2.0/building-docker-images/
+#
+
+version: 2
+
+jobs:
+  build:
+    working_directory: /build
+    docker:
+      - image: centos:6.9
+        environment:
+          NAME: bmo # named this for historical reasons
+          PERL_DIR: /opt/vanilla-perl
+          PERL: /opt/vanilla-perl/bin/perl
+          SYSTEM_PERL: /usr/bin/perl
+          CARTON: /opt/vanilla-perl/bin/carton
+          PERL5LIB: /build/centos6/local/lib/perl5
+          PATH: /build/bin:/usr/local/bin:/usr/bin:/bin
+    steps:
+      - checkout
+      - run:
+          command: |
+            rpm -qa --queryformat '/^%{NAME}$/ d\n' > rpm_fix.sed
+            sed -f rpm_fix.sed /build/centos6/rpm_list > /rpm_list.clean
+            yum -q -y install epel-release
+            yum -q -y install `cat /rpm_list.clean`
+      - run:
+          name: download some tools
+          command: |
+            curl -L https://raw.github.com/tokuhirom/Perl-Build/master/perl-build \
+              > /usr/local/bin/perl-build
+            curl -L https://raw.githubusercontent.com/miyagawa/cpanminus/master/cpanm \
+              > /usr/local/bin/cpanm
+            chmod a+x /usr/local/bin/*
+      - restore_cache:
+          key: v1-centos6-perl
+      - run:
+          name: build a vanilla perl
+          command: |
+            [[ -f $PERL ]] || build-vanilla-perl
+      - save_cache:
+          key: v1-centos6-perl
+          paths:
+            - /opt/vanilla-perl
+      - run:
+          name: install carton
+          command: |
+            $PERL /usr/local/bin/cpanm --notest --quiet \
+              Carton App::FatPacker File::pushd ExtUtils::MakeMaker
+      - run:
+          working_directory: /build/centos6
+          command: build-bundle
+
+  # centos6_docker:
+  #   working_directory: /build
+  #   docker:
+  #     - image: docker:17.06.1-ce
+
+
+# workflows:
+#   version: 2
+#   build:
+#     jobs:
+#       - centos6_perl

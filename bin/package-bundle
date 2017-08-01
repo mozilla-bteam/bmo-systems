@@ -1,0 +1,18 @@
+#!/bin/bash
+
+set -euo pipefail
+set -x
+
+probe-packages > PACKAGES.txt
+probe-libs     > LIBS.txt
+cp /usr/local/bin/scan-libs .
+rm -vfr local/man local/cache
+tar --transform "s@^@$NAME/@" \
+    -zcf /vendor.tar.gz \
+    PACKAGES.txt \
+    LIBS.txt \
+    scan-libs \
+    cpanfile \
+    cpanfile.* \
+    local \
+    vendor
