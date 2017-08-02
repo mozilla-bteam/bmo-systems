@@ -11,6 +11,10 @@ jobs:
     docker:
       - image: alpine:latest
     steps:
+      - run:
+          command: |
+            apk update
+            apk install curl # installs ca certs
       - checkout
       - attach_workspace:
           at: /build
