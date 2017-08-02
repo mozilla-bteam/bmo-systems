@@ -72,7 +72,7 @@ centos7:
     - run:
         command: rpm -qa --queryformat '/^%{NAME}$/ d\n' > rpm_fix.sed
     - run:
-        command: sed -f rpm_fix.sed /build/centos7/rpm_list > rpm_list.clean
+        command: sed -f rpm_fix.sed /build/bundle/centos7/rpm_list > rpm_list.clean
     - run:
         command: yum -y install epel-release
     - run:
