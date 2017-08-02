@@ -36,8 +36,6 @@ jobs:
           PATH: /build/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin
     steps:
       - checkout
-      - restore_cache:
-          key: v2-centos6-system
       - run:
           name: install rpms
           command: |
@@ -45,16 +43,6 @@ jobs:
             sed -f rpm_fix.sed /build/centos6/rpm_list > /rpm_list.clean
             yum -q -y install epel-release
             yum -q -y install `cat /rpm_list.clean`
-      - save_cache:
-          key: v2-centos6-system
-          paths:
-            - /bin
-            - /etc
-            - /lib
-            - /lib64
-            - /sbin
-            - /usr
-            - /var
       - run:
           name: download some tools
           command: |
