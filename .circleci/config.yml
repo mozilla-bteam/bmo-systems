@@ -10,6 +10,8 @@ jobs:
     working_directory: /build
     docker:
       - image: alpine:latest
+        environment:
+          S3_BUCKET: moz-devservices-bmocartons
     steps:
       - run:
           command: |
@@ -18,13 +20,16 @@ jobs:
       - attach_workspace:
           at: /build
       - run:
-          command: ls
-      - run:
           name: install awscli
           command: |
             apk update
             apk add py-pip
             pip install awscli
+      - run:
+          command: |
+            for file in */vendor.tar.gz; do
+              aws s3 cp $file s3://$S3_BUCKET/test/$file;
+            done
 
   centos6:
     working_directory: /build
