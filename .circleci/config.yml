@@ -6,6 +6,22 @@
 version: 2
 
 jobs:
+  upload:
+    working_directory: /build
+    docker:
+      - image: alpine:latest
+    steps:
+      - attach_workspace:
+          at: /build
+      - run:
+          command: ls
+      - run:
+          name: install awscli
+          command: |
+            apk update
+            apk add py-pip
+            pip install awscli
+
   centos6:
     working_directory: /build
     docker:
@@ -90,10 +106,13 @@ jobs:
             - /build/local
             - /build/vendor
       - run:
-          command: package-bundle /build/centos6.tar.gz
-      - store_artifacts:
-          path: /build/centos6.tar.gz
-          destination: ""
+          command: package-bundle
+
+      - persist_to_workspace:
+          root: /build
+          paths:
+            - bmo/vendor.tar.gz
+
   ubuntu14:
     working_directory: /build
     docker:
@@ -106,6 +125,7 @@ jobs:
       - run:
           command: cp /build/ubuntu14/mysql.list /etc/apt/sources.list.d/mysql.list
       - run:
+          name: install dependencies
           command: |
             apt-key adv --keyserver ha.pool.sks-keyservers.net \
               --recv-keys A4A9406876FCBD3C456770C88C718D3B5072E1F5
@@ -177,10 +197,12 @@ jobs:
             - /build/local
             - /build/vendor
       - run:
-          command: package-bundle /build/ubuntu14.tar.gz
-      - store_artifacts:
-          path: /build/ubuntu14.tar.gz
-          destination: ""
+          command: package-bundle
+
+      - persist_to_workspace:
+          root: /build
+          paths:
+            - mozreview/vendor.tar.gz
 
 workflows:
   version: 2
@@ -188,3 +210,8 @@ workflows:
     jobs:
       - centos6
       - ubuntu14
+      - upload:
+        requires:
+          - centos6
+          - ubuntu14
+

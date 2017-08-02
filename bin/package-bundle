@@ -3,13 +3,12 @@
 set -euo pipefail
 set -x
 
-file="$1"
-
 probe-packages > PACKAGES.txt
 probe-libs     > LIBS.txt
 rm -vfr local/man local/cache
+mkdir /build/$NAME
 tar --transform "s@^@$NAME/@" \
-    -zcf $file \
+    -zcf /build/$NAME/vendor.tar.gz \
     PACKAGES.txt \
     LIBS.txt \
     cpanfile \
