@@ -12,7 +12,7 @@ jobs:
       - image: alpine:latest
     steps:
       - attach_workspace:
-          at: /build
+          at: /tmp
       - run:
           command: ls
       - run:
