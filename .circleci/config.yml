@@ -133,11 +133,11 @@ jobs:
       - run:
           command: rpm -qa --queryformat '/^%{NAME}$/ d\n' > rpm_fix.sed
       - run:
-          command: sed -f rpm_fix.sed /build/bundle/centos7/rpm_list > rpm_list.clean
+          command: sed -f rpm_fix.sed /build/bundle/centos7/rpm_list > /rpm_list.clean
       - run:
-          command: yum -y install epel-release
+          command: yum -q -y install epel-release
       - run:
-          command: yum -y install `cat /rpm_list.clean`
+          command: yum -q -y install `cat /rpm_list.clean`
       - run:
           name: download some tools
           command: |
@@ -301,6 +301,29 @@ jobs:
           root: /build/upload
           paths:
             - "*/vendor.tar.gz"
+  bmo_base:
+    working_directory: /build
+    docker:
+      - image: docker:17.06.1-ce
+        environment:
+          DOCKERHUB_REPO: mozillabteam/bmo
+    steps:
+      - setup_remote_docker
+      - checkout
+      - attach_workspace:
+          at: /build/upload
+      - run:
+          working_directory: /build/docker/bmo-base
+          command: |
+            if [[ -n $CIRCLE_TAG ]]; then
+                TAG=$CIRCLE_TAG
+            else
+                TAG=latest
+            fi
+            mkdir opt
+            tar -C opt -zxvf /build/upload/bmo/vendor.tar.gz bmo/vendor/ bmo/cpanfile bmo/cpanfile.snapshot
+            docker build -t $DOCKERHUB_REPO:$TAG .
+  
 
 workflows:
   version: 2
@@ -309,6 +332,9 @@ workflows:
       - centos6
       - centos7
       - ubuntu14
+      - bmo_base:
+          requires:
+            - centos6
       - upload:
           requires:
             - centos6
