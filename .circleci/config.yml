@@ -121,9 +121,9 @@ jobs:
           command: package-bundle
 
       - persist_to_workspace:
-          root: /build
+          root: bmo
           paths:
-            - bmo/vendor.tar.gz
+            - vendor.tar.gz
 
   ubuntu14:
     working_directory: /build
@@ -212,9 +212,9 @@ jobs:
           command: package-bundle
 
       - persist_to_workspace:
-          root: /build
+          root: mozreview
           paths:
-            - mozreview/vendor.tar.gz
+            - vendor.tar.gz
 
 workflows:
   version: 2
