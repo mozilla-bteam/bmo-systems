@@ -123,7 +123,7 @@ jobs:
   centos7:
     working_directory: /build
     docker:
-      - image: centos:7
+      - image: centos:7.3.1611
         environment: 
           <<: *build_bundles_env
           NAME: bmo_centos7 # named this for historical reasons
