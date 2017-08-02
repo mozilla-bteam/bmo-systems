@@ -16,7 +16,7 @@ jobs:
           PERL: /opt/vanilla-perl/bin/perl
           SYSTEM_PERL: /usr/bin/perl
           CARTON: /opt/vanilla-perl/bin/carton
-          PERL5LIB: /build/centos6/local/lib/perl5
+          PERL5LIB: /build/local/lib/perl5
           PATH: /build/bin:/usr/local/bin:/usr/bin:/bin
     steps:
       - checkout
@@ -66,7 +66,8 @@ jobs:
           name: save vanilla carton local dir
           key: v1-carton-vanilla
           paths:
-            - /build/centos6/local
+            - /build/local
+            - /build/vendor
       - run:
           name: patch Crypt::OpenPGP
           command: |
@@ -86,7 +87,8 @@ jobs:
           name: save system carton local dir
           key: v1-carton-system
           paths:
-            - /build/centos6/local
+            - /build/local
+            - /build/vendor
       - run:
           command: package-bundle /build/centos6.tar.gz
       - store_artifacts:
