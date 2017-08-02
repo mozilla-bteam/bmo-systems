@@ -6,7 +6,7 @@
 version: 2
 
 jobs:
-  build:
+  centos6:
     working_directory: /build
     docker:
       - image: centos:6.9
