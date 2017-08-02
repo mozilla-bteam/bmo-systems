@@ -9,7 +9,6 @@ version: 2
 jobs:
   <<upload>>
   <<centos6>>
-  <<centos7>>
   <<ubuntu14>>
   <<bmo_base>>
 
@@ -18,7 +17,6 @@ workflows:
   bundles:
     jobs:
       - centos6
-      - centos7
       - ubuntu14
       - bmo_base:
           requires:
@@ -27,7 +25,6 @@ workflows:
           requires:
             - centos6
             - ubuntu14
-            - centos7
 #+END_SRC
 
 * docker jobs
@@ -92,33 +89,6 @@ centos6:
           yum -q -y install `cat /rpm_list.clean`
     <<build_bundles>>
 #+END_SRC
-
-** centos 7 job
-
-#+NAME: centos7
-#+BEGIN_SRC yaml :noweb yes
-centos7:
-  working_directory: /build
-  docker:
-    - image: centos:7.3.1611
-      environment: 
-        <<: *build_bundles_env
-        NAME: bmo_centos7 # named this for historical reasons
-  steps:
-    - checkout
-    - run:
-        command: yum -q -y update
-    - run:
-        command: rpm -qa --queryformat '/^%{NAME}$/ d\n' > rpm_fix.sed
-    - run:
-        command: sed -f rpm_fix.sed /build/bundle/centos7/rpm_list > /rpm_list.clean
-    - run:
-        command: yum -q -y install epel-release
-    - run:
-        command: yum -q -y install `cat /rpm_list.clean`
-    <<build_bundles>>
-#+END_SRC
-
 ** ubuntu 14.04 job
 
 This job creates the 'mozreview' bundle, which is used by the version-control-tools bmoweb container.

@@ -121,96 +121,6 @@ jobs:
           root: /build/upload
           paths:
             - "*/vendor.tar.gz"
-  centos7:
-    working_directory: /build
-    docker:
-      - image: centos:7.3.1611
-        environment: 
-          <<: *build_bundles_env
-          NAME: bmo_centos7 # named this for historical reasons
-    steps:
-      - checkout
-      - run:
-          command: yum -q -y update
-      - run:
-          command: rpm -qa --queryformat '/^%{NAME}$/ d\n' > rpm_fix.sed
-      - run:
-          command: sed -f rpm_fix.sed /build/bundle/centos7/rpm_list > /rpm_list.clean
-      - run:
-          command: yum -q -y install epel-release
-      - run:
-          command: yum -q -y install `cat /rpm_list.clean`
-      - run:
-          name: download some tools
-          command: |
-            curl -L https://raw.github.com/tokuhirom/Perl-Build/master/perl-build \
-              > /usr/local/bin/perl-build
-            curl -L https://raw.githubusercontent.com/miyagawa/cpanminus/master/cpanm \
-              > /usr/local/bin/cpanm
-            chmod a+x /usr/local/bin/*
-      - run:
-          name: copy cpanfile and cpanfile.snapshot
-          command: cp bundle/$CIRCLE_JOB/cpanfile* .
-      - restore_cache:
-          name: restore vanilla perl cache
-          key: v3-{{ .Environment.CIRCLE_JOB }}-perl
-      - run:
-          name: build a vanilla perl
-          command: |
-            [[ -f $PERL ]] || build-vanilla-perl
-      - run:
-          name: install carton
-          command: |
-            $PERL /usr/local/bin/cpanm --notest --quiet \
-              Carton App::FatPacker File::pushd ExtUtils::MakeMaker
-      - save_cache:
-          name: save vanilla perl cache
-          key: v3-{{ .Environment.CIRCLE_JOB }}-perl
-          paths:
-            - /opt/vanilla-perl
-      - run:
-          command: fetch-pari
-      - restore_cache:
-          name: restore vanilla carton local dir
-          key: v3-{{ .Environment.CIRCLE_JOB }}-carton-vanilla
-      - run:
-          command: $PERL $CARTON install
-      - save_cache:
-          name: save vanilla carton local dir
-          key: v3-{{ .Environment.CIRCLE_JOB }}-carton-vanilla
-          paths:
-            - /build/local
-            - /build/vendor
-      - run:
-          name: patch Crypt::OpenPGP
-          command: |
-            wget -q -Olocal/cache/authors/id/S/SR/SROMANOV/Crypt-OpenPGP-1.12.tar.gz \
-              http://s3.amazonaws.com/moz-devservices-bmocartons/third-party/Crypt-OpenPGP-1.15.tar.gz
-      - run:
-            command: $PERL $CARTON bundle
-      - run:
-            command: $PERL $CARTON fatpack
-      - run:
-          name: remove vanilla perl modules
-          command: rm -vfr local/lib/perl5
-      - restore_cache:
-          name: restore system carton local dir
-          key: v3-{{ .Environment.CIRCLE_JOB }}-carton-system
-      - run:
-          command: $SYSTEM_PERL ./vendor/bin/carton install --cached --deployment
-      - save_cache:
-          name: save system carton local dir
-          key: v3-{{ .Environment.CIRCLE_JOB }}-carton-system
-          paths:
-            - /build/local
-            - /build/vendor
-      - run:
-          command: package-bundle
-      
-      - persist_to_workspace:
-          root: /build/upload
-          paths:
-            - "*/vendor.tar.gz"
   ubuntu14:
     working_directory: /build
     docker:
@@ -332,7 +242,6 @@ workflows:
   bundles:
     jobs:
       - centos6
-      - centos7
       - ubuntu14
       - bmo_base:
           requires:
@@ -341,4 +250,3 @@ workflows:
           requires:
             - centos6
             - ubuntu14
-            - centos7
