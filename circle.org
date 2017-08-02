@@ -96,7 +96,7 @@ centos6:
 ** centos 7 job
 
 #+NAME: centos7
-#+BEGIN_SRC yaml
+#+BEGIN_SRC yaml :noweb yes
 centos7:
   working_directory: /build
   docker:
@@ -106,6 +106,8 @@ centos7:
         NAME: bmo_centos7 # named this for historical reasons
   steps:
     - checkout
+    - run:
+        command: yum -q -y update
     - run:
         command: rpm -qa --queryformat '/^%{NAME}$/ d\n' > rpm_fix.sed
     - run:

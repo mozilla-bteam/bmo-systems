@@ -40,9 +40,6 @@ findutils
 fipscheck
 fipscheck-lib
 fontconfig
-fping
-fprintd
-fprintd-pam
 freetype
 gamin
 gawk

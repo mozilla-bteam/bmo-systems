@@ -131,6 +131,8 @@ jobs:
     steps:
       - checkout
       - run:
+          command: yum -q -y update
+      - run:
           command: rpm -qa --queryformat '/^%{NAME}$/ d\n' > rpm_fix.sed
       - run:
           command: sed -f rpm_fix.sed /build/bundle/centos7/rpm_list > /rpm_list.clean
