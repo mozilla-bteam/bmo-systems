@@ -50,14 +50,13 @@ centos6:
         name: install rpms
         command: |
           rpm -qa --queryformat '/^%{NAME}$/ d\n' > rpm_fix.sed
-          sed -f rpm_fix.sed /build/centos6/rpm_list > /rpm_list.clean
+          sed -f rpm_fix.sed /build/bundle/centos6/rpm_list > /rpm_list.clean
           yum -q -y install epel-release
           yum -q -y install `cat /rpm_list.clean`
     <<build_bundles>>
 #+END_SRC
 
-
-** centos7 job
+** centos 7 job
 
 #+NAME: centos7
 #+BEGIN_SRC yaml
@@ -71,12 +70,13 @@ centos7:
   steps:
     - checkout
     - run:
-        name: install rpms
-        command: |
-          rpm -qa --queryformat '/^%{NAME}$/ d\n' > rpm_fix.sed
-          sed -f rpm_fix.sed /build/centos7/rpm_list > /rpm_list.clean
-          yum -y install epel-release
-          yum -y install `cat /rpm_list.clean`
+        command: rpm -qa --queryformat '/^%{NAME}$/ d\n' > rpm_fix.sed
+    - run:
+        command: sed -f rpm_fix.sed /build/centos7/rpm_list > rpm_list.clean
+    - run:
+        command: yum -y install epel-release
+    - run:
+        command: yum -y install `cat /rpm_list.clean`
     <<build_bundles>>
 #+END_SRC
 
@@ -97,7 +97,7 @@ ubuntu14:
   steps:
     - checkout
     - run:
-        command: cp /build/ubuntu14/mysql.list /etc/apt/sources.list.d/mysql.list
+        command: cp /build/bundle/ubuntu14/mysql.list /etc/apt/sources.list.d/mysql.list
     - run:
         name: install dependencies
         command: |
@@ -130,7 +130,7 @@ upload:
           apk update
           apk add curl # installs ca certs
     - attach_workspace:
-        at: /build
+        at: /build/upload
     - run:
         name: install awscli
         command: |
@@ -138,6 +138,7 @@ upload:
           apk add py-pip
           pip install awscli
     - run:
+        working_directory: /build/upload
         command: |
           for file in */vendor.tar.gz; do
             aws s3 cp $file s3://$S3_BUCKET/test/$file;
@@ -165,7 +166,7 @@ The following list of steps are used on all jobs that build vendor tarballs.
       chmod a+x /usr/local/bin/*
 - run:
     name: copy cpanfile and cpanfile.snapshot
-    command: cp $CIRCLE_JOB/cpanfile* .
+    command: cp bundle/$CIRCLE_JOB/cpanfile* .
 - restore_cache:
     name: restore vanilla perl cache
     key: v3-{{ .Environment.CIRCLE_JOB }}-perl
@@ -223,7 +224,7 @@ The following list of steps are used on all jobs that build vendor tarballs.
     command: package-bundle
 
 - persist_to_workspace:
-    root: /build
+    root: /build/upload
     paths:
       - "*/vendor.tar.gz"
 #+END_SRC

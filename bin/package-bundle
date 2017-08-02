@@ -6,9 +6,9 @@ set -x
 probe-packages > PACKAGES.txt
 probe-libs     > LIBS.txt
 rm -vfr local/man local/cache
-mkdir /build/$NAME
+mkdir -p /build/upload/$NAME
 tar --transform "s@^@$NAME/@" \
-    -zcf /build/$NAME/vendor.tar.gz \
+    -zcf /build/upload/$NAME/vendor.tar.gz \
     PACKAGES.txt \
     LIBS.txt \
     cpanfile \
