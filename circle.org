@@ -4,6 +4,8 @@ This is a literate version of our circle ci config.
 #+BEGIN_SRC yaml :tangle ".circleci/config.yml" :noweb yes
 version: 2
 
+<<build_bundles_env>>
+
 jobs:
   <<upload>>
   <<centos6>>
@@ -206,7 +208,7 @@ The following list of steps are used on all jobs that build vendor tarballs.
 the following block are used as default environmental variables for the jobs where bundles are built.
 
 #+NAME: build_bundles_env
-#+BEGIN_SRC yaml :tangle ".circleci/config.yml"
+#+BEGIN_SRC yaml
 build_bundles_env: &build_bundles_env
   PERL_DIR: /opt/vanilla-perl
   PERL: /opt/vanilla-perl/bin/perl

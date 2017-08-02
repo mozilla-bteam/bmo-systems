@@ -1,5 +1,12 @@
 version: 2
 
+build_bundles_env: &build_bundles_env
+  PERL_DIR: /opt/vanilla-perl
+  PERL: /opt/vanilla-perl/bin/perl
+  SYSTEM_PERL: /usr/bin/perl
+  CARTON: /opt/vanilla-perl/bin/carton
+  PERL5LIB: /build/local/lib/perl5
+  PATH: /build/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin
 
 jobs:
   upload:
@@ -216,11 +223,3 @@ workflows:
           requires:
             - centos6
             - ubuntu14
-
-build_bundles_env: &build_bundles_env
-  PERL_DIR: /opt/vanilla-perl
-  PERL: /opt/vanilla-perl/bin/perl
-  SYSTEM_PERL: /usr/bin/perl
-  CARTON: /opt/vanilla-perl/bin/carton
-  PERL5LIB: /build/local/lib/perl5
-  PATH: /build/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin
