@@ -45,16 +45,16 @@ jobs:
           name: build a vanilla perl
           command: |
             [[ -f $PERL ]] || build-vanilla-perl
-      - save_cache:
-          name: save vanilla perl cache
-          key: v1-centos6-perl
-          paths:
-            - /opt/vanilla-perl
       - run:
           name: install carton
           command: |
             $PERL /usr/local/bin/cpanm --notest --quiet \
               Carton App::FatPacker File::pushd ExtUtils::MakeMaker
+      - save_cache:
+          name: save vanilla perl cache
+          key: v1-centos6-perl
+          paths:
+            - /opt/vanilla-perl
       - run:
           command: fetch-pari
       - restore_cache:
