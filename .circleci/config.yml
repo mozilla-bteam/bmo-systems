@@ -14,8 +14,7 @@ jobs:
       - run:
           command: |
             apk update
-            apk install curl # installs ca certs
-      - checkout
+            apk add curl # installs ca certs
       - attach_workspace:
           at: /build
       - run:
