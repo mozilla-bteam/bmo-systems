@@ -11,8 +11,9 @@ jobs:
     docker:
       - image: alpine:latest
     steps:
+      - checkout
       - attach_workspace:
-          at: /tmp
+          at: /build
       - run:
           command: ls
       - run:
@@ -109,9 +110,9 @@ jobs:
           command: package-bundle
 
       - persist_to_workspace:
-          root: bmo
+          root: /build
           paths:
-            - vendor.tar.gz
+            - */vendor.tar.gz
 
   ubuntu14:
     working_directory: /build
@@ -200,9 +201,9 @@ jobs:
           command: package-bundle
 
       - persist_to_workspace:
-          root: mozreview
+          root: /build
           paths:
-            - vendor.tar.gz
+            - */vendor.tar.gz
 
 workflows:
   version: 2
