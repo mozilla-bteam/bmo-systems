@@ -10,7 +10,7 @@ jobs:
     working_directory: /build
     docker:
       - image: centos:6.9
-        environment:
+        environment: &env
           NAME: bmo # named this for historical reasons
           PERL_DIR: /opt/vanilla-perl
           PERL: /opt/vanilla-perl/bin/perl
@@ -21,6 +21,7 @@ jobs:
     steps:
       - checkout
       - run:
+          name: install rpms
           command: |
             rpm -qa --queryformat '/^%{NAME}$/ d\n' > rpm_fix.sed
             sed -f rpm_fix.sed /build/centos6/rpm_list > /rpm_list.clean
@@ -34,13 +35,18 @@ jobs:
             curl -L https://raw.githubusercontent.com/miyagawa/cpanminus/master/cpanm \
               > /usr/local/bin/cpanm
             chmod a+x /usr/local/bin/*
+      - run:
+          name: copy cpanfile and cpanfile.snapshot
+          command: cp centos6/cpanfile* .
       - restore_cache:
+          name: restore vanilla perl cache
           key: v1-centos6-perl
       - run:
           name: build a vanilla perl
           command: |
             [[ -f $PERL ]] || build-vanilla-perl
       - save_cache:
+          name: save vanilla perl cache
           key: v1-centos6-perl
           paths:
             - /opt/vanilla-perl
@@ -50,35 +56,58 @@ jobs:
             $PERL /usr/local/bin/cpanm --notest --quiet \
               Carton App::FatPacker File::pushd ExtUtils::MakeMaker
       - run:
-          working_directory: /build/centos6
           command: fetch-pari
       - restore_cache:
+          name: restore vanilla carton local dir
           key: v1-carton-vanilla
       - run:
-          working_directory: /build/centos6
           command: $PERL $CARTON install
       - save_cache:
+          name: save vanilla carton local dir
           key: v1-carton-vanilla
           paths:
             - /build/centos6/local
       - run:
-          working_directory: /build/centos6
-          command: "wget -q -Olocal/cache/authors/id/S/SR/SROMANOV/Crypt-OpenPGP-1.12.tar.gz http://s3.amazonaws.com/moz-devservices-bmocartons/third-party/Crypt-OpenPGP-1.15.tar.gz"
+          name: patch Crypt::OpenPGP
+          command: |
+            wget -q -Olocal/cache/authors/id/S/SR/SROMANOV/Crypt-OpenPGP-1.12.tar.gz \
+              http://s3.amazonaws.com/moz-devservices-bmocartons/third-party/Crypt-OpenPGP-1.15.tar.gz
       - run:
-           working_directory: /build/centos6
            command: $PERL $CARTON fatpack
       - run:
-           working_directory: /build/centos6
-           command: rm -vfr local/lib/perl5
+          name: remove vanilla perl modules
+          command: rm -vfr local/lib/perl5
       - restore_cache:
-            key: v1-carton-system
+          name: restore system carton local dir
+          key: v1-carton-system
       - run:
-            working_directory: /build/centos6
-            command: $SYSTEM_PERL ./vendor/bin/carton install --cached --deployment
+          command: $SYSTEM_PERL ./vendor/bin/carton install --cached --deployment
       - save_cache:
-            key: v1-carton-system
-            paths:
-              - /build/centos6/local
+          name: save system carton local dir
+          key: v1-carton-system
+          paths:
+            - /build/centos6/local
       - run:
-            working_directory: /build/centos6
-            command: package-bundle /build/centos6.tar.gz
+          command: package-bundle /build/centos6.tar.gz
+      - store_artifacts:
+          path: /build/centos6.tar.gz
+          destination: ""
+  # ubuntu14:
+  #   working_directory: /build
+  #   docker:
+  #     - image: ubuntu:14.04
+  #       environment: *env
+  #   steps: 
+  #     - checkout
+  #     - run:
+  #         command: cp /build/ubuntu14/mysql.list /etc/apt/sources.list.d/mysql.list
+  #     - run:
+  #         command: |
+  #           apt-key adv --keyserver ha.pool.sks-keyservers.net \
+  #             --recv-keys A4A9406876FCBD3C456770C88C718D3B5072E1F5
+  #           apt-get update
+  #           apt-get --no-install-recommends -y install \
+  #             apache2 build-essential cvs g++ git graphviz libapache2-mod-perl2 \
+  #             libgd-dev libgmp3-dev libmysqlclient-dev libssl-dev \
+  #             mysql-client mysql-server patchutils pkg-config unzip wget
+
