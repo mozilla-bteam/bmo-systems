@@ -52,57 +52,33 @@ jobs:
       - run:
           working_directory: /build/centos6
           command: fetch-pari
-  
       - restore_cache:
           key: v1-carton-vanilla
-
       - run:
           working_directory: /build/centos6
           command: $PERL $CARTON install
-
       - save_cache:
           key: v1-carton-vanilla
           paths:
             - /build/centos6/local
-        
       - run:
           working_directory: /build/centos6
-          command: |
-            wget -q -Olocal/cache/authors/id/S/SR/SROMANOV/Crypt-OpenPGP-1.12.tar.gz \
-                http://s3.amazonaws.com/moz-devservices-bmocartons/third-party/Crypt-OpenPGP-1.15.tar.gz
-
-       - run:
+          command: "wget -q -Olocal/cache/authors/id/S/SR/SROMANOV/Crypt-OpenPGP-1.12.tar.gz http://s3.amazonaws.com/moz-devservices-bmocartons/third-party/Crypt-OpenPGP-1.15.tar.gz"
+      - run:
            working_directory: /build/centos6
            command: $PERL $CARTON fatpack
-
-       - run:
+      - run:
            working_directory: /build/centos6
            command: rm -vfr local/lib/perl5
-
-        - restore_cache:
+      - restore_cache:
             key: v1-carton-system
-        
-        - run:
+      - run:
             working_directory: /build/centos6
             command: $SYSTEM_PERL ./vendor/bin/carton install --cached --deployment
-        
-        - save_cache:
+      - save_cache:
             key: v1-carton-system
             paths:
               - /build/centos6/local
-
-        - run:
+      - run:
             working_directory: /build/centos6
             command: package-bundle /build/centos6.tar.gz
-
-  # centos6_docker:
-  #   working_directory: /build
-  #   docker:
-  #     - image: docker:17.06.1-ce
-
-
-# workflows:
-#   version: 2
-#   build:
-#     jobs:
-#       - centos6_perl
