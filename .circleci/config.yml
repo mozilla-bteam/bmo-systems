@@ -1,9 +1,5 @@
-# References:
-# 1. https://circleci.com/blog/how-to-build-a-docker-image-on-circleci-2-0/
-# 2. https://circleci.com/docs/2.0/building-docker-images/
-#
-
 version: 2
+
 
 jobs:
   upload:
@@ -30,19 +26,13 @@ jobs:
             for file in */vendor.tar.gz; do
               aws s3 cp $file s3://$S3_BUCKET/test/$file;
             done
-
   centos6:
     working_directory: /build
     docker:
       - image: centos:6.9
-        environment: &env
+        environment: 
+          <<: *build_bundles_env
           NAME: bmo # named this for historical reasons
-          PERL_DIR: /opt/vanilla-perl
-          PERL: /opt/vanilla-perl/bin/perl
-          SYSTEM_PERL: /usr/bin/perl
-          CARTON: /opt/vanilla-perl/bin/carton
-          PERL5LIB: /build/local/lib/perl5
-          PATH: /build/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin
     steps:
       - checkout
       - run:
@@ -62,10 +52,10 @@ jobs:
             chmod a+x /usr/local/bin/*
       - run:
           name: copy cpanfile and cpanfile.snapshot
-          command: cp centos6/cpanfile* .
+          command: cp $CIRCLE_JOB/cpanfile* .
       - restore_cache:
           name: restore vanilla perl cache
-          key: v3-centos6-perl
+          key: v3-{{ .Environment.CIRCLE_JOB }}-perl
       - run:
           name: build a vanilla perl
           command: |
@@ -77,19 +67,19 @@ jobs:
               Carton App::FatPacker File::pushd ExtUtils::MakeMaker
       - save_cache:
           name: save vanilla perl cache
-          key: v3-centos6-perl
+          key: v3-{{ .Environment.CIRCLE_JOB }}-perl
           paths:
             - /opt/vanilla-perl
       - run:
           command: fetch-pari
       - restore_cache:
           name: restore vanilla carton local dir
-          key: v3-centos6-carton-vanilla
+          key: v3-{{ .Environment.CIRCLE_JOB }}-carton-vanilla
       - run:
           command: $PERL $CARTON install
       - save_cache:
           name: save vanilla carton local dir
-          key: v3-centos6-carton-vanilla
+          key: v3-{{ .Environment.CIRCLE_JOB }}-carton-vanilla
           paths:
             - /build/local
             - /build/vendor
@@ -99,37 +89,36 @@ jobs:
             wget -q -Olocal/cache/authors/id/S/SR/SROMANOV/Crypt-OpenPGP-1.12.tar.gz \
               http://s3.amazonaws.com/moz-devservices-bmocartons/third-party/Crypt-OpenPGP-1.15.tar.gz
       - run:
-           command: $PERL $CARTON bundle
+            command: $PERL $CARTON bundle
       - run:
-           command: $PERL $CARTON fatpack
+            command: $PERL $CARTON fatpack
       - run:
           name: remove vanilla perl modules
           command: rm -vfr local/lib/perl5
       - restore_cache:
           name: restore system carton local dir
-          key: v3-centos6-carton-system
+          key: v3-{{ .Environment.CIRCLE_JOB }}-carton-system
       - run:
           command: $SYSTEM_PERL ./vendor/bin/carton install --cached --deployment
       - save_cache:
           name: save system carton local dir
-          key: v3-centos6-carton-system
+          key: v3-{{ .Environment.CIRCLE_JOB }}-carton-system
           paths:
             - /build/local
             - /build/vendor
       - run:
           command: package-bundle
-
+      
       - persist_to_workspace:
           root: /build
           paths:
             - "*/vendor.tar.gz"
-
   ubuntu14:
     working_directory: /build
     docker:
       - image: ubuntu:14.04
         environment:
-          <<: *env
+          <<: *build_bundles_env
           NAME: mozreview # named this for historical reasons
     steps:
       - checkout
@@ -155,10 +144,10 @@ jobs:
             chmod a+x /usr/local/bin/*
       - run:
           name: copy cpanfile and cpanfile.snapshot
-          command: cp ubuntu14/cpanfile* .
+          command: cp $CIRCLE_JOB/cpanfile* .
       - restore_cache:
           name: restore vanilla perl cache
-          key: v3-ubuntu14-perl
+          key: v3-{{ .Environment.CIRCLE_JOB }}-perl
       - run:
           name: build a vanilla perl
           command: |
@@ -170,19 +159,19 @@ jobs:
               Carton App::FatPacker File::pushd ExtUtils::MakeMaker
       - save_cache:
           name: save vanilla perl cache
-          key: v3-ubuntu14-perl
+          key: v3-{{ .Environment.CIRCLE_JOB }}-perl
           paths:
             - /opt/vanilla-perl
       - run:
           command: fetch-pari
       - restore_cache:
           name: restore vanilla carton local dir
-          key: v3-ubuntu14-carton-vanilla
+          key: v3-{{ .Environment.CIRCLE_JOB }}-carton-vanilla
       - run:
           command: $PERL $CARTON install
       - save_cache:
           name: save vanilla carton local dir
-          key: v3-ubuntu14-carton-vanilla
+          key: v3-{{ .Environment.CIRCLE_JOB }}-carton-vanilla
           paths:
             - /build/local
             - /build/vendor
@@ -191,28 +180,27 @@ jobs:
           command: |
             wget -q -Olocal/cache/authors/id/S/SR/SROMANOV/Crypt-OpenPGP-1.12.tar.gz \
               http://s3.amazonaws.com/moz-devservices-bmocartons/third-party/Crypt-OpenPGP-1.15.tar.gz
-
       - run:
-           command: $PERL $CARTON bundle
+            command: $PERL $CARTON bundle
       - run:
-           command: $PERL $CARTON fatpack
+            command: $PERL $CARTON fatpack
       - run:
           name: remove vanilla perl modules
           command: rm -vfr local/lib/perl5
       - restore_cache:
           name: restore system carton local dir
-          key: v3-ubuntu14-carton-system
+          key: v3-{{ .Environment.CIRCLE_JOB }}-carton-system
       - run:
           command: $SYSTEM_PERL ./vendor/bin/carton install --cached --deployment
       - save_cache:
           name: save system carton local dir
-          key: v3-ubuntu14-carton-system
+          key: v3-{{ .Environment.CIRCLE_JOB }}-carton-system
           paths:
             - /build/local
             - /build/vendor
       - run:
           command: package-bundle
-
+      
       - persist_to_workspace:
           root: /build
           paths:
@@ -229,3 +217,10 @@ workflows:
             - centos6
             - ubuntu14
 
+build_bundles_env: &build_bundles_env
+  PERL_DIR: /opt/vanilla-perl
+  PERL: /opt/vanilla-perl/bin/perl
+  SYSTEM_PERL: /usr/bin/perl
+  CARTON: /opt/vanilla-perl/bin/carton
+  PERL5LIB: /build/local/lib/perl5
+  PATH: /build/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin

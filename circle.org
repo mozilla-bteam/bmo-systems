@@ -1,0 +1,217 @@
+# -*- org-src-preserve-indentation: t; -*-
+This is a literate version of our circle ci config.
+
+#+BEGIN_SRC yaml :tangle ".circleci/config.yml" :noweb yes
+version: 2
+
+jobs:
+  <<upload>>
+  <<centos6>>
+  <<ubuntu14>>
+
+workflows:
+  version: 2
+  bundles:
+    jobs:
+      - centos6
+      - ubuntu14
+      - upload:
+          requires:
+            - centos6
+            - ubuntu14
+#+END_SRC
+
+* bundle jobs
+
+All the jobs below are used to build collections of the perl dependencies that BMO needs.
+
+** centos 6 job
+
+This job creates the 'bmo' bundle, which is for use on centos 6 or RHEL 6 machines.
+This is what production, vagrant, CI, and so on use.
+
+#+NAME: centos6
+#+BEGIN_SRC yaml :noweb yes
+centos6:
+  working_directory: /build
+  docker:
+    - image: centos:6.9
+      environment: 
+        <<: *build_bundles_env
+        NAME: bmo # named this for historical reasons
+  steps:
+    - checkout
+    - run:
+        name: install rpms
+        command: |
+          rpm -qa --queryformat '/^%{NAME}$/ d\n' > rpm_fix.sed
+          sed -f rpm_fix.sed /build/centos6/rpm_list > /rpm_list.clean
+          yum -q -y install epel-release
+          yum -q -y install `cat /rpm_list.clean`
+    <<build_bundles>>
+#+END_SRC
+
+
+** ubuntu 14.04 job
+
+This job creates the 'mozreview' bundle, which is used by the version-control-tools bmoweb container.
+It is used for mozreview and probably some other systems and is a huge burden that makes me sad.
+
+#+NAME: ubuntu14
+#+BEGIN_SRC yaml :noweb yes
+ubuntu14:
+  working_directory: /build
+  docker:
+    - image: ubuntu:14.04
+      environment:
+        <<: *build_bundles_env
+        NAME: mozreview # named this for historical reasons
+  steps:
+    - checkout
+    - run:
+        command: cp /build/ubuntu14/mysql.list /etc/apt/sources.list.d/mysql.list
+    - run:
+        name: install dependencies
+        command: |
+          apt-key adv --keyserver ha.pool.sks-keyservers.net \
+            --recv-keys A4A9406876FCBD3C456770C88C718D3B5072E1F5
+          apt-get update
+          apt-get --no-install-recommends -y install \
+            apache2 build-essential cvs g++ git graphviz libapache2-mod-perl2 \
+            libgd-dev libgmp3-dev libmysqlclient-dev libssl-dev curl \
+            mysql-client mysql-server patchutils pkg-config unzip wget
+    <<build_bundles>>
+#+END_SRC
+
+
+** upload job
+
+This job just collects vendor.tar.gzs from other jobs and uploads them to an amazon S3 bucket.
+
+#+NAME: upload
+#+BEGIN_SRC yaml
+upload:
+  working_directory: /build
+  docker:
+    - image: alpine:latest
+      environment:
+        S3_BUCKET: moz-devservices-bmocartons
+  steps:
+    - run:
+        command: |
+          apk update
+          apk add curl # installs ca certs
+    - attach_workspace:
+        at: /build
+    - run:
+        name: install awscli
+        command: |
+          apk update
+          apk add py-pip
+          pip install awscli
+    - run:
+        command: |
+          for file in */vendor.tar.gz; do
+            aws s3 cp $file s3://$S3_BUCKET/test/$file;
+          done
+#+END_SRC
+
+
+* Other pieces of code
+
+Some bits of configuration used in multiple locations
+
+** build_bundles steps
+
+The following list of steps are used on all jobs that build vendor tarballs.
+
+#+NAME: build_bundles
+#+BEGIN_SRC yaml
+- run:
+    name: download some tools
+    command: |
+      curl -L https://raw.github.com/tokuhirom/Perl-Build/master/perl-build \
+        > /usr/local/bin/perl-build
+      curl -L https://raw.githubusercontent.com/miyagawa/cpanminus/master/cpanm \
+        > /usr/local/bin/cpanm
+      chmod a+x /usr/local/bin/*
+- run:
+    name: copy cpanfile and cpanfile.snapshot
+    command: cp $CIRCLE_JOB/cpanfile* .
+- restore_cache:
+    name: restore vanilla perl cache
+    key: v3-{{ .Environment.CIRCLE_JOB }}-perl
+- run:
+    name: build a vanilla perl
+    command: |
+      [[ -f $PERL ]] || build-vanilla-perl
+- run:
+    name: install carton
+    command: |
+      $PERL /usr/local/bin/cpanm --notest --quiet \
+        Carton App::FatPacker File::pushd ExtUtils::MakeMaker
+- save_cache:
+    name: save vanilla perl cache
+    key: v3-{{ .Environment.CIRCLE_JOB }}-perl
+    paths:
+      - /opt/vanilla-perl
+- run:
+    command: fetch-pari
+- restore_cache:
+    name: restore vanilla carton local dir
+    key: v3-{{ .Environment.CIRCLE_JOB }}-carton-vanilla
+- run:
+    command: $PERL $CARTON install
+- save_cache:
+    name: save vanilla carton local dir
+    key: v3-{{ .Environment.CIRCLE_JOB }}-carton-vanilla
+    paths:
+      - /build/local
+      - /build/vendor
+- run:
+    name: patch Crypt::OpenPGP
+    command: |
+      wget -q -Olocal/cache/authors/id/S/SR/SROMANOV/Crypt-OpenPGP-1.12.tar.gz \
+        http://s3.amazonaws.com/moz-devservices-bmocartons/third-party/Crypt-OpenPGP-1.15.tar.gz
+- run:
+      command: $PERL $CARTON bundle
+- run:
+      command: $PERL $CARTON fatpack
+- run:
+    name: remove vanilla perl modules
+    command: rm -vfr local/lib/perl5
+- restore_cache:
+    name: restore system carton local dir
+    key: v3-{{ .Environment.CIRCLE_JOB }}-carton-system
+- run:
+    command: $SYSTEM_PERL ./vendor/bin/carton install --cached --deployment
+- save_cache:
+    name: save system carton local dir
+    key: v3-{{ .Environment.CIRCLE_JOB }}-carton-system
+    paths:
+      - /build/local
+      - /build/vendor
+- run:
+    command: package-bundle
+
+- persist_to_workspace:
+    root: /build
+    paths:
+      - "*/vendor.tar.gz"
+#+END_SRC
+
+
+** build_bundles environmental variables
+
+the following block are used as default environmental variables for the jobs where bundles are built.
+
+#+NAME: build_bundles_env
+#+BEGIN_SRC yaml :tangle ".circleci/config.yml"
+build_bundles_env: &build_bundles_env
+  PERL_DIR: /opt/vanilla-perl
+  PERL: /opt/vanilla-perl/bin/perl
+  SYSTEM_PERL: /usr/bin/perl
+  CARTON: /opt/vanilla-perl/bin/carton
+  PERL5LIB: /build/local/lib/perl5
+  PATH: /build/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin
+#+END_SRC
