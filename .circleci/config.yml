@@ -211,7 +211,7 @@ workflows:
       - centos6
       - ubuntu14
       - upload:
-        requires:
-          - centos6
-          - ubuntu14
+          requires:
+            - centos6
+            - ubuntu14
 
