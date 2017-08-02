@@ -98,7 +98,9 @@ jobs:
     working_directory: /build
     docker:
       - image: ubuntu:14.04
-        environment: *env
+        environment:
+          <<: *env
+          NAME: mozreview # named this for historical reasons
     steps:
       - checkout
       - run:
@@ -110,7 +112,7 @@ jobs:
             apt-get update
             apt-get --no-install-recommends -y install \
               apache2 build-essential cvs g++ git graphviz libapache2-mod-perl2 \
-              libgd-dev libgmp3-dev libmysqlclient-dev libssl-dev \
+              libgd-dev libgmp3-dev libmysqlclient-dev libssl-dev curl \
               mysql-client mysql-server patchutils pkg-config unzip wget
       - run:
           name: download some tools
