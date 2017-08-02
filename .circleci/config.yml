@@ -65,7 +65,7 @@ jobs:
           command: cp centos6/cpanfile* .
       - restore_cache:
           name: restore vanilla perl cache
-          key: v2-centos6-perl
+          key: v3-centos6-perl
       - run:
           name: build a vanilla perl
           command: |
@@ -77,19 +77,19 @@ jobs:
               Carton App::FatPacker File::pushd ExtUtils::MakeMaker
       - save_cache:
           name: save vanilla perl cache
-          key: v2-centos6-perl
+          key: v3-centos6-perl
           paths:
             - /opt/vanilla-perl
       - run:
           command: fetch-pari
       - restore_cache:
           name: restore vanilla carton local dir
-          key: v2-centos6-carton-vanilla
+          key: v3-centos6-carton-vanilla
       - run:
           command: $PERL $CARTON install
       - save_cache:
           name: save vanilla carton local dir
-          key: v2-centos6-carton-vanilla
+          key: v3-centos6-carton-vanilla
           paths:
             - /build/local
             - /build/vendor
@@ -107,12 +107,12 @@ jobs:
           command: rm -vfr local/lib/perl5
       - restore_cache:
           name: restore system carton local dir
-          key: v2-centos6-carton-system
+          key: v3-centos6-carton-system
       - run:
           command: $SYSTEM_PERL ./vendor/bin/carton install --cached --deployment
       - save_cache:
           name: save system carton local dir
-          key: v2-centos6-carton-system
+          key: v3-centos6-carton-system
           paths:
             - /build/local
             - /build/vendor
@@ -158,7 +158,7 @@ jobs:
           command: cp ubuntu14/cpanfile* .
       - restore_cache:
           name: restore vanilla perl cache
-          key: v2-ubuntu14-perl
+          key: v3-ubuntu14-perl
       - run:
           name: build a vanilla perl
           command: |
@@ -170,19 +170,19 @@ jobs:
               Carton App::FatPacker File::pushd ExtUtils::MakeMaker
       - save_cache:
           name: save vanilla perl cache
-          key: v2-ubuntu14-perl
+          key: v3-ubuntu14-perl
           paths:
             - /opt/vanilla-perl
       - run:
           command: fetch-pari
       - restore_cache:
           name: restore vanilla carton local dir
-          key: v2-ubuntu14-carton-vanilla
+          key: v3-ubuntu14-carton-vanilla
       - run:
           command: $PERL $CARTON install
       - save_cache:
           name: save vanilla carton local dir
-          key: v2-ubuntu14-carton-vanilla
+          key: v3-ubuntu14-carton-vanilla
           paths:
             - /build/local
             - /build/vendor
@@ -201,12 +201,12 @@ jobs:
           command: rm -vfr local/lib/perl5
       - restore_cache:
           name: restore system carton local dir
-          key: v2-ubuntu14-carton-system
+          key: v3-ubuntu14-carton-system
       - run:
           command: $SYSTEM_PERL ./vendor/bin/carton install --cached --deployment
       - save_cache:
           name: save system carton local dir
-          key: v2-ubuntu14-carton-system
+          key: v3-ubuntu14-carton-system
           paths:
             - /build/local
             - /build/vendor
