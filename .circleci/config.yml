@@ -99,6 +99,8 @@ jobs:
             wget -q -Olocal/cache/authors/id/S/SR/SROMANOV/Crypt-OpenPGP-1.12.tar.gz \
               http://s3.amazonaws.com/moz-devservices-bmocartons/third-party/Crypt-OpenPGP-1.15.tar.gz
       - run:
+           command: $PERL $CARTON bundle
+      - run:
            command: $PERL $CARTON fatpack
       - run:
           name: remove vanilla perl modules
@@ -189,6 +191,9 @@ jobs:
           command: |
             wget -q -Olocal/cache/authors/id/S/SR/SROMANOV/Crypt-OpenPGP-1.12.tar.gz \
               http://s3.amazonaws.com/moz-devservices-bmocartons/third-party/Crypt-OpenPGP-1.15.tar.gz
+
+      - run:
+           command: $PERL $CARTON bundle
       - run:
            command: $PERL $CARTON fatpack
       - run:
