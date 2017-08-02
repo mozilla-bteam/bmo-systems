@@ -59,12 +59,12 @@ jobs:
           command: fetch-pari
       - restore_cache:
           name: restore vanilla carton local dir
-          key: v1-carton-vanilla
+          key: v1-centos6-carton-vanilla
       - run:
           command: $PERL $CARTON install
       - save_cache:
           name: save vanilla carton local dir
-          key: v1-carton-vanilla
+          key: v1-centos6-carton-vanilla
           paths:
             - /build/local
             - /build/vendor
@@ -80,12 +80,12 @@ jobs:
           command: rm -vfr local/lib/perl5
       - restore_cache:
           name: restore system carton local dir
-          key: v1-carton-system
+          key: v1-centos6-carton-system
       - run:
           command: $SYSTEM_PERL ./vendor/bin/carton install --cached --deployment
       - save_cache:
           name: save system carton local dir
-          key: v1-carton-system
+          key: v1-centos6-carton-system
           paths:
             - /build/local
             - /build/vendor
@@ -94,22 +94,95 @@ jobs:
       - store_artifacts:
           path: /build/centos6.tar.gz
           destination: ""
-  # ubuntu14:
-  #   working_directory: /build
-  #   docker:
-  #     - image: ubuntu:14.04
-  #       environment: *env
-  #   steps: 
-  #     - checkout
-  #     - run:
-  #         command: cp /build/ubuntu14/mysql.list /etc/apt/sources.list.d/mysql.list
-  #     - run:
-  #         command: |
-  #           apt-key adv --keyserver ha.pool.sks-keyservers.net \
-  #             --recv-keys A4A9406876FCBD3C456770C88C718D3B5072E1F5
-  #           apt-get update
-  #           apt-get --no-install-recommends -y install \
-  #             apache2 build-essential cvs g++ git graphviz libapache2-mod-perl2 \
-  #             libgd-dev libgmp3-dev libmysqlclient-dev libssl-dev \
-  #             mysql-client mysql-server patchutils pkg-config unzip wget
+  ubuntu14:
+    working_directory: /build
+    docker:
+      - image: ubuntu:14.04
+        environment: *env
+    steps:
+      - checkout
+      - run:
+          command: cp /build/ubuntu14/mysql.list /etc/apt/sources.list.d/mysql.list
+      - run:
+          command: |
+            apt-key adv --keyserver ha.pool.sks-keyservers.net \
+              --recv-keys A4A9406876FCBD3C456770C88C718D3B5072E1F5
+            apt-get update
+            apt-get --no-install-recommends -y install \
+              apache2 build-essential cvs g++ git graphviz libapache2-mod-perl2 \
+              libgd-dev libgmp3-dev libmysqlclient-dev libssl-dev \
+              mysql-client mysql-server patchutils pkg-config unzip wget
+      - run:
+          name: download some tools
+          command: |
+            curl -L https://raw.github.com/tokuhirom/Perl-Build/master/perl-build \
+              > /usr/local/bin/perl-build
+            curl -L https://raw.githubusercontent.com/miyagawa/cpanminus/master/cpanm \
+              > /usr/local/bin/cpanm
+            chmod a+x /usr/local/bin/*
+      - run:
+          name: copy cpanfile and cpanfile.snapshot
+          command: cp ubuntu14/cpanfile* .
+      - restore_cache:
+          name: restore vanilla perl cache
+          key: v1-ubuntu14-perl
+      - run:
+          name: build a vanilla perl
+          command: |
+            [[ -f $PERL ]] || build-vanilla-perl
+      - run:
+          name: install carton
+          command: |
+            $PERL /usr/local/bin/cpanm --notest --quiet \
+              Carton App::FatPacker File::pushd ExtUtils::MakeMaker
+      - save_cache:
+          name: save vanilla perl cache
+          key: v1-ubuntu14-perl
+          paths:
+            - /opt/vanilla-perl
+      - run:
+          command: fetch-pari
+      - restore_cache:
+          name: restore vanilla carton local dir
+          key: v1-ubuntu14-carton-vanilla
+      - run:
+          command: $PERL $CARTON install
+      - save_cache:
+          name: save vanilla carton local dir
+          key: v1-ubuntu14-carton-vanilla
+          paths:
+            - /build/local
+            - /build/vendor
+      - run:
+          name: patch Crypt::OpenPGP
+          command: |
+            wget -q -Olocal/cache/authors/id/S/SR/SROMANOV/Crypt-OpenPGP-1.12.tar.gz \
+              http://s3.amazonaws.com/moz-devservices-bmocartons/third-party/Crypt-OpenPGP-1.15.tar.gz
+      - run:
+           command: $PERL $CARTON fatpack
+      - run:
+          name: remove vanilla perl modules
+          command: rm -vfr local/lib/perl5
+      - restore_cache:
+          name: restore system carton local dir
+          key: v1-ubuntu14-carton-system
+      - run:
+          command: $SYSTEM_PERL ./vendor/bin/carton install --cached --deployment
+      - save_cache:
+          name: save system carton local dir
+          key: v1-ubuntu14-carton-system
+          paths:
+            - /build/local
+            - /build/vendor
+      - run:
+          command: package-bundle /build/ubuntu14.tar.gz
+      - store_artifacts:
+          path: /build/ubuntu14.tar.gz
+          destination: ""
 
+workflows:
+  version: 2
+  bundles:
+    jobs:
+      - centos6
+      - ubuntu14
