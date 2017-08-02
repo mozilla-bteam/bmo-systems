@@ -9,6 +9,7 @@ version: 2
 jobs:
   <<upload>>
   <<centos6>>
+  <<centos7>>
   <<ubuntu14>>
 
 workflows:
@@ -16,11 +17,13 @@ workflows:
   bundles:
     jobs:
       - centos6
+      - centos7
       - ubuntu14
       - upload:
           requires:
             - centos6
             - ubuntu14
+            - centos7
 #+END_SRC
 
 * bundle jobs
@@ -53,6 +56,29 @@ centos6:
     <<build_bundles>>
 #+END_SRC
 
+
+* centos7 job
+
+#+NAME: centos7
+#+BEGIN_SRC yaml
+centos7:
+  working_directory: /build
+  docker:
+    - image: centos:7
+      environment: 
+        <<: *build_bundles_env
+        NAME: bmo_centos7 # named this for historical reasons
+  steps:
+    - checkout
+    - run:
+        name: install rpms
+        command: |
+          rpm -qa --queryformat '/^%{NAME}$/ d\n' > rpm_fix.sed
+          sed -f rpm_fix.sed /build/centos7/rpm_list > /rpm_list.clean
+          yum -y install epel-release
+          yum -y install `cat /rpm_list.clean`
+    <<build_bundles>>
+#+END_SRC
 
 ** ubuntu 14.04 job
 
