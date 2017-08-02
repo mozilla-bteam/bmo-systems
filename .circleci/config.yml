@@ -17,7 +17,7 @@ jobs:
           SYSTEM_PERL: /usr/bin/perl
           CARTON: /opt/vanilla-perl/bin/carton
           PERL5LIB: /build/local/lib/perl5
-          PATH: /build/bin:/usr/local/bin:/usr/bin:/bin
+          PATH: /build/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin
     steps:
       - checkout
       - run:
