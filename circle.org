@@ -48,21 +48,34 @@ workflows:
   version: 2
   bundles:
     jobs:
-      - centos6
-      - ubuntu14
+      - centos6:
+          <<only master>>
+      - ubuntu14:
+          <<only master>>
       - bmo-slim:
+          <<only master>>
           requires:
             - centos6
       - bmo-base:
+          <<only master>>
           requires:
             - centos6
       - bmo-ci:
+          <<only master>>
           requires:
             - bmo-base
       - upload:
+          <<only master>>
           requires:
             - centos6
             - ubuntu14
+#+END_SRC
+
+#+NAME: only master
+#+BEGIN_SRC yaml
+filters:
+  branches:
+    only: master
 #+END_SRC
 
 * docker jobs

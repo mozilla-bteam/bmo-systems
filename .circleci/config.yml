@@ -279,18 +279,36 @@ workflows:
   version: 2
   bundles:
     jobs:
-      - centos6
-      - ubuntu14
+      - centos6:
+          filters:
+            branches:
+              only: master
+      - ubuntu14:
+          filters:
+            branches:
+              only: master
       - bmo-slim:
+          filters:
+            branches:
+              only: master
           requires:
             - centos6
       - bmo-base:
+          filters:
+            branches:
+              only: master
           requires:
             - centos6
       - bmo-ci:
+          filters:
+            branches:
+              only: master
           requires:
             - bmo-base
       - upload:
+          filters:
+            branches:
+              only: master
           requires:
             - centos6
             - ubuntu14
