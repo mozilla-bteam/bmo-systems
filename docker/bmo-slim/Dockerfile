@@ -2,7 +2,7 @@ FROM centos:6.9
 MAINTAINER Dylan William Hardison <dylan@mozilla.com>
 
 RUN yum update -y && \
-    yum install -y perl perl-core mod_perl httpd wget tar openssl mysql-libs gd git && \
+    yum install -y perl perl-core mod_perl httpd wget tar openssl mysql-libs gd && \
     curl -L https://cpanmin.us > /usr/local/bin/cpanm && \
     chmod 755 /usr/local/bin/cpanm && \
     mkdir -p /opt/bmo/build && \
