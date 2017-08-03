@@ -20,9 +20,8 @@ RUN yum update -y && \
     useradd -u 10001 -U app -m && \
     mkdir /app
 
-COPY bmo/ /app/
+COPY bmo/ /opt/bmo/
 
 RUN awk '{print $1}' < /app/LIBS.txt \
          | perl -nE 'chomp; unless (-f $_) { $missing++; say $_ } END { exit 1 if $missing }' && \
-
-RUN chown -R app:app /app
+    chown -R app:app /app /opt/bmo
