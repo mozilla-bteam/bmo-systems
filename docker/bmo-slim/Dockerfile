@@ -21,4 +21,4 @@ RUN yum update -y && \
     mkdir /app && \
     chown app:app /app
 
-COPY bmo/ /opt/bmo/
+COPY bmo/ /app/
