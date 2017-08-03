@@ -227,14 +227,9 @@ jobs:
       - run:
           working_directory: /build/docker/bmo-base
           command: |
-            if [[ -n $CIRCLE_TAG ]]; then
-                TAG=$CIRCLE_TAG
-            else
-                TAG=latest
-            fi
             mkdir opt
-            tar -C opt -zxvf /build/upload/bmo/vendor.tar.gz bmo/vendor/ bmo/cpanfile bmo/cpanfile.snapshot
-            docker build -t $DOCKERHUB_REPO:$TAG .
+            tar -C opt -zxf /build/upload/bmo/vendor.tar.gz bmo/vendor/ bmo/cpanfile bmo/cpanfile.snapshot
+            docker build -t $DOCKERHUB_REPO:${CIRCLE_TAG:-latest} .
   
 
 workflows:
