@@ -107,7 +107,8 @@ bmo-ci:
         working_directory: /build/docker/bmo-ci
         command: |
           <<docker_build>>
-
+    - run:
+        command: docker run -ti $DOCKERHUB_REPO env GITHUB_BASE_BRANCH=production TEST_SUITE=sanity runtests.sh
 #+END_SRC
 
 ** bmo-slim

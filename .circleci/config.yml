@@ -247,7 +247,8 @@ jobs:
             docker build -t $DOCKERHUB_REPO:latest .
             docker login -u $DOCKER_USER -p $DOCKER_PASS
             docker push $DOCKERHUB_REPO:latest
-  
+      - run:
+          command: docker run -ti $DOCKERHUB_REPO env GITHUB_BASE_BRANCH=production TEST_SUITE=sanity runtests.sh
   bmo-slim:
     working_directory: /build
     docker:
