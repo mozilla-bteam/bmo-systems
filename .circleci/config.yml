@@ -33,7 +33,7 @@ jobs:
           working_directory: /build/upload
           command: |
             for file in */vendor.tar.gz; do
-              aws s3 cp $file s3://$S3_BUCKET/test/$file;
+              aws s3 cp $file s3://$S3_BUCKET/$file;
             done
   centos6:
     working_directory: /build
