@@ -129,7 +129,13 @@ bmo-slim:
     - run:
         working_directory: /build/docker/bmo-slim
         command: |
-          tar -zxf /build/upload/bmo/vendor.tar.gz bmo/vendor/bin bmo/local bmo/cpanfile bmo/cpanfile.snapshot
+          tar -zxf /build/upload/bmo/vendor.tar.gz \
+            bmo/vendor/bin \
+            bmo/local \
+            bmo/cpanfile \
+            bmo/cpanfile.snapshot \
+            bmo/LIBS.txt \
+            bmo/PACKAGES.txt
           <<docker_build>>
 
 #+END_SRC
