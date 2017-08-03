@@ -1,7 +1,37 @@
 # -*- org-src-preserve-indentation: t; -*-
-This is a literate version of our circle ci config.
+#+PROPERTY: header-args :exports none
+
+bmo-systems repo is responsible for:
+
+1. generating tarballs of the perl dependencies ("vendor bundles")
+2. uploading the above to an amazon s3 bucket
+3. generating several related docker images
+
+* How-To
+** Add perl dependencies to BMO
+
+   Adding dependencies to BMO (or bugzilla in general) involves adding them to Makefile.PL.
+   Getting these dependencies deployed to our infrastructure is more complicated.
+
+   You will need (at least) a centos 6 install, and an ubuntu 14.04 install. On
+   each, you will want to checkout the BMO code and an unpacked copy of the
+   vendor tarball for that platform.
+
+   #+BEGIN_SRC sh :exports code
+   perl Makefile.PL
+   make cpanfile GEN_CPANFILE_ARGS="-D bmo"
+   carton install
+   #+END_SRC
+
+After this, file cpanfile and cpanfile.snapshot should be added to bundle/PLATFORM/ and those changes commited.
+
+** Upgrade perl dependencies
+   This is the same as adding a dependency, except instead of "carton install" you run "carton upgrade".
+
+* Configuration
 
 #+BEGIN_SRC yaml :tangle ".circleci/config.yml" :noweb yes
+# if this file ends in .yml, you should not edit it and edit circle.org instead.
 version: 2
 
 <<build_bundles_env>>
@@ -304,5 +334,3 @@ docker build -t $DOCKERHUB_REPO:latest .
 docker login -u $DOCKER_USER -p $DOCKER_PASS
 docker push $DOCKERHUB_REPO:latest
 #+END_SRC
-
-
