@@ -213,12 +213,12 @@ jobs:
           root: /build/upload
           paths:
             - "*/vendor.tar.gz"
-  bmo_base:
+  bmo-base:
     working_directory: /build
     docker:
       - image: docker:17.06.1-ce
         environment:
-          DOCKERHUB_REPO: mozillabteam/bmo
+          DOCKERHUB_REPO: mozillabteam/bmo-base
     steps:
       - setup_remote_docker
       - checkout
@@ -227,9 +227,44 @@ jobs:
       - run:
           working_directory: /build/docker/bmo-base
           command: |
-            mkdir opt
-            tar -C opt -zxf /build/upload/bmo/vendor.tar.gz bmo/vendor/ bmo/cpanfile bmo/cpanfile.snapshot
-            docker build -t $DOCKERHUB_REPO:${CIRCLE_TAG:-latest} .
+            tar -zxf /build/upload/bmo/vendor.tar.gz bmo/vendor/ bmo/cpanfile bmo/cpanfile.snapshot
+            docker build -t $DOCKERHUB_REPO:latest .
+            docker login -u $DOCKER_USER -p $DOCKER_PASS
+            docker push $DOCKERHUB_REPO:latest
+  bmo-ci:
+    working_directory: /build
+    docker:
+      - image: docker:17.06.1-ce
+        environment:
+          DOCKERHUB_REPO: mozillabteam/bmo-ci
+    steps:
+      - setup_remote_docker
+      - checkout
+      - run:
+          working_directory: /build/docker/bmo-ci
+          command: |
+            docker build -t $DOCKERHUB_REPO:latest .
+            docker login -u $DOCKER_USER -p $DOCKER_PASS
+            docker push $DOCKERHUB_REPO:latest
+  
+  bmo-slim:
+    working_directory: /build
+    docker:
+      - image: docker:17.06.1-ce
+        environment:
+          DOCKERHUB_REPO: mozillabteam/bmo-slim
+    steps:
+      - setup_remote_docker
+      - checkout
+      - attach_workspace:
+          at: /build/upload
+      - run:
+          working_directory: /build/docker/bmo-slim
+          command: |
+            tar -zxf /build/upload/bmo/vendor.tar.gz bmo/vendor/bin bmo/local bmo/cpanfile bmo/cpanfile.snapshot
+            docker build -t $DOCKERHUB_REPO:latest .
+            docker login -u $DOCKER_USER -p $DOCKER_PASS
+            docker push $DOCKERHUB_REPO:latest
   
 
 workflows:
@@ -238,9 +273,15 @@ workflows:
     jobs:
       - centos6
       - ubuntu14
-      - bmo_base:
+      - bmo-slim:
           requires:
             - centos6
+      - bmo-base:
+          requires:
+            - centos6
+      - bmo-ci:
+          requires:
+            - bmo-base
       - upload:
           requires:
             - centos6

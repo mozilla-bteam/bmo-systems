@@ -10,7 +10,9 @@ jobs:
   <<upload>>
   <<centos6>>
   <<ubuntu14>>
-  <<bmo_base>>
+  <<bmo-base>>
+  <<bmo-ci>>
+  <<bmo-slim>>
 
 workflows:
   version: 2
@@ -18,9 +20,15 @@ workflows:
     jobs:
       - centos6
       - ubuntu14
-      - bmo_base:
+      - bmo-slim:
           requires:
             - centos6
+      - bmo-base:
+          requires:
+            - centos6
+      - bmo-ci:
+          requires:
+            - bmo-base
       - upload:
           requires:
             - centos6
@@ -32,14 +40,14 @@ jobs that build docker containers (bmo-base, bmo-ci, etc)
 
 ** bmo-base
 
-#+NAME: bmo_base
+#+NAME: bmo-base
 #+BEGIN_SRC yaml
-bmo_base:
+bmo-base:
   working_directory: /build
   docker:
     - image: docker:17.06.1-ce
       environment:
-        DOCKERHUB_REPO: mozillabteam/bmo
+        DOCKERHUB_REPO: mozillabteam/bmo-base
   steps:
     - setup_remote_docker
     - checkout
@@ -48,12 +56,52 @@ bmo_base:
     - run:
         working_directory: /build/docker/bmo-base
         command: |
-          mkdir opt
-          tar -C opt -zxf /build/upload/bmo/vendor.tar.gz bmo/vendor/ bmo/cpanfile bmo/cpanfile.snapshot
-          docker build -t $DOCKERHUB_REPO:${CIRCLE_TAG:-latest} .
+          tar -zxf /build/upload/bmo/vendor.tar.gz bmo/vendor/ bmo/cpanfile bmo/cpanfile.snapshot
+          <<docker_build>>
+#+END_SRC
+
+** bmo-ci
+
+#+NAME: bmo-ci
+#+BEGIN_SRC yaml
+bmo-ci:
+  working_directory: /build
+  docker:
+    - image: docker:17.06.1-ce
+      environment:
+        DOCKERHUB_REPO: mozillabteam/bmo-ci
+  steps:
+    - setup_remote_docker
+    - checkout
+    - run:
+        working_directory: /build/docker/bmo-ci
+        command: |
+          <<docker_build>>
 
 #+END_SRC
 
+** bmo-slim
+
+#+NAME: bmo-slim
+#+BEGIN_SRC yaml
+bmo-slim:
+  working_directory: /build
+  docker:
+    - image: docker:17.06.1-ce
+      environment:
+        DOCKERHUB_REPO: mozillabteam/bmo-slim
+  steps:
+    - setup_remote_docker
+    - checkout
+    - attach_workspace:
+        at: /build/upload
+    - run:
+        working_directory: /build/docker/bmo-slim
+        command: |
+          tar -zxf /build/upload/bmo/vendor.tar.gz bmo/vendor/bin bmo/local bmo/cpanfile bmo/cpanfile.snapshot
+          <<docker_build>>
+
+#+END_SRC
 
 * bundle jobs
 
@@ -248,3 +296,13 @@ build_bundles_env: &build_bundles_env
   PERL5LIB: /build/local/lib/perl5
   PATH: /build/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin
 #+END_SRC
+
+** docker build / push stanza
+#+NAME: docker_build
+#+BEGIN_SRC text
+docker build -t $DOCKERHUB_REPO:latest .
+docker login -u $DOCKER_USER -p $DOCKER_PASS
+docker push $DOCKERHUB_REPO:latest
+#+END_SRC
+
+

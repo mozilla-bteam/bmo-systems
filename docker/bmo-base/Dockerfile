@@ -3,7 +3,7 @@ MAINTAINER Dylan William Hardison <dylan@mozilla.com>
 
 ADD https://raw.githubusercontent.com/miyagawa/cpanminus/master/cpanm /usr/local/bin/cpanm
 COPY rpm_list /rpm_list
-COPY opt/ /opt/
+COPY bmo/ /opt/bmo/
 
 RUN chmod 755 /usr/local/bin/cpanm && \
     rpm -qa --queryformat '/^%{NAME}$/ d\n' > rpm_fix.sed && \
