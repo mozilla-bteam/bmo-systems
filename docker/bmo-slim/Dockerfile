@@ -18,7 +18,8 @@ RUN yum update -y && \
     rm /tmp/rpms.list /usr/local/bin/cpanm && \
     yum clean all -y && \
     useradd -u 10001 -U app -m && \
-    mkdir /app && \
-    chown app:app /app
+    mkdir /app
 
 COPY bmo/ /app/
+
+RUN chown -R app:app /app
