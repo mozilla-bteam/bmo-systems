@@ -22,4 +22,7 @@ RUN yum update -y && \
 
 COPY bmo/ /app/
 
+RUN awk '{print $1}' < /app/LIBS.txt \
+         | perl -nE 'chomp; unless (-f $_) { $missing++; say $_ } END { exit 1 if $missing }' && \
+
 RUN chown -R app:app /app
