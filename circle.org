@@ -329,6 +329,8 @@ The following list of steps are used on all jobs that build vendor tarballs.
     root: /build/upload
     paths:
       - "*/vendor.tar.gz"
+- store_artifacts:
+    path: '/root/.cpanm/work/*/build.log'
 #+END_SRC
 
 

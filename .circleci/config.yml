@@ -122,6 +122,8 @@ jobs:
           root: /build/upload
           paths:
             - "*/vendor.tar.gz"
+      - store_artifacts:
+          path: '/root/.cpanm/work/*/build.log'
   ubuntu14:
     working_directory: /build
     docker:
@@ -214,6 +216,8 @@ jobs:
           root: /build/upload
           paths:
             - "*/vendor.tar.gz"
+      - store_artifacts:
+          path: '/root/.cpanm/work/*/build.log'
   bmo-base:
     working_directory: /build
     docker:
