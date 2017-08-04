@@ -92,4 +92,5 @@ on test => sub {
     requires 'Pod::Coverage';
     requires 'Test::More';
     requires 'Test::WWW::Selenium';
+    requires 'Test::Lithium', '1.0.0';
 };
