@@ -97,6 +97,7 @@ bmo-base:
     - attach_workspace:
         at: /build/upload
     - run:
+        no_output_timeout: 20m
         working_directory: /build/docker/bmo-base
         command: |
           tar -zxf /build/upload/bmo/vendor.tar.gz bmo/vendor/ bmo/cpanfile bmo/cpanfile.snapshot

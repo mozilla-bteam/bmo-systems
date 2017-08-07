@@ -94,4 +94,5 @@ on test => sub {
     requires 'Pod::Coverage';
     requires 'Test::More';
     requires 'Test::WWW::Selenium';
+    requires 'Test::Selenium::Firefox';
 };
