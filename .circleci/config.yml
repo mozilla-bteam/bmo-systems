@@ -139,7 +139,7 @@ jobs:
           name: install dependencies
           command: |
             success=no
-            (( i = 0 ))
+            (( i = 1 ))
             while (( ++i < 5 )); do
               apt-key adv --keyserver ha.pool.sks-keyservers.net \
                   --recv-keys A4A9406876FCBD3C456770C88C718D3B5072E1F5 || continue
