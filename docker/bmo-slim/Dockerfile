@@ -2,7 +2,8 @@ FROM centos:6.9
 MAINTAINER Dylan William Hardison <dylan@mozilla.com>
 
 RUN yum update -y && \
-    yum install -y perl perl-core mod_perl httpd wget tar openssl mysql-libs gd && \
+    yum install -y centos-release-scl && \
+    yum install -y perl perl-core mod_perl httpd wget tar openssl mysql-libs gd openssh sclo-git25-git && \
     curl -L https://cpanmin.us > /usr/local/bin/cpanm && \
     chmod 755 /usr/local/bin/cpanm && \
     mkdir -p /opt/bmo/build && \
@@ -19,6 +20,8 @@ RUN yum update -y && \
     yum clean all -y && \
     useradd -u 10001 -U app -m && \
     mkdir /app
+
+ENV PATH=/opt/rh/sclo-git25/root/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin 
 
 COPY bmo/ /opt/bmo/
 
