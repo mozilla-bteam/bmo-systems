@@ -78,6 +78,7 @@ requires 'XML::Twig';
 requires 'XMLRPC::Lite', '0.712';
 requires 'perl', '5.010001';
 requires 'version', '0.87';
+requires 'Algorithm::BloomFilter';
 recommends 'Safe', '2.30';
 
 on configure => sub {
