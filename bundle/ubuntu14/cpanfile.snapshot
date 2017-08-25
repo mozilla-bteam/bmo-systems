@@ -115,6 +115,35 @@ DISTRIBUTIONS
       ExtUtils::MakeMaker 0
       Test::More 0
       perl 5.008008
+  Archive-Zip-1.59
+    pathname: P/PH/PHRED/Archive-Zip-1.59.tar.gz
+    provides:
+      Archive::Zip 1.59
+      Archive::Zip::Archive 1.59
+      Archive::Zip::BufferedFileHandle 1.59
+      Archive::Zip::DirectoryMember 1.59
+      Archive::Zip::FileMember 1.59
+      Archive::Zip::Member 1.59
+      Archive::Zip::MemberRead 1.59
+      Archive::Zip::MockFileHandle 1.59
+      Archive::Zip::NewFileMember 1.59
+      Archive::Zip::StringMember 1.59
+      Archive::Zip::Tree 1.59
+      Archive::Zip::ZipFileMember 1.59
+    requirements:
+      Compress::Raw::Zlib 2.017
+      ExtUtils::MakeMaker 0
+      File::Basename 0
+      File::Copy 0
+      File::Find 0
+      File::Path 0
+      File::Spec 0.80
+      File::Temp 0
+      IO::File 0
+      IO::Handle 0
+      IO::Seekable 0
+      Time::Local 0
+      perl 5.006
   Auth-GoogleAuth-1.01
     pathname: G/GR/GRYPHON/Auth-GoogleAuth-1.01.tar.gz
     provides:
@@ -417,6 +446,13 @@ DISTRIBUTIONS
       Module::Build 0.38
       URI::Escape 0
       perl 5.008001
+  Cpanel-JSON-XS-3.0237
+    pathname: R/RU/RURBAN/Cpanel-JSON-XS-3.0237.tar.gz
+    provides:
+      Cpanel::JSON::XS 3.0237
+    requirements:
+      ExtUtils::MakeMaker 0
+      Pod::Text 2.08
   Crypt-Blowfish-2.14
     pathname: D/DP/DPARIS/Crypt-Blowfish-2.14.tar.gz
     provides:
@@ -945,6 +981,9 @@ DISTRIBUTIONS
       POSIX 0
       Params::Validate 0.76
       Scalar::Util 0
+      Storable 0
+      Test::Fatal 0
+      Test::More 0.88
       Try::Tiny 0
       XSLoader 0
       base 0
@@ -953,6 +992,7 @@ DISTRIBUTIONS
       overload 0
       perl 5.008001
       strict 0
+      utf8 0
       vars 0
       warnings 0
   DateTime-Locale-0.45
@@ -1429,7 +1469,7 @@ DISTRIBUTIONS
       DateTime::Locale::zu_ZA undef
     requirements:
       List::MoreUtils 0
-      Module::Build 0
+      Module::Build 0.36
       Params::Validate 0.91
       perl 5.006
   DateTime-TimeZone-2.11
@@ -2830,6 +2870,12 @@ DISTRIBUTIONS
       Mozilla::CA 0
       Net::SSLeay 1.46
       Scalar::Util 0
+  IO-String-1.08
+    pathname: G/GA/GAAS/IO-String-1.08.tar.gz
+    provides:
+      IO::String 1.08
+    requirements:
+      ExtUtils::MakeMaker 0
   IO-stringy-2.111
     pathname: D/DS/DSKOLL/IO-stringy-2.111.tar.gz
     provides:
@@ -3979,6 +4025,7 @@ DISTRIBUTIONS
     requirements:
       Attribute::Handlers 0.79
       ExtUtils::CBuilder 0
+      Module::Build 0.36
       Pod::Man 1.14
       Scalar::Util 1.10
       Test::More 0.34
@@ -4390,6 +4437,76 @@ DISTRIBUTIONS
       URI 0
       namespace::clean 0
       overload 0
+      warnings 0
+  Selenium-Remote-Driver-1.20
+    pathname: G/GE/GEMPESAW/Selenium-Remote-Driver-1.20.tar.gz
+    provides:
+      Selenium::ActionChains 1.20
+      Selenium::CanStartBinary 1.20
+      Selenium::CanStartBinary::FindBinary 1.20
+      Selenium::CanStartBinary::ProbePort 1.20
+      Selenium::Chrome 1.20
+      Selenium::Firefox 1.20
+      Selenium::Firefox::Binary 1.20
+      Selenium::Firefox::Profile 1.20
+      Selenium::InternetExplorer 1.20
+      Selenium::PhantomJS 1.20
+      Selenium::Remote::Commands 1.20
+      Selenium::Remote::Driver 1.20
+      Selenium::Remote::Driver::CanSetWebdriverContext 1.20
+      Selenium::Remote::Driver::Firefox::Profile 1.20
+      Selenium::Remote::ErrorHandler 1.20
+      Selenium::Remote::Finders 1.20
+      Selenium::Remote::Mock::Commands 1.20
+      Selenium::Remote::Mock::RemoteConnection 1.20
+      Selenium::Remote::RemoteConnection 1.20
+      Selenium::Remote::WDKeys 1.20
+      Selenium::Remote::WebElement 1.20
+      Selenium::Waiter 1.20
+      Test::Selenium::Chrome 1.20
+      Test::Selenium::Firefox 1.20
+      Test::Selenium::InternetExplorer 1.20
+      Test::Selenium::PhantomJS 1.20
+      Test::Selenium::Remote::Driver 1.20
+      Test::Selenium::Remote::Role::DoesTesting 1.20
+      Test::Selenium::Remote::WebElement 1.20
+    requirements:
+      Archive::Zip 0
+      Carp 0
+      Cwd 0
+      Data::Dumper 0
+      Exporter 0
+      ExtUtils::MakeMaker 0
+      File::Basename 0
+      File::Copy 0
+      File::Spec 0
+      File::Spec::Functions 0
+      File::Temp 0
+      File::Which 0
+      HTTP::Headers 0
+      HTTP::Request 0
+      HTTP::Response 0
+      IO::Socket 0
+      IO::Socket::INET 0
+      IO::String 0
+      IO::Uncompress::Unzip 2.030
+      JSON 0
+      LWP::UserAgent 0
+      List::Util 1.33
+      MIME::Base64 0
+      Moo 1.005
+      Moo::Role 0
+      Scalar::Util 0
+      Sub::Install 0
+      Test::Builder 0
+      Test::LongString 0
+      Try::Tiny 0
+      XML::Simple 0
+      base 0
+      constant 0
+      namespace::clean 0
+      perl 5.010
+      strict 0
       warnings 0
   Sort-Versions-1.62
     pathname: N/NE/NEILB/Sort-Versions-1.62.tar.gz
@@ -4829,6 +4946,14 @@ DISTRIBUTIONS
       Test::Harness 3.36
     requirements:
       ExtUtils::MakeMaker 0
+  Test-LongString-0.17
+    pathname: R/RG/RGARCIA/Test-LongString-0.17.tar.gz
+    provides:
+      Test::LongString 0.17
+    requirements:
+      ExtUtils::MakeMaker 0
+      Test::Builder 0.12
+      Test::Builder::Tester 1.04
   Test-NoTabs-1.4
     pathname: B/BO/BOBTFISH/Test-NoTabs-1.4.tar.gz
     provides:
