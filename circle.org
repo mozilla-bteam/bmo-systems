@@ -163,7 +163,7 @@ bundle-centos6:
   working_directory: /build
   docker:
     - image: docker:17.06.1-ce
-      environmental:
+      environment:
         DOCKERHUB_REPO: mozillabteam/bundle-centos6
   steps:
     - setup_remote_docker
