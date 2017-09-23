@@ -46,19 +46,10 @@ jobs:
       - checkout
       - run:
           name: install rpms
-          command: |
-            rpm -qa --queryformat '/^%{NAME}$/ d\n' > rpm_fix.sed
-            sed -f rpm_fix.sed /build/bundle/centos6/rpm_list > /rpm_list.clean
-            yum -q -y install epel-release
-            yum -q -y install `cat /rpm_list.clean`
+          command: /build/bundle/centos6/install-rpms
       - run:
           name: download some tools
-          command: |
-            curl -L https://raw.github.com/tokuhirom/Perl-Build/master/perl-build \
-              > /usr/local/bin/perl-build
-            curl -L https://raw.githubusercontent.com/miyagawa/cpanminus/master/cpanm \
-              > /usr/local/bin/cpanm
-            chmod a+x /usr/local/bin/*
+          command: fetch-tools
       - run:
           name: copy cpanfile and cpanfile.snapshot
           command: cp bundle/$CIRCLE_JOB/cpanfile* .
@@ -67,13 +58,10 @@ jobs:
           key: v3-{{ .Environment.CIRCLE_JOB }}-perl
       - run:
           name: build a vanilla perl
-          command: |
-            [[ -f $PERL ]] || build-vanilla-perl
+          command: build-vanilla-perl
       - run:
           name: install carton
-          command: |
-            $PERL /usr/local/bin/cpanm --notest --quiet \
-              Carton App::FatPacker File::pushd ExtUtils::MakeMaker
+          command: install-carton
       - save_cache:
           name: save vanilla perl cache
           key: v3-{{ .Environment.CIRCLE_JOB }}-perl
@@ -94,9 +82,7 @@ jobs:
             - /build/vendor
       - run:
           name: patch Crypt::OpenPGP
-          command: |
-            wget -q -Olocal/cache/authors/id/S/SR/SROMANOV/Crypt-OpenPGP-1.12.tar.gz \
-              http://s3.amazonaws.com/moz-devservices-bmocartons/third-party/Crypt-OpenPGP-1.15.tar.gz
+          command: patch-crypt-openpgp
       - run:
             command: $PERL $CARTON bundle
       - run:
@@ -117,7 +103,6 @@ jobs:
             - /build/vendor
       - run:
           command: package-bundle
-      
       - persist_to_workspace:
           root: /build/upload
           paths:
@@ -154,12 +139,7 @@ jobs:
             [[ $success == yes ]] || exit 1
       - run:
           name: download some tools
-          command: |
-            curl -L https://raw.github.com/tokuhirom/Perl-Build/master/perl-build \
-              > /usr/local/bin/perl-build
-            curl -L https://raw.githubusercontent.com/miyagawa/cpanminus/master/cpanm \
-              > /usr/local/bin/cpanm
-            chmod a+x /usr/local/bin/*
+          command: fetch-tools
       - run:
           name: copy cpanfile and cpanfile.snapshot
           command: cp bundle/$CIRCLE_JOB/cpanfile* .
@@ -168,13 +148,10 @@ jobs:
           key: v3-{{ .Environment.CIRCLE_JOB }}-perl
       - run:
           name: build a vanilla perl
-          command: |
-            [[ -f $PERL ]] || build-vanilla-perl
+          command: build-vanilla-perl
       - run:
           name: install carton
-          command: |
-            $PERL /usr/local/bin/cpanm --notest --quiet \
-              Carton App::FatPacker File::pushd ExtUtils::MakeMaker
+          command: install-carton
       - save_cache:
           name: save vanilla perl cache
           key: v3-{{ .Environment.CIRCLE_JOB }}-perl
@@ -195,9 +172,7 @@ jobs:
             - /build/vendor
       - run:
           name: patch Crypt::OpenPGP
-          command: |
-            wget -q -Olocal/cache/authors/id/S/SR/SROMANOV/Crypt-OpenPGP-1.12.tar.gz \
-              http://s3.amazonaws.com/moz-devservices-bmocartons/third-party/Crypt-OpenPGP-1.15.tar.gz
+          command: patch-crypt-openpgp
       - run:
             command: $PERL $CARTON bundle
       - run:
@@ -218,7 +193,6 @@ jobs:
             - /build/vendor
       - run:
           command: package-bundle
-      
       - persist_to_workspace:
           root: /build/upload
           paths:
@@ -286,6 +260,24 @@ jobs:
             docker login -u $DOCKER_USER -p $DOCKER_PASS
             docker push $DOCKERHUB_REPO:latest
   
+  bundle-centos6:
+    working_directory: /build
+    docker:
+      - image: docker:17.06.1-ce
+        environmental:
+          DOCKERHUB_REPO: mozillabteam/bundle-centos6
+    steps:
+      - setup_remote_docker
+      - checkout
+      - run: apk --update add perl perl-yaml-xs
+      - run: perl bin/job2dockerfile centos6 > Dockerfile
+      - run:
+          name: build docker container
+          command: |
+            docker build -t $DOCKERHUB_REPO:latest .
+            docker login -u $DOCKER_USER -p $DOCKER_PASS
+            docker push $DOCKERHUB_REPO:latest
+  
 
 workflows:
   version: 2
@@ -296,6 +288,10 @@ workflows:
             branches:
               only: master
       - ubuntu14:
+          filters:
+            branches:
+              only: master
+      - bundle-centos6:
           filters:
             branches:
               only: master

@@ -43,6 +43,7 @@ jobs:
   <<bmo-base>>
   <<bmo-ci>>
   <<bmo-slim>>
+  <<bundle-centos6>>
 
 workflows:
   version: 2
@@ -51,6 +52,8 @@ workflows:
       - centos6:
           <<only master>>
       - ubuntu14:
+          <<only master>>
+      - bundle-centos6:
           <<only master>>
       - bmo-slim:
           <<only master>>
@@ -154,6 +157,26 @@ bmo-slim:
 
 #+END_SRC
 
+#+NAME: bundle-centos6
+#+BEGIN_SRC yaml
+bundle-centos6:
+  working_directory: /build
+  docker:
+    - image: docker:17.06.1-ce
+      environmental:
+        DOCKERHUB_REPO: mozillabteam/bundle-centos6
+  steps:
+    - setup_remote_docker
+    - checkout
+    - run: apk --update add perl perl-yaml-xs
+    - run: perl bin/job2dockerfile centos6 > Dockerfile
+    - run:
+        name: build docker container
+        command: |
+          <<docker_build>>
+
+#+END_SRC
+
 * bundle jobs
 
 All the jobs below are used to build collections of the perl dependencies that BMO needs.
@@ -176,11 +199,7 @@ centos6:
     - checkout
     - run:
         name: install rpms
-        command: |
-          rpm -qa --queryformat '/^%{NAME}$/ d\n' > rpm_fix.sed
-          sed -f rpm_fix.sed /build/bundle/centos6/rpm_list > /rpm_list.clean
-          yum -q -y install epel-release
-          yum -q -y install `cat /rpm_list.clean`
+        command: /build/bundle/centos6/install-rpms
     <<build_bundles>>
 #+END_SRC
 ** ubuntu 14.04 job
@@ -254,7 +273,6 @@ upload:
           done
 #+END_SRC
 
-
 * Other pieces of code
 
 Some bits of configuration used in multiple locations
@@ -267,12 +285,7 @@ The following list of steps are used on all jobs that build vendor tarballs.
 #+BEGIN_SRC yaml
 - run:
     name: download some tools
-    command: |
-      curl -L https://raw.github.com/tokuhirom/Perl-Build/master/perl-build \
-        > /usr/local/bin/perl-build
-      curl -L https://raw.githubusercontent.com/miyagawa/cpanminus/master/cpanm \
-        > /usr/local/bin/cpanm
-      chmod a+x /usr/local/bin/*
+    command: fetch-tools
 - run:
     name: copy cpanfile and cpanfile.snapshot
     command: cp bundle/$CIRCLE_JOB/cpanfile* .
@@ -281,13 +294,10 @@ The following list of steps are used on all jobs that build vendor tarballs.
     key: v3-{{ .Environment.CIRCLE_JOB }}-perl
 - run:
     name: build a vanilla perl
-    command: |
-      [[ -f $PERL ]] || build-vanilla-perl
+    command: build-vanilla-perl
 - run:
     name: install carton
-    command: |
-      $PERL /usr/local/bin/cpanm --notest --quiet \
-        Carton App::FatPacker File::pushd ExtUtils::MakeMaker
+    command: install-carton
 - save_cache:
     name: save vanilla perl cache
     key: v3-{{ .Environment.CIRCLE_JOB }}-perl
@@ -308,9 +318,7 @@ The following list of steps are used on all jobs that build vendor tarballs.
       - /build/vendor
 - run:
     name: patch Crypt::OpenPGP
-    command: |
-      wget -q -Olocal/cache/authors/id/S/SR/SROMANOV/Crypt-OpenPGP-1.12.tar.gz \
-        http://s3.amazonaws.com/moz-devservices-bmocartons/third-party/Crypt-OpenPGP-1.15.tar.gz
+    command: patch-crypt-openpgp
 - run:
       command: $PERL $CARTON bundle
 - run:
@@ -331,7 +339,6 @@ The following list of steps are used on all jobs that build vendor tarballs.
       - /build/vendor
 - run:
     command: package-bundle
-
 - persist_to_workspace:
     root: /build/upload
     paths:

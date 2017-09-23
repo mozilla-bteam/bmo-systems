@@ -1,0 +1,41 @@
+#!/usr/bin/perl
+use 5.10.1;
+use strict;
+use warnings;
+use YAML::XS qw(LoadFile);
+
+my $config = LoadFile(".circleci/config.yml");
+
+my $job_name = shift @ARGV or die "usage: $0 jobname\n";
+
+my $job        = $config->{jobs}{$job_name};
+my $dir        = $job->{working_directory};
+my $container  = $job->{docker}[0];
+my $image      = $container->{image};
+my $env        = $container->{environment};
+
+if ($env->{'<<'}) {
+    my $add = delete $env->{'<<'};
+    $env = { %$add, %$env };
+}
+
+say "FROM $image";
+say "ENV $_ '$env->{$_}'" for keys %$env;
+say "ENV CIRCLE_JOB '$job_name'";
+
+say "WORKDIR $dir";
+
+foreach my $step (@{ $job->{steps}}) {
+    if ($step eq 'checkout') {
+        say "COPY . $dir";
+    }
+    elsif (ref $step && $step->{run}) {
+        my $run = $step->{run};
+        my $cmd = ref $run ? $run->{command} : $run;
+        say "RUN $cmd";
+    }
+}
+
+
+
+

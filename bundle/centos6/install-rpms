@@ -1,0 +1,7 @@
+#!/bin/bash
+
+yum -q -y update
+rpm -qa --queryformat '/^%{NAME}$/ d\n' > rpm_fix.sed
+sed -f rpm_fix.sed /build/bundle/centos6/rpm_list > /rpm_list.clean
+yum -q -y install epel-release
+yum -q -y install `cat /rpm_list.clean`
