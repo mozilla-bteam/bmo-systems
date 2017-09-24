@@ -55,7 +55,7 @@ jobs:
           command: cp bundle/$CIRCLE_JOB/cpanfile* .
       - restore_cache:
           name: restore vanilla perl cache
-          key: v3-{{ .Environment.CIRCLE_JOB }}-perl
+          key: v4-{{ .Environment.CIRCLE_JOB }}-perl
       - run:
           name: build a vanilla perl
           command: build-vanilla-perl
@@ -64,19 +64,19 @@ jobs:
           command: install-carton
       - save_cache:
           name: save vanilla perl cache
-          key: v3-{{ .Environment.CIRCLE_JOB }}-perl
+          key: v4-{{ .Environment.CIRCLE_JOB }}-perl
           paths:
             - /opt/vanilla-perl
       - run:
           command: fetch-pari
       - restore_cache:
           name: restore vanilla carton local dir
-          key: v3-{{ .Environment.CIRCLE_JOB }}-carton-vanilla
+          key: v4-{{ .Environment.CIRCLE_JOB }}-carton-vanilla
       - run:
           command: $PERL $CARTON install
       - save_cache:
           name: save vanilla carton local dir
-          key: v3-{{ .Environment.CIRCLE_JOB }}-carton-vanilla
+          key: v4-{{ .Environment.CIRCLE_JOB }}-carton-vanilla
           paths:
             - /build/local
             - /build/vendor
@@ -92,12 +92,12 @@ jobs:
           command: rm -vfr local/lib/perl5
       - restore_cache:
           name: restore system carton local dir
-          key: v3-{{ .Environment.CIRCLE_JOB }}-carton-system
+          key: v4-{{ .Environment.CIRCLE_JOB }}-carton-system
       - run:
           command: $SYSTEM_PERL ./vendor/bin/carton install --cached --deployment
       - save_cache:
           name: save system carton local dir
-          key: v3-{{ .Environment.CIRCLE_JOB }}-carton-system
+          key: v4-{{ .Environment.CIRCLE_JOB }}-carton-system
           paths:
             - /build/local
             - /build/vendor
@@ -145,7 +145,7 @@ jobs:
           command: cp bundle/$CIRCLE_JOB/cpanfile* .
       - restore_cache:
           name: restore vanilla perl cache
-          key: v3-{{ .Environment.CIRCLE_JOB }}-perl
+          key: v4-{{ .Environment.CIRCLE_JOB }}-perl
       - run:
           name: build a vanilla perl
           command: build-vanilla-perl
@@ -154,19 +154,19 @@ jobs:
           command: install-carton
       - save_cache:
           name: save vanilla perl cache
-          key: v3-{{ .Environment.CIRCLE_JOB }}-perl
+          key: v4-{{ .Environment.CIRCLE_JOB }}-perl
           paths:
             - /opt/vanilla-perl
       - run:
           command: fetch-pari
       - restore_cache:
           name: restore vanilla carton local dir
-          key: v3-{{ .Environment.CIRCLE_JOB }}-carton-vanilla
+          key: v4-{{ .Environment.CIRCLE_JOB }}-carton-vanilla
       - run:
           command: $PERL $CARTON install
       - save_cache:
           name: save vanilla carton local dir
-          key: v3-{{ .Environment.CIRCLE_JOB }}-carton-vanilla
+          key: v4-{{ .Environment.CIRCLE_JOB }}-carton-vanilla
           paths:
             - /build/local
             - /build/vendor
@@ -182,12 +182,12 @@ jobs:
           command: rm -vfr local/lib/perl5
       - restore_cache:
           name: restore system carton local dir
-          key: v3-{{ .Environment.CIRCLE_JOB }}-carton-system
+          key: v4-{{ .Environment.CIRCLE_JOB }}-carton-system
       - run:
           command: $SYSTEM_PERL ./vendor/bin/carton install --cached --deployment
       - save_cache:
           name: save system carton local dir
-          key: v3-{{ .Environment.CIRCLE_JOB }}-carton-system
+          key: v4-{{ .Environment.CIRCLE_JOB }}-carton-system
           paths:
             - /build/local
             - /build/vendor
