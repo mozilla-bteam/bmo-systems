@@ -189,7 +189,7 @@ bundle-centos6:
 ** bundle-ubuntu14
 #+NAME: bundle-ubuntu14
 #+BEGIN_SRC yaml
-bundle-centos6:
+bundle-ubuntu14:
   working_directory: /build
   docker:
     - image: docker:17.06.1-ce

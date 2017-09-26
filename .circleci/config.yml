@@ -212,7 +212,7 @@ jobs:
             docker login -u $DOCKER_USER -p $DOCKER_PASS
             docker push $DOCKERHUB_REPO:latest
   
-  bundle-centos6:
+  bundle-ubuntu14:
     working_directory: /build
     docker:
       - image: docker:17.06.1-ce
