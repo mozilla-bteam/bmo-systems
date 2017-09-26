@@ -44,6 +44,7 @@ jobs:
   <<bmo-ci>>
   <<bmo-slim>>
   <<bundle-centos6>>
+  <<bundle-ubuntu14>>
 
 workflows:
   version: 2
@@ -55,6 +56,12 @@ workflows:
           <<only master>>
       - bundle-centos6:
           <<only master>>
+          requires:
+            - centos6
+      - bundle-ubuntu14:
+          <<only master>>
+          requires:
+            - ubuntu14
       - bmo-slim:
           <<only master>>
           requires:
@@ -157,6 +164,8 @@ bmo-slim:
 
 #+END_SRC
 
+
+** bundle-centos6
 #+NAME: bundle-centos6
 #+BEGIN_SRC yaml
 bundle-centos6:
@@ -170,6 +179,27 @@ bundle-centos6:
     - checkout
     - run: apk --update add perl perl-yaml-xs
     - run: perl bin/job2dockerfile centos6 > Dockerfile
+    - run:
+        name: build docker container
+        command: |
+          <<docker_build>>
+
+#+END_SRC
+
+** bundle-ubuntu14
+#+NAME: bundle-ubuntu14
+#+BEGIN_SRC yaml
+bundle-centos6:
+  working_directory: /build
+  docker:
+    - image: docker:17.06.1-ce
+      environment:
+        DOCKERHUB_REPO: mozillabteam/bundle-ubuntu14
+  steps:
+    - setup_remote_docker
+    - checkout
+    - run: apk --update add perl perl-yaml-xs
+    - run: perl bin/job2dockerfile ubuntu14 > Dockerfile
     - run:
         name: build docker container
         command: |
@@ -222,21 +252,7 @@ ubuntu14:
         command: cp /build/bundle/ubuntu14/mysql.list /etc/apt/sources.list.d/mysql.list
     - run:
         name: install dependencies
-        command: |
-          success=no
-          (( i = 1 ))
-          while (( ++i < 5 )); do
-            apt-key adv --keyserver ha.pool.sks-keyservers.net \
-                --recv-keys A4A9406876FCBD3C456770C88C718D3B5072E1F5 || continue
-            apt-get update || continue
-            apt-get --no-install-recommends -y install \
-                apache2 build-essential cvs g++ git graphviz libapache2-mod-perl2 \
-                libgd-dev libgmp3-dev libmysqlclient-dev libssl-dev curl \
-                mysql-client mysql-server patchutils pkg-config unzip wget || continue
-            success=yes
-            break
-          done
-          [[ $success == yes ]] || exit 1
+        command: /build/bundle/ubuntu14/install-debs
     <<build_bundles>>
 #+END_SRC
 
@@ -346,7 +362,6 @@ The following list of steps are used on all jobs that build vendor tarballs.
 - store_artifacts:
     path: '/root/.cpanm/work/*/build.log'
 #+END_SRC
-
 
 ** build_bundles environmental variables
 

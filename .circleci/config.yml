@@ -122,21 +122,7 @@ jobs:
           command: cp /build/bundle/ubuntu14/mysql.list /etc/apt/sources.list.d/mysql.list
       - run:
           name: install dependencies
-          command: |
-            success=no
-            (( i = 1 ))
-            while (( ++i < 5 )); do
-              apt-key adv --keyserver ha.pool.sks-keyservers.net \
-                  --recv-keys A4A9406876FCBD3C456770C88C718D3B5072E1F5 || continue
-              apt-get update || continue
-              apt-get --no-install-recommends -y install \
-                  apache2 build-essential cvs g++ git graphviz libapache2-mod-perl2 \
-                  libgd-dev libgmp3-dev libmysqlclient-dev libssl-dev curl \
-                  mysql-client mysql-server patchutils pkg-config unzip wget || continue
-              success=yes
-              break
-            done
-            [[ $success == yes ]] || exit 1
+          command: /build/bundle/ubuntu14/install-debs
       - run:
           name: download some tools
           command: fetch-tools
@@ -278,6 +264,24 @@ jobs:
             docker login -u $DOCKER_USER -p $DOCKER_PASS
             docker push $DOCKERHUB_REPO:latest
   
+  bundle-centos6:
+    working_directory: /build
+    docker:
+      - image: docker:17.06.1-ce
+        environment:
+          DOCKERHUB_REPO: mozillabteam/bundle-ubuntu14
+    steps:
+      - setup_remote_docker
+      - checkout
+      - run: apk --update add perl perl-yaml-xs
+      - run: perl bin/job2dockerfile ubuntu14 > Dockerfile
+      - run:
+          name: build docker container
+          command: |
+            docker build -t $DOCKERHUB_REPO:latest .
+            docker login -u $DOCKER_USER -p $DOCKER_PASS
+            docker push $DOCKERHUB_REPO:latest
+  
 
 workflows:
   version: 2
@@ -295,6 +299,14 @@ workflows:
           filters:
             branches:
               only: master
+          requires:
+            - centos6
+      - bundle-ubuntu14:
+          filters:
+            branches:
+              only: master
+          requires:
+            - ubuntu14
       - bmo-slim:
           filters:
             branches:
