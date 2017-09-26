@@ -57,11 +57,11 @@ workflows:
       - bundle-centos6:
           <<only master>>
           requires:
-            - centos6
+            - upload
       - bundle-ubuntu14:
           <<only master>>
           requires:
-            - ubuntu14
+            - upload
       - bmo-slim:
           <<only master>>
           requires:
