@@ -80,6 +80,10 @@ requires 'XMLRPC::Lite', '0.712';
 requires 'perl', '5.010001';
 requires 'version', '0.87';
 requires 'Linux::Pid';
+requires 'Test::Pod::Coverage';
+requires 'Pod::Coverage::TrustPod';
+requires 'Test::CPAN::Meta';
+requires 'Test::Pod';
 recommends 'Safe', '2.30';
 
 on configure => sub {

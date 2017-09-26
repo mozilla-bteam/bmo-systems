@@ -309,6 +309,21 @@ DISTRIBUTIONS
       Linux::Pid 0.04
     requirements:
       ExtUtils::MakeMaker 0
+  Mixin-Linewise-0.108
+    pathname: R/RJ/RJBS/Mixin-Linewise-0.108.tar.gz
+    provides:
+      Mixin::Linewise 0.108
+      Mixin::Linewise::Readers 0.108
+      Mixin::Linewise::Writers 0.108
+    requirements:
+      Carp 0
+      ExtUtils::MakeMaker 0
+      IO::File 0
+      PerlIO::utf8_strict 0
+      Sub::Exporter 0
+      perl 5.008001
+      strict 0
+      warnings 0
   Moose-2.2006
     pathname: E/ET/ETHER/Moose-2.2006.tar.gz
     provides:
@@ -1357,6 +1372,39 @@ DISTRIBUTIONS
       Perl::Tidy::VerticalAligner::Line 20170521
     requirements:
       ExtUtils::MakeMaker 0
+  PerlIO-utf8_strict-0.007
+    pathname: L/LE/LEONT/PerlIO-utf8_strict-0.007.tar.gz
+    provides:
+      PerlIO::utf8_strict 0.007
+    requirements:
+      ExtUtils::MakeMaker 0
+      XSLoader 0
+      perl 5.008
+      strict 0
+      warnings 0
+  Pod-Coverage-TrustPod-0.100003
+    pathname: R/RJ/RJBS/Pod-Coverage-TrustPod-0.100003.tar.gz
+    provides:
+      Pod::Coverage::TrustPod 0.100003
+    requirements:
+      ExtUtils::MakeMaker 6.30
+      Pod::Coverage::CountParents 0
+      Pod::Eventual::Simple 0
+      Pod::Find 0
+      base 0
+      strict 0
+      warnings 0
+  Pod-Eventual-0.094001
+    pathname: R/RJ/RJBS/Pod-Eventual-0.094001.tar.gz
+    provides:
+      Pod::Eventual 0.094001
+      Pod::Eventual::Simple 0.094001
+    requirements:
+      Carp 0
+      ExtUtils::MakeMaker 6.30
+      Mixin::Linewise::Readers 0.102
+      strict 0
+      warnings 0
   Pod-MinimumVersion-50
     pathname: K/KR/KRYDE/Pod-MinimumVersion-50.tar.gz
     provides:
@@ -1539,6 +1587,28 @@ DISTRIBUTIONS
       Test::Builder 0
       Test::More 0
       base 0
+      strict 0
+      warnings 0
+  Test-Pod-1.51
+    pathname: E/ET/ETHER/Test-Pod-1.51.tar.gz
+    provides:
+      Test::Pod 1.51
+    requirements:
+      ExtUtils::MakeMaker 0
+      File::Find 0
+      Pod::Simple 3.05
+      Test::Builder::Tester 1.02
+      Test::More 0.62
+      perl 5.008
+  Test-Pod-Coverage-1.10
+    pathname: N/NE/NEILB/Test-Pod-Coverage-1.10.tar.gz
+    provides:
+      Test::Pod::Coverage 1.10
+    requirements:
+      ExtUtils::MakeMaker 0
+      Pod::Coverage 0
+      Test::Builder 0
+      perl 5.006
       strict 0
       warnings 0
   Test-SubCalls-1.09
