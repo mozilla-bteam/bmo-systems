@@ -1,3 +1,4 @@
+requires 'Algorithm::BloomFilter';
 requires 'Auth::GoogleAuth', '1.01';
 requires 'CGI', '<= 3.63';
 requires 'CPAN::Meta::Prereqs', '2.132830';
@@ -44,7 +45,6 @@ requires 'JSON::RPC', '== 1.01';
 requires 'JSON::XS', '2.0';
 requires 'LWP::Protocol::https', '6.07';
 requires 'LWP::UserAgent', '6.26';
-requires 'Linux::Pid';
 requires 'List::MoreUtils', '0.418';
 requires 'MIME::Parser', '5.406';
 requires 'Math::Random::ISAAC', 'v1.0.1';
@@ -79,8 +79,7 @@ requires 'XML::Twig';
 requires 'XMLRPC::Lite', '0.712';
 requires 'perl', '5.010001';
 requires 'version', '0.87';
-requires 'Cpanel::JSON::XS';
-requires 'Algorithm::BloomFilter';
+requires 'Linux::Pid';
 recommends 'Safe', '2.30';
 
 on configure => sub {
@@ -92,8 +91,10 @@ on build => sub {
 };
 
 on test => sub {
+    requires 'Perl::Critic::Freenode';
     requires 'Pod::Coverage';
     requires 'Test::More';
-    requires 'Test::WWW::Selenium';
+    requires 'Test::Perl::Critic::Progressive';
     requires 'Test::Selenium::Firefox';
+    requires 'Test::WWW::Selenium';
 };
