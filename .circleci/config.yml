@@ -85,6 +85,7 @@ jobs:
       - image: docker:17.06.1-ce
         environment:
           DOCKERHUB_REPO: mozillabteam/bmo-base
+          PATH: /build/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin
     steps:
       - setup_remote_docker
       - checkout
@@ -102,6 +103,7 @@ jobs:
       - image: docker:17.06.1-ce
         environment:
           DOCKERHUB_REPO: mozillabteam/bmo-ci
+          PATH: /build/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin
     steps:
       - setup_remote_docker
       - checkout
@@ -117,6 +119,7 @@ jobs:
       - image: docker:17.06.1-ce
         environment:
           DOCKERHUB_REPO: mozillabteam/bmo-slim
+          PATH: /build/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin
     steps:
       - setup_remote_docker
       - checkout
@@ -180,14 +183,10 @@ workflows:
           filters:
             branches:
               only: master
-          requires:
-            - upload
       - docker-ubuntu14:
           filters:
             branches:
               only: master
-          requires:
-            - upload
       - bmo-slim:
           filters:
             branches:
