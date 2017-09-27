@@ -2,32 +2,32 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org3a06ac4">1. How-To</a>
+<li><a href="#org68b93a4">1. How-To</a>
 <ul>
-<li><a href="#org9680f18">1.1. Add perl dependencies to BMO</a></li>
-<li><a href="#orgc03bb40">1.2. Upgrade perl dependencies</a></li>
+<li><a href="#org95d937b">1.1. Add perl dependencies to BMO</a></li>
+<li><a href="#org7bde51c">1.2. Upgrade perl dependencies</a></li>
 </ul>
 </li>
-<li><a href="#org01e4ec3">2. Configuration</a></li>
-<li><a href="#org20035cc">3. docker jobs</a>
+<li><a href="#org9356a76">2. Configuration</a></li>
+<li><a href="#orgc0f281b">3. docker jobs</a>
 <ul>
-<li><a href="#org27341b4">3.1. bmo-base</a></li>
-<li><a href="#org0acc5d2">3.2. bmo-ci</a></li>
-<li><a href="#orgc16a5b5">3.3. bmo-slim</a></li>
+<li><a href="#orgcdb8eb5">3.1. bmo-base</a></li>
+<li><a href="#orgad0a113">3.2. bmo-ci</a></li>
+<li><a href="#orgaf2d876">3.3. bmo-slim</a></li>
+<li><a href="#org355a4de">3.4. docker-centos6</a></li>
+<li><a href="#org8436886">3.5. docker-ubuntu14</a></li>
 </ul>
 </li>
-<li><a href="#orgeb2d450">4. bundle jobs</a>
+<li><a href="#orgd4b5d2f">4. bundle jobs</a>
 <ul>
-<li><a href="#org69a5b1b">4.1. centos 6 job</a></li>
-<li><a href="#org6432376">4.2. ubuntu 14.04 job</a></li>
-<li><a href="#org8906005">4.3. upload job</a></li>
+<li><a href="#orga3a5739">4.1. centos 6 job</a></li>
+<li><a href="#org3b14077">4.2. ubuntu 14.04 job</a></li>
+<li><a href="#org7134d79">4.3. upload job</a></li>
 </ul>
 </li>
-<li><a href="#org98724c6">5. Other pieces of code</a>
+<li><a href="#orgf73dacc">5. Other pieces of code</a>
 <ul>
-<li><a href="#org79909d9">5.1. build<sub>bundles</sub> steps</a></li>
-<li><a href="#org953f99f">5.2. build<sub>bundles</sub> environmental variables</a></li>
-<li><a href="#org95cb4d7">5.3. docker build / push stanza</a></li>
+<li><a href="#org04f9b2e">5.1. build<sub>bundles</sub> steps</a></li>
 </ul>
 </li>
 </ul>
@@ -40,71 +40,85 @@ bmo-systems repo is responsible for:
 3.  generating several related docker images
 
 
-<a id="org3a06ac4"></a>
+<a id="org68b93a4"></a>
 
 # How-To
 
 
-<a id="org9680f18"></a>
+<a id="org95d937b"></a>
 
 ## Add perl dependencies to BMO
 
 Adding dependencies to BMO (or bugzilla in general) involves adding them to Makefile.PL.
 Getting these dependencies deployed to our infrastructure is more complicated.
 
-You will need (at least) a centos 6 install, and an ubuntu 14.04 install. On
-each, you will want to checkout the BMO code and an unpacked copy of the
-vendor tarball for that platform.
+For each type of bundle we produce, you need to run the docker container mozillabteam/PLATFORM.
+Currently PLATFORM is centos6 and ubuntu14.
+From inside the container, run the following:
 
-    perl Makefile.PL
+    source /build/env.sh
+    git clone --depth 1 https://github.com/mozillabteam/bmo.git
+    cd bmo
+    cp ../cpanfile.snapshot .
+    $PERL Makefile.PL
     make cpanfile GEN_CPANFILE_ARGS="-D bmo"
-    carton install
+    $PERL $CARTON install
 
-After this, file cpanfile and cpanfile.snapshot should be added to bundle/PLATFORM/ and those changes commited.
+After that, use 'docker cp' to copy *build/bmo/cpanfile and /build/bmo/cpanfile.snapshot to bundle/PLATFORM* and commit them.
 
 
-<a id="orgc03bb40"></a>
+<a id="org7bde51c"></a>
 
 ## Upgrade perl dependencies
 
-This is the same as adding a dependency, except instead of "carton install" you run "carton upgrade".
+This is the same as adding a dependency, except instead of "$PERL $CARTON install" you run "$PERL $CARTON upgrade".
 
 
-<a id="org01e4ec3"></a>
+<a id="org9356a76"></a>
 
 # Configuration
 
 
-<a id="org20035cc"></a>
+<a id="orgc0f281b"></a>
 
 # docker jobs
 
 jobs that build docker containers (bmo-base, bmo-ci, etc)
 
 
-<a id="org27341b4"></a>
+<a id="orgcdb8eb5"></a>
 
 ## bmo-base
 
 
-<a id="org0acc5d2"></a>
+<a id="orgad0a113"></a>
 
 ## bmo-ci
 
 
-<a id="orgc16a5b5"></a>
+<a id="orgaf2d876"></a>
 
 ## bmo-slim
 
 
-<a id="orgeb2d450"></a>
+<a id="org355a4de"></a>
+
+## docker-centos6
+
+
+<a id="org8436886"></a>
+
+## docker-ubuntu14
+
+
+<a id="orgd4b5d2f"></a>
 
 # bundle jobs
 
 All the jobs below are used to build collections of the perl dependencies that BMO needs.
 
 
-<a id="org69a5b1b"></a>
+<a id="orga3a5739"></a>
 
 ## centos 6 job
 
@@ -112,7 +126,7 @@ This job creates the 'bmo' bundle, which is for use on centos 6 or RHEL 6 machin
 This is what production, vagrant, CI, and so on use.
 
 
-<a id="org6432376"></a>
+<a id="org3b14077"></a>
 
 ## ubuntu 14.04 job
 
@@ -120,35 +134,23 @@ This job creates the 'mozreview' bundle, which is used by the version-control-to
 It is used for mozreview and probably some other systems and is a huge burden that makes me sad.
 
 
-<a id="org8906005"></a>
+<a id="org7134d79"></a>
 
 ## upload job
 
 This job just collects vendor.tar.gzs from other jobs and uploads them to an amazon S3 bucket.
 
 
-<a id="org98724c6"></a>
+<a id="orgf73dacc"></a>
 
 # Other pieces of code
 
 Some bits of configuration used in multiple locations
 
 
-<a id="org79909d9"></a>
+<a id="org04f9b2e"></a>
 
 ## build<sub>bundles</sub> steps
 
 The following list of steps are used on all jobs that build vendor tarballs.
-
-
-<a id="org953f99f"></a>
-
-## build<sub>bundles</sub> environmental variables
-
-the following block are used as default environmental variables for the jobs where bundles are built.
-
-
-<a id="org95cb4d7"></a>
-
-## docker build / push stanza
 
