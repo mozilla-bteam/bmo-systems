@@ -169,6 +169,16 @@ jobs:
 
 workflows:
   version: 2
+  builders:
+    jobs:
+      - docker-centos6:
+          filters:
+            branches:
+              only: master
+      - docker-ubuntu14:
+          filters:
+            branches:
+              only: master
   bundles:
     jobs:
       - centos6:
@@ -176,14 +186,6 @@ workflows:
             branches:
               only: master
       - ubuntu14:
-          filters:
-            branches:
-              only: master
-      - docker-centos6:
-          filters:
-            branches:
-              only: master
-      - docker-ubuntu14:
           filters:
             branches:
               only: master

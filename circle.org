@@ -46,15 +46,17 @@ jobs:
 
 workflows:
   version: 2
+  builders:
+    jobs:
+      - docker-centos6:
+          <<only master>>
+      - docker-ubuntu14:
+          <<only master>>
   bundles:
     jobs:
       - centos6:
           <<only master>>
       - ubuntu14:
-          <<only master>>
-      - docker-centos6:
-          <<only master>>
-      - docker-ubuntu14:
           <<only master>>
       - bmo-slim:
           <<only master>>
