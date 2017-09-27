@@ -1,7 +1,6 @@
 #!/bin/sh
 
 set -euo pipefail
-set -x
 
 docker build -t $DOCKERHUB_REPO:latest "$@" .
 if [[ -n $DOCKER_USER && -n $DOCKER_PASS ]]; then
