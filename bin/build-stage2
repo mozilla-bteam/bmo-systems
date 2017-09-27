@@ -6,4 +6,4 @@ set -x
 source /build/env.sh
 
 rm -vfr local/lib/perl5
-$SYSTEM_PERL ./vendor/bin/carton --cached --deployment
+$SYSTEM_PERL ./vendor/bin/carton install --cached --deployment
