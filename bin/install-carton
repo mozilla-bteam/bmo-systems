@@ -1,4 +1,0 @@
-#!/bin/bash
-
-$PERL /usr/local/bin/cpanm --notest --quiet \
-  Carton App::FatPacker File::pushd ExtUtils::MakeMaker

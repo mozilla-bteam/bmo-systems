@@ -1,0 +1,9 @@
+#!/bin/bash
+
+set -euo pipefail
+set -x
+
+source /build/env.sh
+
+rm -vfr local/lib/perl5
+$SYSTEM_PERL ./vendor/bin/carton --cached --deployment

@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -euo pipefail
+set -x
+
+source /build/env.sh
+
+$PERL $CARTON install
+patch-crypt-openpgp
+$PERL $CARTON bundle
+$PERL $CARTON fatpack

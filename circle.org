@@ -34,8 +34,6 @@ After this, file cpanfile and cpanfile.snapshot should be added to bundle/PLATFO
 # if this file ends in .yml, you should not edit it and edit circle.org instead.
 version: 2
 
-<<build_bundles_env>>
-
 jobs:
   <<upload>>
   <<centos6>>
@@ -43,8 +41,8 @@ jobs:
   <<bmo-base>>
   <<bmo-ci>>
   <<bmo-slim>>
-  <<bundle-centos6>>
-  <<bundle-ubuntu14>>
+  <<docker-centos6>>
+  <<docker-ubuntu14>>
 
 workflows:
   version: 2
@@ -54,11 +52,11 @@ workflows:
           <<only master>>
       - ubuntu14:
           <<only master>>
-      - bundle-centos6:
+      - docker-centos6:
           <<only master>>
           requires:
             - upload
-      - bundle-ubuntu14:
+      - docker-ubuntu14:
           <<only master>>
           requires:
             - upload
@@ -111,7 +109,7 @@ bmo-base:
         working_directory: /build/docker/bmo-base
         command: |
           tar -zxf /build/upload/bmo/vendor.tar.gz bmo/vendor/ bmo/cpanfile bmo/cpanfile.snapshot
-          <<docker_build>>
+          docker-build
 #+END_SRC
 
 ** bmo-ci
@@ -130,7 +128,7 @@ bmo-ci:
     - run:
         working_directory: /build/docker/bmo-ci
         command: |
-          <<docker_build>>
+          docker-build
     - run:
         command: docker run -ti $DOCKERHUB_REPO env GITHUB_BASE_BRANCH=production TEST_SUITE=sanity runtests.sh
 #+END_SRC
@@ -160,50 +158,47 @@ bmo-slim:
             bmo/cpanfile.snapshot \
             bmo/LIBS.txt \
             bmo/PACKAGES.txt
-          <<docker_build>>
+          docker-build
 
 #+END_SRC
 
 
-** bundle-centos6
-#+NAME: bundle-centos6
+** docker-centos6
+#+NAME: docker-centos6
 #+BEGIN_SRC yaml
-bundle-centos6:
+docker-centos6:
   working_directory: /build
   docker:
     - image: docker:17.06.1-ce
       environment:
-        DOCKERHUB_REPO: mozillabteam/bundle-centos6
+        DOCKERHUB_REPO: mozillabteam/centos6
+        PATH: /build/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin
   steps:
     - setup_remote_docker
     - checkout
-    - run: apk --update add perl perl-yaml-xs
-    - run: perl bin/job2dockerfile centos6 > Dockerfile
     - run:
         name: build docker container
         command: |
-          <<docker_build>>
-
+          docker-build -f bundle/centos6/Dockerfile
 #+END_SRC
 
-** bundle-ubuntu14
-#+NAME: bundle-ubuntu14
+** docker-ubuntu14
+#+NAME: docker-ubuntu14
 #+BEGIN_SRC yaml
-bundle-ubuntu14:
+docker-ubuntu14:
   working_directory: /build
   docker:
     - image: docker:17.06.1-ce
       environment:
-        DOCKERHUB_REPO: mozillabteam/bundle-ubuntu14
+        DOCKERHUB_REPO: mozillabteam/ubuntu14
+        PATH: /build/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin
   steps:
     - setup_remote_docker
     - checkout
-    - run: apk --update add perl perl-yaml-xs
-    - run: perl bin/job2dockerfile ubuntu14 > Dockerfile
     - run:
         name: build docker container
         command: |
-          <<docker_build>>
+          docker-build -f bundle/ubuntu14/Dockerfile
 
 #+END_SRC
 
@@ -223,7 +218,7 @@ centos6:
   docker:
     - image: centos:6.9
       environment: 
-        <<: *build_bundles_env
+        PATH: /build/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin
         NAME: bmo # named this for historical reasons
   steps:
     - checkout
@@ -244,7 +239,7 @@ ubuntu14:
   docker:
     - image: ubuntu:14.04
       environment:
-        <<: *build_bundles_env
+        PATH: /build/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin
         NAME: mozreview # named this for historical reasons
   steps:
     - checkout
@@ -300,35 +295,12 @@ The following list of steps are used on all jobs that build vendor tarballs.
 #+NAME: build_bundles
 #+BEGIN_SRC yaml
 - run:
-    name: download some tools
-    command: fetch-tools
-- run:
     name: copy cpanfile and cpanfile.snapshot
     command: cp bundle/$CIRCLE_JOB/cpanfile* .
-- run:
-    name: build a vanilla perl
-    command: build-vanilla-perl
-- run:
-    name: install carton
-    command: install-carton
-- run:
-    command: fetch-pari
-- run:
-    command: $PERL $CARTON install
-- run:
-    name: patch Crypt::OpenPGP
-    command: patch-crypt-openpgp
-- run:
-      command: $PERL $CARTON bundle
-- run:
-      command: $PERL $CARTON fatpack
-- run:
-    name: remove vanilla perl modules
-    command: rm -vfr local/lib/perl5
-- run:
-    command: $SYSTEM_PERL ./vendor/bin/carton install --cached --deployment
-- run:
-    command: package-bundle
+- run: build-prepare
+- run: build-stage1
+- run: build-stage2
+- run: build-vendor-bundle $NAME
 - persist_to_workspace:
     root: /build/upload
     paths:
@@ -337,25 +309,3 @@ The following list of steps are used on all jobs that build vendor tarballs.
     path: '/root/.cpanm/work/*/build.log'
 #+END_SRC
 
-** build_bundles environmental variables
-
-the following block are used as default environmental variables for the jobs where bundles are built.
-
-#+NAME: build_bundles_env
-#+BEGIN_SRC yaml
-build_bundles_env: &build_bundles_env
-  PERL_DIR: /opt/vanilla-perl
-  PERL: /opt/vanilla-perl/bin/perl
-  SYSTEM_PERL: /usr/bin/perl
-  CARTON: /opt/vanilla-perl/bin/carton
-  PERL5LIB: /build/local/lib/perl5
-  PATH: /build/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin
-#+END_SRC
-
-** docker build / push stanza
-#+NAME: docker_build
-#+BEGIN_SRC text
-docker build -t $DOCKERHUB_REPO:latest .
-docker login -u $DOCKER_USER -p $DOCKER_PASS
-docker push $DOCKERHUB_REPO:latest
-#+END_SRC
