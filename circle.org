@@ -43,10 +43,12 @@ jobs:
   <<upload>>
   <<centos6>>
   <<ubuntu14>>
+  <<amazon>>
   <<bmo-base>>
   <<bmo-ci>>
   <<bmo-slim>>
   <<docker-centos6>>
+  <<docker-amazon>>
   <<docker-ubuntu14>>
 
 workflows:
@@ -57,11 +59,15 @@ workflows:
           <<only master>>
       - docker-ubuntu14:
           <<only master>>
+      - docker-amazon:
+          <<only master>>
   bundles:
     jobs:
       - centos6:
           <<only master>>
       - ubuntu14:
+          <<only master>>
+      - amazon:
           <<only master>>
       - bmo-slim:
           <<only master>>
@@ -188,6 +194,25 @@ docker-centos6:
           docker-build -f bundle/centos6/Dockerfile
 #+END_SRC
 
+** docker-amazon
+#+NAME: docker-amazon
+#+BEGIN_SRC yaml
+docker-amazon:
+  working_directory: /build
+  docker:
+    - image: docker:17.06.1-ce
+      environment:
+        DOCKERHUB_REPO: mozillabteam/amazon
+        PATH: /build/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin
+  steps:
+    - setup_remote_docker
+    - checkout
+    - run:
+        name: build docker container
+        command: |
+          docker-build -f bundle/amazon/Dockerfile
+#+END_SRC
+
 ** docker-ubuntu14
 #+NAME: docker-ubuntu14
 #+BEGIN_SRC yaml
@@ -231,6 +256,26 @@ centos6:
     - run:
         name: install rpms
         command: /build/bundle/centos6/install-rpms
+    <<build_bundles>>
+#+END_SRC
+** amazon job
+
+This job creates the 'amazon bundle, which is for use on amazon linux.
+
+#+NAME: amazon
+#+BEGIN_SRC yaml :noweb yes
+amazon:
+  working_directory: /build
+  docker:
+    - image: amazonlinux:latest
+      environment: 
+        PATH: /build/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin
+        NAME: amazon
+  steps:
+    - checkout
+    - run:
+        name: install rpms
+        command: /build/bundle/amazon/install-rpms
     <<build_bundles>>
 #+END_SRC
 ** ubuntu 14.04 job
