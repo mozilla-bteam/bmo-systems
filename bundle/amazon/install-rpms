@@ -1,8 +1,5 @@
 #!/bin/bash
 
 yum -q -y update
-yum -q -y install wget
-wget -nv http://download.opensuse.org/repositories/isv:/ownCloud:/devel/CentOS_7/isv:ownCloud:devel.repo -O /etc/yum.repos.d/isv:ownCloud:devel.repo
-yum install -y --nogpgcheck libcap-dummy  
 yum -q -y install epel-release
 yum -q -y install `cat /build/bundle/amazon/rpm_list`
