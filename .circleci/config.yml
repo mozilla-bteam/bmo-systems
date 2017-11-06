@@ -79,31 +79,6 @@ jobs:
             - "*/vendor.tar.gz"
       - store_artifacts:
           path: '/root/.cpanm/work/*/build.log'
-  amazon:
-    working_directory: /build
-    docker:
-      - image: amazonlinux:latest
-        environment: 
-          PATH: /build/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin
-          NAME: amazon
-    steps:
-      - checkout
-      - run:
-          name: install rpms
-          command: /build/bundle/amazon/install-rpms
-      - run:
-          name: copy cpanfile and cpanfile.snapshot
-          command: cp bundle/$CIRCLE_JOB/cpanfile* .
-      - run: build-prepare
-      - run: build-stage1
-      - run: build-stage2
-      - run: build-vendor-bundle $NAME
-      - persist_to_workspace:
-          root: /build/upload
-          paths:
-            - "*/vendor.tar.gz"
-      - store_artifacts:
-          path: '/root/.cpanm/work/*/build.log'
   bmo-base:
     working_directory: /build
     docker:
@@ -176,20 +151,6 @@ jobs:
           name: build docker container
           command: |
             docker-build -f bundle/centos6/Dockerfile
-  docker-amazon:
-    working_directory: /build
-    docker:
-      - image: docker:17.06.1-ce
-        environment:
-          DOCKERHUB_REPO: mozillabteam/amazon
-          PATH: /build/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin
-    steps:
-      - setup_remote_docker
-      - checkout
-      - run:
-          name: build docker container
-          command: |
-            docker-build -f bundle/amazon/Dockerfile
   docker-ubuntu14:
     working_directory: /build
     docker:
@@ -218,10 +179,6 @@ workflows:
           filters:
             branches:
               only: master
-      - docker-amazon:
-          filters:
-            branches:
-              only: master
   bundles:
     jobs:
       - centos6:
@@ -229,10 +186,6 @@ workflows:
             branches:
               only: master
       - ubuntu14:
-          filters:
-            branches:
-              only: master
-      - amazon:
           filters:
             branches:
               only: master

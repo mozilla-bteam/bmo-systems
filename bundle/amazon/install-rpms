@@ -1,5 +1,0 @@
-#!/bin/bash
-
-yum -q -y update
-yum -q -y install epel-release
-yum -q -y install `cat /build/bundle/amazon/rpm_list`
