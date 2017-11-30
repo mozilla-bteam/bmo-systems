@@ -1,11 +1,15 @@
 FROM centos:6.9
 MAINTAINER Dylan William Hardison <dylan@mozilla.com>
 
+ENV TINI_VERSION v0.16.1
+
 RUN yum update -y && \
     yum install -y centos-release-scl && \
     yum install -y perl perl-core mod_perl httpd wget tar openssl mysql-libs gd openssh sclo-git25-git && \
     curl -L https://cpanmin.us > /usr/local/bin/cpanm && \
     chmod 755 /usr/local/bin/cpanm && \
+    curl -L https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini > /usr/local/sbin/tini && \
+    chmod +x /usr/local/sbin/tini && \
     mkdir -p /opt/bmo/build && \
     rpm -qa > /tmp/rpms.list && \
     yum install -y gcc mod_perl-devel && \
