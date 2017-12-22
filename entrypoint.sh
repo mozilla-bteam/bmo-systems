@@ -9,7 +9,7 @@ source /build/env.sh
     $PERL Makefile.PL
     make cpanfile GEN_CPANFILE_ARGS="-D bmo"
     $PERL $CARTON install
-    mv cpanfile cpanfile.snapshot result
+    mv cpanfile cpanfile.snapshot /result
 ) &> /result/build.log
 
 tar -C /result -zc build.log cpanfile cpanfile.snapshot
