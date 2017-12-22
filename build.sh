@@ -2,6 +2,8 @@
 
 mkdir /result
 source /build/env.sh
+echo $BRANCH > /result/BRANCH
+echo $REPOSITORY > /result/REPOSITORY
 (
     git clone --depth 1 -b $BRANCH $REPOSITORY bmo
     cd bmo
@@ -12,4 +14,4 @@ source /build/env.sh
     mv cpanfile cpanfile.snapshot /result
 ) &> /result/build.log
 
-tar -C /result -zc build.log cpanfile cpanfile.snapshot
+tar -C /result -zc .
