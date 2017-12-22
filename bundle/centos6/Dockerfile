@@ -7,3 +7,8 @@ COPY . /build
 RUN /build/bundle/centos6/install-rpms
 RUN cp bundle/$CIRCLE_JOB/cpanfile* .
 RUN build-prepare
+
+ENV REPOSITORY https://github.com/mozilla-bteam/bmo.git
+ENV BRANCH     master
+
+ENTRYPOINT /build/entrypoint.sh
