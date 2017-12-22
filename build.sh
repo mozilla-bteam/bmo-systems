@@ -8,6 +8,7 @@ echo $REPOSITORY > /result/REPOSITORY
     git clone --depth 1 -b $BRANCH $REPOSITORY bmo
     cd bmo
     cp ../cpanfile.snapshot .
+    mv ../local .
     $PERL Makefile.PL
     make cpanfile GEN_CPANFILE_ARGS="-D bmo"
     $PERL $CARTON install

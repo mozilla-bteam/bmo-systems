@@ -11,4 +11,6 @@ RUN build-prepare
 ENV REPOSITORY https://github.com/mozilla-bteam/bmo.git
 ENV BRANCH     master
 
+RUN source /build/env.sh && $PERL $CARTON install
+
 CMD /build/build.sh
