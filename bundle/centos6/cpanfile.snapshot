@@ -444,6 +444,17 @@ DISTRIBUTIONS
       IO::Scalar 0
       IO::WrapTie 0
       Test::More 0.32
+  Class-XSAccessor-1.19
+    pathname: S/SM/SMUELLER/Class-XSAccessor-1.19.tar.gz
+    provides:
+      Class::XSAccessor 1.19
+      Class::XSAccessor::Array 1.19
+    requirements:
+      ExtUtils::MakeMaker 0
+      Test::More 0
+      Time::HiRes 0
+      XSLoader 0
+      perl 5.008
   Clone-0.39
     pathname: G/GA/GARU/Clone-0.39.tar.gz
     provides:
@@ -2008,6 +2019,12 @@ DISTRIBUTIONS
       perl 5.006
       strict 0
       warnings 0
+  Devel-PPPort-3.36
+    pathname: W/WO/WOLFSAGE/Devel-PPPort-3.36.tar.gz
+    provides:
+      Devel::PPPort 3.36
+    requirements:
+      ExtUtils::MakeMaker 0
   Devel-StackTrace-2.01
     pathname: D/DR/DROLSKY/Devel-StackTrace-2.01.tar.gz
     provides:
@@ -2737,6 +2754,22 @@ DISTRIBUTIONS
     requirements:
       ExtUtils::MakeMaker 0
       GD 1
+  HTML-Escape-1.10
+    pathname: T/TO/TOKUHIROM/HTML-Escape-1.10.tar.gz
+    provides:
+      HTML::Escape 1.10
+      HTML::Escape::PurePerl undef
+    requirements:
+      Devel::PPPort 3.20
+      Exporter 0
+      ExtUtils::CBuilder 0
+      Module::Build 0.4005
+      Module::Build::Pluggable::PPPort 0.04
+      Test::More 0.98
+      Test::Requires 0
+      XSLoader 0
+      parent 0
+      perl 5.008008
   HTML-Parser-3.72
     pathname: G/GA/GAAS/HTML-Parser-3.72.tar.gz
     provides:
@@ -3546,6 +3579,42 @@ DISTRIBUTIONS
       Text::ParseWords 0
       perl 5.006001
       version 0.87
+  Module-Build-Pluggable-0.10
+    pathname: T/TO/TOKUHIROM/Module-Build-Pluggable-0.10.tar.gz
+    provides:
+      Module::Build::Pluggable 0.10
+      Module::Build::Pluggable::Base undef
+      Module::Build::Pluggable::GithubMeta undef
+      Module::Build::Pluggable::Repository 0.10
+      Module::Build::Pluggable::Util undef
+      Test::Module::Build::Pluggable undef
+    requirements:
+      CPAN::Meta 0
+      CPAN::Meta::Prereqs 0
+      Class::Accessor::Lite 0
+      Class::Method::Modifiers 0
+      Data::OptList 0
+      File::Basename 0
+      File::Path 0
+      File::Temp 0
+      Module::Build 0.38
+      Module::Load 0
+      Test::SharedFork 0
+      parent 0
+      perl 5.008001
+  Module-Build-Pluggable-PPPort-0.04
+    pathname: T/TO/TOKUHIROM/Module-Build-Pluggable-PPPort-0.04.tar.gz
+    provides:
+      Module::Build::Pluggable::PPPort 0.04
+    requirements:
+      Class::Accessor::Lite 0
+      Devel::PPPort 3.19
+      Module::Build 0.38
+      Module::Build::Pluggable 0.03
+      Test::More 0.98
+      Test::Requires 0
+      parent 0
+      perl 5.008001
   Module-Build-Tiny-0.039
     pathname: L/LE/LEONT/Module-Build-Tiny-0.039.tar.gz
     provides:
@@ -5988,6 +6057,15 @@ DISTRIBUTIONS
       base 0
       strict 0
       warnings 0
+  Test-Requires-0.10
+    pathname: T/TO/TOKUHIROM/Test-Requires-0.10.tar.gz
+    provides:
+      Test::Requires 0.10
+    requirements:
+      ExtUtils::MakeMaker 6.64
+      Test::Builder::Module 0
+      Test::More 0.47
+      perl 5.006
   Test-SharedFork-0.35
     pathname: E/EX/EXODIST/Test-SharedFork-0.35.tar.gz
     provides:
@@ -6391,6 +6469,13 @@ DISTRIBUTIONS
       parent 0
       perl 5.008001
       utf8 0
+  URI-Escape-XS-0.14
+    pathname: D/DA/DANKOGAI/URI-Escape-XS-0.14.tar.gz
+    provides:
+      URI::Escape::XS 0.14
+    requirements:
+      ExtUtils::MakeMaker 0
+      Test::More 0
   Variable-Magic-0.59
     pathname: V/VP/VPIT/Variable-Magic-0.59.tar.gz
     provides:
