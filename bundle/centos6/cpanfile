@@ -63,6 +63,7 @@ requires 'Regexp::Common';
 requires 'Role::Tiny';
 requires 'SOAP::Lite', '0.712';
 requires 'Search::Elasticsearch';
+requires 'Sereal', '4.004';
 requires 'Sys::Syslog';
 requires 'Taint::Util';
 requires 'Template', '2.24';

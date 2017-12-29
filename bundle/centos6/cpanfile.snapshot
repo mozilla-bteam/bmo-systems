@@ -5520,6 +5520,40 @@ DISTRIBUTIONS
       perl 5.010
       strict 0
       warnings 0
+  Sereal-4.004
+    pathname: Y/YV/YVES/Sereal-4.004.tar.gz
+    provides:
+      Sereal 4.004
+    requirements:
+      ExtUtils::MakeMaker 0
+      Sereal::Decoder 4.004
+      Sereal::Encoder 4.004
+      perl 5.008
+  Sereal-Decoder-4.004
+    pathname: Y/YV/YVES/Sereal-Decoder-4.004.tar.gz
+    provides:
+      Sereal::Decoder 4.004
+      Sereal::Decoder::Constants 4.004
+      Sereal::Performance undef
+    requirements:
+      ExtUtils::MakeMaker 7.0
+      ExtUtils::ParseXS 2.21
+      File::Find 0
+      File::Path 0
+      XSLoader 0
+      perl 5.008
+  Sereal-Encoder-4.004
+    pathname: Y/YV/YVES/Sereal-Encoder-4.004.tar.gz
+    provides:
+      Sereal::Encoder 4.004
+      Sereal::Encoder::Constants 4.004
+    requirements:
+      ExtUtils::MakeMaker 7.0
+      ExtUtils::ParseXS 2.21
+      File::Find 0
+      File::Path 0
+      XSLoader 0
+      perl 5.008
   Socket-2.023
     pathname: P/PE/PEVANS/Socket-2.023.tar.gz
     provides:

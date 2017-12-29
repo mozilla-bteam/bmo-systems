@@ -3195,19 +3195,9 @@ DISTRIBUTIONS
       B 0
       Class::Method::Modifiers 0
       ExtUtils::MakeMaker 0
-      File::Spec 0
-      File::Temp 0
-      IO::Handle 0
-      IPC::Open3 0
       Module::Build 0.28
       Moo 1.001000
       Moo::Role 0
-      Pod::Coverage::TrustPod 0
-      Test::CPAN::Meta 0
-      Test::Fatal 0
-      Test::More 0.88
-      Test::Pod 0
-      Test::Pod::Coverage 0
       bareword::filehandles 0
       constant 0
       indirect 0
@@ -3215,7 +3205,6 @@ DISTRIBUTIONS
       perl 5.006
       strict 0
       strictures 1
-      warnings 0
   Moose-2.2006
     pathname: E/ET/ETHER/Moose-2.2006.tar.gz
     provides:
@@ -5016,6 +5005,40 @@ DISTRIBUTIONS
       perl 5.010
       strict 0
       warnings 0
+  Sereal-4.004
+    pathname: Y/YV/YVES/Sereal-4.004.tar.gz
+    provides:
+      Sereal 4.004
+    requirements:
+      ExtUtils::MakeMaker 0
+      Sereal::Decoder 4.004
+      Sereal::Encoder 4.004
+      perl 5.008
+  Sereal-Decoder-4.004
+    pathname: Y/YV/YVES/Sereal-Decoder-4.004.tar.gz
+    provides:
+      Sereal::Decoder 4.004
+      Sereal::Decoder::Constants 4.004
+      Sereal::Performance undef
+    requirements:
+      ExtUtils::MakeMaker 7.0
+      ExtUtils::ParseXS 2.21
+      File::Find 0
+      File::Path 0
+      XSLoader 0
+      perl 5.008
+  Sereal-Encoder-4.004
+    pathname: Y/YV/YVES/Sereal-Encoder-4.004.tar.gz
+    provides:
+      Sereal::Encoder 4.004
+      Sereal::Encoder::Constants 4.004
+    requirements:
+      ExtUtils::MakeMaker 7.0
+      ExtUtils::ParseXS 2.21
+      File::Find 0
+      File::Path 0
+      XSLoader 0
+      perl 5.008
   Sort-Versions-1.62
     pathname: N/NE/NEILB/Sort-Versions-1.62.tar.gz
     provides:
@@ -5373,6 +5396,7 @@ DISTRIBUTIONS
     requirements:
       Capture::Tiny 0.24
       Data::Dumper 2.126
+      ExtUtils::MakeMaker 0
       Test::More 0.88
       Text::Diff 0.35
   Test-Exception-0.43
