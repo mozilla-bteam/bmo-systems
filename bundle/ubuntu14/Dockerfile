@@ -14,4 +14,4 @@ ENV BRANCH     master
 
 RUN . /build/env.sh && $PERL $CARTON install
 
-ENTRYPOINT /build/build.sh
+CMD /build/build.sh
