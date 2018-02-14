@@ -1,3 +1,4 @@
+MySQL-python
 apr
 apr-util
 apr-util-ldap
@@ -218,6 +219,7 @@ nfs-utils-lib
 nspr
 nss_compat_ossl
 ntsysv
+numpy
 openldap
 openldap-clients
 openssl
@@ -248,6 +250,8 @@ procps
 psacct
 psmisc
 pth
+python-matplotlib
+python-simplejson
 rdate
 readline
 rng-tools
