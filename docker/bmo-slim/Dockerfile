@@ -5,7 +5,7 @@ ENV TINI_VERSION v0.16.1
 
 RUN yum update -y && \
     yum install -y centos-release-scl && \
-    yum install -y perl perl-core mod_perl httpd wget tar openssl mysql mysql-libs gd openssh sclo-git25-git && \
+    yum install -y perl perl-core mod_perl httpd wget tar openssl mysql mysql-libs gd openssh sclo-git25-git nc && \
     curl -L https://cpanmin.us > /usr/local/bin/cpanm && \
     chmod 755 /usr/local/bin/cpanm && \
     curl -L https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini > /usr/local/sbin/tini && \
