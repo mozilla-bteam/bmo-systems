@@ -3334,6 +3334,12 @@ DISTRIBUTIONS
     requirements:
       ExtUtils::MakeMaker 0
       Test::More 0
+  Linux-Pdeathsig-0.10
+    pathname: Z/ZE/ZEROHP/Linux-Pdeathsig-0.10.tar.gz
+    provides:
+      Linux::Pdeathsig 0.10
+    requirements:
+      ExtUtils::MakeMaker 0
   List-MoreUtils-0.425
     pathname: R/RE/REHSACK/List-MoreUtils-0.425.tar.gz
     provides:
