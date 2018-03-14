@@ -2747,6 +2747,13 @@ DISTRIBUTIONS
       Linux::Pid 0.04
     requirements:
       ExtUtils::MakeMaker 0
+  Linux-Smaps-0.13
+    pathname: O/OP/OPI/Linux-Smaps-0.13.tar.gz
+    provides:
+      Linux::Smaps 0.13
+      Linux::Smaps::VMA 0.13
+    requirements:
+      ExtUtils::MakeMaker 0
   List-MoreUtils-0.425
     pathname: R/RE/REHSACK/List-MoreUtils-0.425.tar.gz
     provides:
