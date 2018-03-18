@@ -200,6 +200,24 @@ DISTRIBUTIONS
     requirements:
       B 0
       ExtUtils::MakeMaker 0
+  CGI-Compile-0.22
+    pathname: M/MI/MIYAGAWA/CGI-Compile-0.22.tar.gz
+    provides:
+      CGI::Compile 0.22
+    requirements:
+      File::pushd 0
+      Module::Build::Tiny 0.034
+      perl 5.008001
+  CGI-Emulate-PSGI-0.23
+    pathname: T/TO/TOKUHIROM/CGI-Emulate-PSGI-0.23.tar.gz
+    provides:
+      CGI::Emulate::PSGI 0.23
+      CGI::Parse::PSGI undef
+    requirements:
+      CGI 3.63
+      ExtUtils::MakeMaker 0
+      HTTP::Response 0
+      perl 5.008001
   CPAN-Meta-2.150010
     pathname: D/DA/DAGOLDEN/CPAN-Meta-2.150010.tar.gz
     provides:
@@ -2127,6 +2145,22 @@ DISTRIBUTIONS
     requirements:
       ExtUtils::MakeMaker 0
       perl 5.006
+  File-pushd-1.014
+    pathname: D/DA/DAGOLDEN/File-pushd-1.014.tar.gz
+    provides:
+      File::pushd 1.014
+    requirements:
+      Carp 0
+      Cwd 0
+      Exporter 0
+      ExtUtils::MakeMaker 6.17
+      File::Path 0
+      File::Spec 0
+      File::Temp 0
+      overload 0
+      perl 5.006
+      strict 0
+      warnings 0
   Filesys-Notify-Simple-0.12
     pathname: M/MI/MIYAGAWA/Filesys-Notify-Simple-0.12.tar.gz
     provides:
