@@ -55,7 +55,6 @@ requires 'LWP::Protocol::https', '6.07';
 requires 'LWP::UserAgent', '6.26';
 requires 'Linux::Pdeathsig';
 requires 'Linux::Pid';
-requires 'Linux::Smaps';
 requires 'List::MoreUtils', '0.418';
 requires 'Log::Dispatch', '2.67';
 requires 'Log::Log4perl', '1.49';
