@@ -43,8 +43,6 @@ jobs:
   <<upload>>
   <<centos6>>
   <<ubuntu14>>
-  <<bmo-base>>
-  <<bmo-ci>>
   <<bmo-slim>>
   <<docker-centos6>>
   <<docker-ubuntu14>>
@@ -67,14 +65,6 @@ workflows:
           <<only master>>
           requires:
             - centos6
-      - bmo-base:
-          <<only master>>
-          requires:
-            - centos6
-      - bmo-ci:
-          <<only master>>
-          requires:
-            - bmo-base
       - upload:
           <<only master>>
           requires:
@@ -90,53 +80,7 @@ filters:
 #+END_SRC
 
 * docker jobs
-jobs that build docker containers (bmo-base, bmo-ci, etc)
-
-** bmo-base
-
-#+NAME: bmo-base
-#+BEGIN_SRC yaml
-bmo-base:
-  working_directory: /build
-  docker:
-    - image: docker:17.06.1-ce
-      environment:
-        DOCKERHUB_REPO: mozillabteam/bmo-base
-        PATH: /build/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin
-  steps:
-    - setup_remote_docker
-    - checkout
-    - attach_workspace:
-        at: /build/upload
-    - run:
-        no_output_timeout: 20m
-        working_directory: /build/docker/bmo-base
-        command: |
-          tar -zxf /build/upload/bmo/vendor.tar.gz bmo/vendor/ bmo/cpanfile bmo/cpanfile.snapshot
-          docker-build
-#+END_SRC
-
-** bmo-ci
-
-#+NAME: bmo-ci
-#+BEGIN_SRC yaml
-bmo-ci:
-  working_directory: /build
-  docker:
-    - image: docker:17.06.1-ce
-      environment:
-        DOCKERHUB_REPO: mozillabteam/bmo-ci
-        PATH: /build/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin
-  steps:
-    - setup_remote_docker
-    - checkout
-    - run:
-        working_directory: /build/docker/bmo-ci
-        command: |
-          docker-build
-    - run:
-        command: docker run -ti $DOCKERHUB_REPO env GITHUB_BASE_BRANCH=production TEST_SUITE=sanity runtests.sh
-#+END_SRC
+jobs that build docker containers
 
 ** bmo-slim
 

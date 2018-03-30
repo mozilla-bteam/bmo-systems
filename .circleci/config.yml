@@ -79,40 +79,6 @@ jobs:
             - "*/vendor.tar.gz"
       - store_artifacts:
           path: '/root/.cpanm/work/*/build.log'
-  bmo-base:
-    working_directory: /build
-    docker:
-      - image: docker:17.06.1-ce
-        environment:
-          DOCKERHUB_REPO: mozillabteam/bmo-base
-          PATH: /build/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin
-    steps:
-      - setup_remote_docker
-      - checkout
-      - attach_workspace:
-          at: /build/upload
-      - run:
-          no_output_timeout: 20m
-          working_directory: /build/docker/bmo-base
-          command: |
-            tar -zxf /build/upload/bmo/vendor.tar.gz bmo/vendor/ bmo/cpanfile bmo/cpanfile.snapshot
-            docker-build
-  bmo-ci:
-    working_directory: /build
-    docker:
-      - image: docker:17.06.1-ce
-        environment:
-          DOCKERHUB_REPO: mozillabteam/bmo-ci
-          PATH: /build/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin
-    steps:
-      - setup_remote_docker
-      - checkout
-      - run:
-          working_directory: /build/docker/bmo-ci
-          command: |
-            docker-build
-      - run:
-          command: docker run -ti $DOCKERHUB_REPO env GITHUB_BASE_BRANCH=production TEST_SUITE=sanity runtests.sh
   bmo-slim:
     working_directory: /build
     docker:
@@ -195,18 +161,6 @@ workflows:
               only: master
           requires:
             - centos6
-      - bmo-base:
-          filters:
-            branches:
-              only: master
-          requires:
-            - centos6
-      - bmo-ci:
-          filters:
-            branches:
-              only: master
-          requires:
-            - bmo-base
       - upload:
           filters:
             branches:
