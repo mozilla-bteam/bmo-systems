@@ -17,9 +17,9 @@ bmo-systems repo is responsible for:
    Currently PLATFORM is centos6 and ubuntu14.
    From inside the container, run the following:
 
-   #+BEGIN_SRC sh :exports code
+   #+BEGIN_SRC bash :exports code
    source /build/env.sh
-   git clone --depth 1 https://github.com/mozillabteam/bmo.git
+   git clone --depth 1 https://github.com/mozilla-bteam/bmo.git
    cd bmo
    cp ../cpanfile.snapshot .
    $PERL Makefile.PL
@@ -32,6 +32,18 @@ bmo-systems repo is responsible for:
 ** Upgrade perl dependencies
 
    This is the same as adding a dependency, except instead of "$PERL $CARTON install" you run "$PERL $CARTON upgrade".
+
+** Make a new release of bmo-slim
+   CircleCI will build all pushes the master branch (and it ignores all others).
+   If all the jobs are passing and complete, execute the following:
+
+   #+BEGIN_SRC bash :exports code
+   docker pull mozillabteam/bmo-slim:latest
+   docker tag mozillabteam/bmo-slim:latest mozillabteam/bmo-slim:$(date date +%Y%m%d.1)
+   docker push mozillabteam/bmo-slim:$(date +%Y%m%d.1)
+   #+END_SRC
+
+   Afterwards, update the image in Dockerfile and .circleci/config.yml in https://github.com/mozilla-bteam/bmo 
 
 * Configuration
 
