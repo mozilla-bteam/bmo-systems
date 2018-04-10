@@ -2745,6 +2745,20 @@ DISTRIBUTIONS
       Fcntl 0
       POSIX 0
       perl 5.004
+  File-Slurper-0.012
+    pathname: L/LE/LEONT/File-Slurper-0.012.tar.gz
+    provides:
+      File::Slurper 0.012
+    requirements:
+      Carp 0
+      Encode 2.11
+      Exporter 5.57
+      ExtUtils::MakeMaker 0
+      PerlIO::encoding 0
+      constant 0
+      perl 5.008
+      strict 0
+      warnings 0
   File-Which-1.21
     pathname: P/PL/PLICEASE/File-Which-1.21.tar.gz
     provides:
@@ -3402,6 +3416,19 @@ DISTRIBUTIONS
     pathname: Z/ZE/ZEROHP/Linux-Pdeathsig-0.10.tar.gz
     provides:
       Linux::Pdeathsig 0.10
+    requirements:
+      ExtUtils::MakeMaker 0
+  Linux-Pid-0.04
+    pathname: R/RG/RGARCIA/Linux-Pid-0.04.tar.gz
+    provides:
+      Linux::Pid 0.04
+    requirements:
+      ExtUtils::MakeMaker 0
+  Linux-Smaps-0.13
+    pathname: O/OP/OPI/Linux-Smaps-0.13.tar.gz
+    provides:
+      Linux::Smaps 0.13
+      Linux::Smaps::VMA 0.13
     requirements:
       ExtUtils::MakeMaker 0
   List-MoreUtils-0.425
