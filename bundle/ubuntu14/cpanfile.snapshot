@@ -474,6 +474,19 @@ DISTRIBUTIONS
       Module::Build::Tiny 0.035
       URI::Escape 0
       perl 5.008001
+  Crypt-Argon2-0.004
+    pathname: L/LE/LEONT/Crypt-Argon2-0.004.tar.gz
+    provides:
+      Crypt::Argon2 0.004
+    requirements:
+      Exporter 5.57
+      ExtUtils::CBuilder 0
+      Module::Build 0.28
+      Test::More 0.89
+      XSLoader 0
+      perl 5.006
+      strict 0
+      warnings 0
   Crypt-Blowfish-2.14
     pathname: D/DP/DPARIS/Crypt-Blowfish-2.14.tar.gz
     provides:
