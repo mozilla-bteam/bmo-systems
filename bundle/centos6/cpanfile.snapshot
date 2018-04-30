@@ -3219,15 +3219,10 @@ DISTRIBUTIONS
     provides:
       IO::Event 0.813
       IO::Event::AnyEvent undef
-      IO::Event::AnyEvent::Wrapper undef
       IO::Event::Callback undef
-      IO::Event::Common 0.813
       IO::Event::Emulate undef
-      IO::Event::Emulate::Idle undef
-      IO::Event::Emulate::Timer undef
       IO::Event::Event undef
       IO::Event::INET::Callback undef
-      IO::Event::Socket::INET 0.813
       IO::Event::Socket::UNIX 0.813
       IO::Event::UNIX::Callback undef
     requirements:
@@ -6098,7 +6093,7 @@ DISTRIBUTIONS
       Template::Monad::Scalar 1
       Template::Namespace::Constants 1.27
       Template::Parser 2.89
-      Template::Perl 2.2
+      Template::Perl 2.87
       Template::Plugin 2.7
       Template::Plugin::Assert 1
       Template::Plugin::CGI 2.7

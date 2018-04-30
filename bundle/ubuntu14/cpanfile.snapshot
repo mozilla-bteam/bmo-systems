@@ -200,6 +200,36 @@ DISTRIBUTIONS
     requirements:
       B 0
       ExtUtils::MakeMaker 0
+  CGI-4.38
+    pathname: L/LE/LEEJO/CGI-4.38.tar.gz
+    provides:
+      CGI 4.38
+      CGI::Carp 4.38
+      CGI::Cookie 4.38
+      CGI::File::Temp 4.38
+      CGI::HTML::Functions undef
+      CGI::MultipartBuffer 4.38
+      CGI::Pretty 4.38
+      CGI::Push 4.38
+      CGI::Util 4.38
+      Fh 4.38
+    requirements:
+      Carp 0
+      Config 0
+      Encode 0
+      Exporter 0
+      ExtUtils::MakeMaker 0
+      File::Spec 0.82
+      File::Temp 0.17
+      HTML::Entities 3.69
+      base 0
+      if 0
+      overload 0
+      parent 0.225
+      perl 5.008001
+      strict 0
+      utf8 0
+      warnings 0
   CGI-Compile-0.22
     pathname: M/MI/MIYAGAWA/CGI-Compile-0.22.tar.gz
     provides:
@@ -474,6 +504,14 @@ DISTRIBUTIONS
       Module::Build::Tiny 0.035
       URI::Escape 0
       perl 5.008001
+  Cpanel-JSON-XS-4.02
+    pathname: R/RU/RURBAN/Cpanel-JSON-XS-4.02.tar.gz
+    provides:
+      Cpanel::JSON::XS 4.02
+      Cpanel::JSON::XS::Type undef
+    requirements:
+      ExtUtils::MakeMaker 0
+      Pod::Text 2.08
   Crypt-Argon2-0.004
     pathname: L/LE/LEONT/Crypt-Argon2-0.004.tar.gz
     provides:
@@ -2590,15 +2628,10 @@ DISTRIBUTIONS
     provides:
       IO::Event 0.813
       IO::Event::AnyEvent undef
-      IO::Event::AnyEvent::Wrapper undef
       IO::Event::Callback undef
-      IO::Event::Common 0.813
       IO::Event::Emulate undef
-      IO::Event::Emulate::Idle undef
-      IO::Event::Emulate::Timer undef
       IO::Event::Event undef
       IO::Event::INET::Callback undef
-      IO::Event::Socket::INET 0.813
       IO::Event::Socket::UNIX 0.813
       IO::Event::UNIX::Callback undef
     requirements:
@@ -2702,6 +2735,7 @@ DISTRIBUTIONS
       JSON::MaybeXS 1.003009
     requirements:
       Carp 0
+      Cpanel::JSON::XS 2.3310
       ExtUtils::CBuilder 0.27
       ExtUtils::MakeMaker 0
       File::Spec 0
@@ -5525,7 +5559,7 @@ DISTRIBUTIONS
       Template::Monad::Scalar 1
       Template::Namespace::Constants 1.27
       Template::Parser 2.89
-      Template::Perl 2.2
+      Template::Perl 2.87
       Template::Plugin 2.7
       Template::Plugin::Assert 1
       Template::Plugin::CGI 2.7
@@ -5645,6 +5679,7 @@ DISTRIBUTIONS
     requirements:
       Capture::Tiny 0.24
       Data::Dumper 2.126
+      ExtUtils::MakeMaker 0
       Test::More 0.88
       Text::Diff 0.35
   Test-Exception-0.43
