@@ -13,7 +13,7 @@ chmod a+x /usr/local/bin/*
 build-vanilla-perl
 
 $PERL /usr/local/bin/cpanm --notest --quiet \
-      Carton App::FatPacker File::pushd ExtUtils::MakeMaker
+      Carton@1.0.28 App::FatPacker File::pushd ExtUtils::MakeMaker
 
 # stash pari (c library) source as the mirror for it is very flakey
 mkdir -p ~/.cpanm/work
