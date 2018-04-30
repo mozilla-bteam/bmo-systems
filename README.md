@@ -51,7 +51,7 @@ After that, use 'docker cp' to copy *build/bmo/cpanfile and /build/bmo/cpanfile.
 
 ## Upgrade perl dependencies
 
-This is the same as adding a dependency, except instead of "$PERL $CARTON install" you run "$PERL $CARTON upgrade".
+This is the same as adding a dependency, except instead of "$PERL $CARTON install" you run "$PERL $CARTON update".
 
 
 <a id="orgf7f04d6"></a>
