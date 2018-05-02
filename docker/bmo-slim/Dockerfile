@@ -8,7 +8,7 @@ RUN yum update -y && \
     yum install -y perl perl-core mod_perl httpd \
                         wget tar openssl mysql mysql-libs gd \
                         openssh sclo-git25-git nc patchutils \
-                        patch graphviz && \
+                        patch graphviz xz && \
     curl -L https://cpanmin.us > /usr/local/bin/cpanm && \
     curl -L https://github.com/dylanwh/tocotrienol/releases/download/1.0.6/tct-centos6.tar.xz > /usr/local/bin/tct.tar.xz && \
     tar -C /usr/local/bin -xvf /usr/local/bin/tct.tar.xz && \
