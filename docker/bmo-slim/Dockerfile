@@ -10,7 +10,8 @@ RUN yum update -y && \
                         openssh sclo-git25-git nc patchutils \
                         patch graphviz && \
     curl -L https://cpanmin.us > /usr/local/bin/cpanm && \
-    chmod 755 /usr/local/bin/cpanm && \
+    curl -L https://github.com/dylanwh/tocotrienol/releases/download/1.0.5/tct-centos6 > /usr/local/bin/tct && \
+    chmod 755 /usr/local/bin/{cpanm,tct} && \
     curl -L https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini > /usr/local/sbin/tini && \
     chmod +x /usr/local/sbin/tini && \
     mkdir -p /opt/bmo/build && \
