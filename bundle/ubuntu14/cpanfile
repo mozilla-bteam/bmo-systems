@@ -18,6 +18,7 @@ requires 'Crypt::OpenPGP', '1.02';
 requires 'Crypt::SMIME';
 requires 'DBD::mysql', '4.037';
 requires 'DBI', '1.614';
+requires 'DBIx::Connector';
 requires 'Daemon::Generic';
 requires 'Data::Password::passwdqc', '0.08';
 requires 'Date::Format', '2.23';

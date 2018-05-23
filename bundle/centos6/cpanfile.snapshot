@@ -1192,6 +1192,26 @@ DISTRIBUTIONS
       ExtUtils::MakeMaker 6.48
       Test::Simple 0.90
       perl 5.008
+  DBIx-Connector-0.56
+    pathname: D/DW/DWHEELER/DBIx-Connector-0.56.tar.gz
+    provides:
+      DBIx::Connector 0.56
+      DBIx::Connector::Driver 0.56
+      DBIx::Connector::Driver::Firebird 0.56
+      DBIx::Connector::Driver::MSSQL 0.56
+      DBIx::Connector::Driver::Oracle 0.56
+      DBIx::Connector::Driver::Pg 0.56
+      DBIx::Connector::Driver::SQLite 0.56
+      DBIx::Connector::Driver::mysql 0.56
+      DBIx::Connector::RollbackError 0.56
+      DBIx::Connector::SvpRollbackError 0.56
+      DBIx::Connector::TxnRollbackError 0.56
+    requirements:
+      DBI 1.605
+      Module::Build 0.30
+      Test::MockModule 0.05
+      Test::More 0.88
+      perl 5.006002
   Daemon-Generic-0.84
     pathname: M/MU/MUIR/modules/Daemon-Generic-0.84.tar.gz
     provides:
@@ -6068,6 +6088,15 @@ DISTRIBUTIONS
       XML::Parser 2.23
       constant 0
       perl 5.006000
+  SUPER-1.20141117
+    pathname: C/CH/CHROMATIC/SUPER-1.20141117.tar.gz
+    provides:
+      SUPER 1.20141117
+    requirements:
+      Scalar::Util 1.20
+      Sub::Identify 0.03
+      Test::Simple 0.61
+      perl v5.6.2
   Scalar-List-Utils-1.47
     pathname: P/PE/PEVANS/Scalar-List-Utils-1.47.tar.gz
     provides:
@@ -6794,6 +6823,18 @@ DISTRIBUTIONS
       ExtUtils::MakeMaker 0
       Test::Builder 0.12
       Test::Builder::Tester 1.04
+  Test-MockModule-0.15
+    pathname: G/GF/GFRANKS/Test-MockModule-0.15.tar.gz
+    provides:
+      Test::MockModule 0.15
+    requirements:
+      Carp 0
+      Module::Build 0.38
+      SUPER 0
+      Scalar::Util 0
+      Test::More 0.88
+      Test::Warnings 0
+      perl 5.006
   Test-NoTabs-1.4
     pathname: B/BO/BOBTFISH/Test-NoTabs-1.4.tar.gz
     provides:
@@ -7021,6 +7062,19 @@ DISTRIBUTIONS
       URI::Escape 0
       base 0
       namespace::clean 0
+      strict 0
+      warnings 0
+  Test-Warnings-0.026
+    pathname: E/ET/ETHER/Test-Warnings-0.026.tar.gz
+    provides:
+      Test::Warnings 0.026
+    requirements:
+      Carp 0
+      Exporter 0
+      ExtUtils::MakeMaker 0
+      Test::Builder 0
+      parent 0
+      perl 5.006
       strict 0
       warnings 0
   Test2-Suite-0.000114
