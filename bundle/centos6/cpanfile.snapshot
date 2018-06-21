@@ -1304,34 +1304,6 @@ DISTRIBUTIONS
       Moose 0
       Test::More 0
       namespace::autoclean 0
-  Data-Perl-0.002009
-    pathname: M/MA/MATTP/Data-Perl-0.002009.tar.gz
-    provides:
-      Data::Perl 0.002009
-      Data::Perl::Bool 0.002009
-      Data::Perl::Code 0.002009
-      Data::Perl::Collection::Array 0.002009
-      Data::Perl::Collection::Hash 0.002009
-      Data::Perl::Counter 0.002009
-      Data::Perl::Number 0.002009
-      Data::Perl::Role::Bool 0.002009
-      Data::Perl::Role::Code 0.002009
-      Data::Perl::Role::Collection::Array 0.002009
-      Data::Perl::Role::Collection::Hash 0.002009
-      Data::Perl::Role::Counter 0.002009
-      Data::Perl::Role::Number 0.002009
-      Data::Perl::Role::String 0.002009
-      Data::Perl::String 0.002009
-    requirements:
-      Class::Method::Modifiers 0
-      ExtUtils::MakeMaker 6.30
-      List::MoreUtils 0
-      List::Util 0
-      Module::Runtime 0
-      Role::Tiny 0
-      Scalar::Util 0
-      parent 0
-      strictures 0
   Data-Structure-Util-0.16
     pathname: A/AN/ANDYA/Data-Structure-Util-0.16.tar.gz
     provides:
@@ -3125,30 +3097,6 @@ DISTRIBUTIONS
     requirements:
       ExtUtils::MakeMaker 0
       GD 1
-  GnuPG-Interface-0.52
-    pathname: A/AL/ALEXMV/GnuPG-Interface-0.52.tar.gz
-    provides:
-      GnuPG::Fingerprint undef
-      GnuPG::Handles undef
-      GnuPG::HashInit undef
-      GnuPG::Interface 0.52
-      GnuPG::Key undef
-      GnuPG::Options undef
-      GnuPG::PrimaryKey undef
-      GnuPG::PublicKey undef
-      GnuPG::Revoker undef
-      GnuPG::SecretKey undef
-      GnuPG::Signature undef
-      GnuPG::SubKey undef
-      GnuPG::UserAttribute undef
-      GnuPG::UserId undef
-    requirements:
-      ExtUtils::MakeMaker 6.36
-      Fatal 0
-      Math::BigInt 1.78
-      Moo 0.091011
-      MooX::HandlesVia 0.001004
-      MooX::late 0.014
   HTML-Escape-1.10
     pathname: T/TO/TOKUHIROM/HTML-Escape-1.10.tar.gz
     provides:
@@ -3471,10 +3419,15 @@ DISTRIBUTIONS
     provides:
       IO::Event 0.813
       IO::Event::AnyEvent undef
+      IO::Event::AnyEvent::Wrapper undef
       IO::Event::Callback undef
+      IO::Event::Common 0.813
       IO::Event::Emulate undef
+      IO::Event::Emulate::Idle undef
+      IO::Event::Emulate::Timer undef
       IO::Event::Event undef
       IO::Event::INET::Callback undef
+      IO::Event::Socket::INET 0.813
       IO::Event::Socket::UNIX 0.813
       IO::Event::UNIX::Callback undef
     requirements:
@@ -3524,7 +3477,6 @@ DISTRIBUTIONS
       IO::Socket::SSL::Utils 2.014
     requirements:
       ExtUtils::MakeMaker 0
-      Mozilla::CA 0
       Net::SSLeay 1.46
       Scalar::Util 0
   IO-String-1.08
@@ -4310,6 +4262,7 @@ DISTRIBUTIONS
       Mojolicious::Lite undef
       Mojolicious::Plugin undef
       Mojolicious::Plugin::Config undef
+      Mojolicious::Plugin::Config::Sandbox undef
       Mojolicious::Plugin::DefaultHelpers undef
       Mojolicious::Plugin::EPLRenderer undef
       Mojolicious::Plugin::EPRenderer undef
@@ -4368,22 +4321,6 @@ DISTRIBUTIONS
       Role::Tiny 2.000002
       Scalar::Util 0
       perl 5.006
-  MooX-HandlesVia-0.001008
-    pathname: M/MA/MATTP/MooX-HandlesVia-0.001008.tar.gz
-    provides:
-      Data::Perl::Bool::MooseLike 0.001008
-      Data::Perl::Collection::Array::MooseLike 0.001008
-      Data::Perl::Collection::Hash::MooseLike 0.001008
-      Data::Perl::Number::MooseLike 0.001008
-      Data::Perl::String::MooseLike 0.001008
-      MooX::HandlesVia 0.001008
-    requirements:
-      Class::Method::Modifiers 0
-      Data::Perl 0.002006
-      ExtUtils::MakeMaker 0
-      Module::Runtime 0
-      Moo 1.003000
-      Role::Tiny 0
   MooX-StrictConstructor-0.008
     pathname: H/HA/HARTZELL/MooX-StrictConstructor-0.008.tar.gz
     provides:
@@ -4403,15 +4340,6 @@ DISTRIBUTIONS
       perl 5.006
       strict 0
       strictures 1
-  MooX-late-0.015
-    pathname: T/TO/TOBYINK/MooX-late-0.015.tar.gz
-    provides:
-      MooX::late 0.015
-      MooX::late::DefinitionContext 0.015
-    requirements:
-      ExtUtils::MakeMaker 6.17
-      Moo 1.006000
-      Type::Utils 1.000001
   Moose-2.2006
     pathname: E/ET/ETHER/Moose-2.2006.tar.gz
     provides:
@@ -6573,7 +6501,7 @@ DISTRIBUTIONS
       Template::Monad::Scalar 1
       Template::Namespace::Constants 1.27
       Template::Parser 2.89
-      Template::Perl 2.87
+      Template::Perl 2.2
       Template::Plugin 2.7
       Template::Plugin::Assert 1
       Template::Plugin::CGI 2.7
