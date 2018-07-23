@@ -21,6 +21,7 @@ requires 'DBI', '1.614';
 requires 'DBIx::Connector';
 requires 'Daemon::Generic';
 requires 'Data::Password::passwdqc', '0.08';
+requires 'DataDog::DogStatsd', '0.05';
 requires 'Date::Format', '2.23';
 requires 'DateTime', '0.75';
 requires 'DateTime::TimeZone', '2.11';

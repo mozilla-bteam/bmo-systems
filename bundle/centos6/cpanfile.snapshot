@@ -1314,6 +1314,14 @@ DISTRIBUTIONS
       Scalar::Util 1.01
       Storable 0
       perl 5.008
+  DataDog-DogStatsd-0.05
+    pathname: B/BI/BINARY/DataDog-DogStatsd-0.05.tar.gz
+    provides:
+      DataDog::DogStatsd 0.05
+      DataDog::DogStatsd::Helper 0.05
+    requirements:
+      ExtUtils::MakeMaker 0
+      IO::Socket::INET 0
   DateTime-1.03
     pathname: D/DR/DROLSKY/DateTime-1.03.tar.gz
     provides:
