@@ -66,6 +66,7 @@ requires 'Linux::Smaps';
 requires 'List::MoreUtils', '0.418';
 requires 'Log::Dispatch', '2.67';
 requires 'Log::Log4perl', '1.49';
+requires 'Log::Log4perl::Appender::Raven', '0.006';
 requires 'MIME::Parser', '5.406';
 requires 'Math::Random::ISAAC', 'v1.0.1';
 requires 'Module::Metadata', '1.000033';

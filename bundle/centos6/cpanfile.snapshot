@@ -1237,6 +1237,20 @@ DISTRIBUTIONS
       Data::Buffer 0.04
     requirements:
       ExtUtils::MakeMaker 0
+  Data-Dump-1.23
+    pathname: G/GA/GAAS/Data-Dump-1.23.tar.gz
+    provides:
+      Data::Dump 1.23
+      Data::Dump::FilterContext undef
+      Data::Dump::Filtered undef
+      Data::Dump::Trace 0.02
+      Data::Dump::Trace::Call 0.02
+      Data::Dump::Trace::Wrapper 0.02
+    requirements:
+      ExtUtils::MakeMaker 0
+      Symbol 0
+      Test 0
+      perl 5.006
   Data-Dumper-2.161
     pathname: S/SM/SMUELLER/Data-Dumper-2.161.tar.gz
     provides:
@@ -2350,6 +2364,15 @@ DISTRIBUTIONS
       Digest::MD2 2.04
     requirements:
       ExtUtils::MakeMaker 0
+  Digest-MD5-2.55
+    pathname: G/GA/GAAS/Digest-MD5-2.55.tar.gz
+    provides:
+      Digest::MD5 2.55
+    requirements:
+      Digest::base 1.00
+      ExtUtils::MakeMaker 0
+      XSLoader 0
+      perl 5.006
   Digest-SHA1-2.13
     pathname: G/GA/GAAS/Digest-SHA1-2.13.tar.gz
     provides:
@@ -3825,6 +3848,22 @@ DISTRIBUTIONS
       File::Path 2.0606
       File::Spec 0.82
       Test::More 0.45
+  Log-Log4perl-Appender-Raven-0.006
+    pathname: J/JE/JETEVE/Log-Log4perl-Appender-Raven-0.006.tar.gz
+    provides:
+      Log::Log4perl::Appender::Raven 0.006
+    requirements:
+      Carp 1.26
+      Data::Dumper 0
+      Devel::StackTrace 1.27
+      Digest::MD5 2.51
+      ExtUtils::MakeMaker 0
+      Log::Log4perl 1.24
+      Moose 2.0801
+      Safe 2.16
+      Scope::Guard 0.21
+      Sentry::Raven 0.05
+      Text::Template 1.46
   MIME-Types-2.13
     pathname: M/MA/MARKOV/MIME-Types-2.13.tar.gz
     provides:
@@ -4357,6 +4396,14 @@ DISTRIBUTIONS
       perl 5.006
       strict 0
       strictures 1
+  MooX-Types-MooseLike-0.29
+    pathname: M/MA/MATEU/MooX-Types-MooseLike-0.29.tar.gz
+    provides:
+      MooX::Types::MooseLike 0.29
+      MooX::Types::MooseLike::Base 0.29
+    requirements:
+      ExtUtils::MakeMaker 0
+      Module::Runtime 0.014
   Moose-2.2006
     pathname: E/ET/ETHER/Moose-2.2006.tar.gz
     provides:
@@ -6214,6 +6261,29 @@ DISTRIBUTIONS
       perl 5.010
       strict 0
       warnings 0
+  Sentry-Raven-1.10
+    pathname: Q/QR/QRRY/Sentry-Raven-1.10.tar.gz
+    provides:
+      Sentry::Raven 1.10
+      Sentry::Raven::Processor::RemoveStackVariables undef
+    requirements:
+      Data::Dump 0
+      Devel::StackTrace 0
+      English 0
+      ExtUtils::MakeMaker 0
+      File::Basename 0
+      HTTP::Request::Common 0
+      HTTP::Status 0
+      JSON::XS 0
+      LWP::Protocol::https 0
+      LWP::UserAgent 0
+      Moo 0
+      MooX::Types::MooseLike::Base 0
+      Sys::Hostname 0
+      Time::Piece 0
+      URI 0
+      UUID::Tiny 0
+      perl 5.008
   Sereal-4.004
     pathname: Y/YV/YVES/Sereal-4.004.tar.gz
     provides:
@@ -7209,6 +7279,20 @@ DISTRIBUTIONS
       Test::More 0.42
       Text::Markdown v1.0.26
       perl 5.008
+  Text-Template-1.53
+    pathname: M/MS/MSCHOUT/Text-Template-1.53.tar.gz
+    provides:
+      Text::Template 1.53
+      Text::Template::Preprocess 1.53
+    requirements:
+      Carp 0
+      Encode 0
+      Exporter 0
+      ExtUtils::MakeMaker 0
+      base 0
+      perl 5.008
+      strict 0
+      warnings 0
   TheSchwartz-1.12
     pathname: J/JF/JFEARN/TheSchwartz-1.12.tar.gz
     provides:
@@ -7454,6 +7538,19 @@ DISTRIBUTIONS
       Filter::Util::Call 0
       Test::More 0
       URI 0
+  UUID-Tiny-1.04
+    pathname: C/CA/CAUGUSTIN/UUID-Tiny-1.04.tar.gz
+    provides:
+      UUID::Tiny 1.04
+    requirements:
+      Carp 0
+      Digest::MD5 0
+      ExtUtils::MakeMaker 0
+      IO::File 0
+      MIME::Base64 0
+      POSIX 0
+      Test::More 0
+      Time::HiRes 0
   Variable-Magic-0.59
     pathname: V/VP/VPIT/Variable-Magic-0.59.tar.gz
     provides:
