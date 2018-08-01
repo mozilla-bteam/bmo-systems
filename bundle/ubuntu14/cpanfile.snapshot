@@ -1808,6 +1808,15 @@ DISTRIBUTIONS
       base 0
       strict 0
       warnings 0
+  EV-4.22
+    pathname: M/ML/MLEHMANN/EV-4.22.tar.gz
+    provides:
+      EV 4.22
+      EV::MakeMaker undef
+    requirements:
+      Canary::Stability 0
+      ExtUtils::MakeMaker 6.52
+      common::sense 0
   Email-Abstract-3.008
     pathname: R/RJ/RJBS/Email-Abstract-3.008.tar.gz
     provides:

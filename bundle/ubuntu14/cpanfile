@@ -27,6 +27,7 @@ requires 'DateTime', '0.75';
 requires 'DateTime::TimeZone', '2.11';
 requires 'Devel::NYTProf', '6.04';
 requires 'Digest::SHA', '5.47';
+requires 'EV', '4';
 requires 'Email::Address';
 requires 'Email::MIME', '1.904';
 requires 'Email::MIME::Attachment::Stripper';
