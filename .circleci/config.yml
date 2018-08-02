@@ -52,33 +52,6 @@ jobs:
             - "*/vendor.tar.gz"
       - store_artifacts:
           path: '/root/.cpanm/work/*/build.log'
-  ubuntu14:
-    working_directory: /build
-    docker:
-      - image: ubuntu:14.04
-        environment:
-          PATH: /build/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin
-          NAME: mozreview # named this for historical reasons
-    steps:
-      - checkout
-      - run:
-          command: cp /build/bundle/ubuntu14/mysql.list /etc/apt/sources.list.d/mysql.list
-      - run:
-          name: install dependencies
-          command: /build/bundle/ubuntu14/install-debs
-      - run:
-          name: copy cpanfile and cpanfile.snapshot
-          command: cp bundle/$CIRCLE_JOB/cpanfile* .
-      - run: build-prepare
-      - run: build-stage1
-      - run: build-stage2
-      - run: build-vendor-bundle $NAME
-      - persist_to_workspace:
-          root: /build/upload
-          paths:
-            - "*/vendor.tar.gz"
-      - store_artifacts:
-          path: '/root/.cpanm/work/*/build.log'
   bmo-slim:
     working_directory: /build
     docker:
@@ -117,21 +90,6 @@ jobs:
           name: build docker container
           command: |
             docker-build -f bundle/centos6/Dockerfile
-  docker-ubuntu14:
-    working_directory: /build
-    docker:
-      - image: docker:17.06.1-ce
-        environment:
-          DOCKERHUB_REPO: mozillabteam/ubuntu14
-          PATH: /build/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin
-    steps:
-      - setup_remote_docker
-      - checkout
-      - run:
-          name: build docker container
-          command: |
-            docker-build -f bundle/ubuntu14/Dockerfile
-  
 
 workflows:
   version: 2
@@ -141,17 +99,9 @@ workflows:
           filters:
             branches:
               only: master
-      - docker-ubuntu14:
-          filters:
-            branches:
-              only: master
   bundles:
     jobs:
       - centos6:
-          filters:
-            branches:
-              only: master
-      - ubuntu14:
           filters:
             branches:
               only: master
@@ -167,4 +117,3 @@ workflows:
               only: master
           requires:
             - centos6
-            - ubuntu14
