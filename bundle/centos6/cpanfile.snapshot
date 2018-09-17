@@ -3864,6 +3864,15 @@ DISTRIBUTIONS
       Scope::Guard 0.21
       Sentry::Raven 0.05
       Text::Template 1.46
+  MIME-Base64-3.15
+    pathname: G/GA/GAAS/MIME-Base64-3.15.tar.gz
+    provides:
+      MIME::Base64 3.15
+      MIME::QuotedPrint 3.13
+    requirements:
+      ExtUtils::MakeMaker 0
+      XSLoader 0
+      perl 5.004
   MIME-Types-2.13
     pathname: M/MA/MARKOV/MIME-Types-2.13.tar.gz
     provides:
@@ -4216,6 +4225,15 @@ DISTRIBUTIONS
       perl 5.006
       strict 0
       warnings 0
+  Mojo-JWT-0.07
+    pathname: J/JB/JBERGER/Mojo-JWT-0.07.tar.gz
+    provides:
+      Mojo::JWT 0.07
+    requirements:
+      Digest::SHA 0
+      MIME::Base64 3.11
+      Module::Build::Tiny 0
+      Mojolicious 5.00
   MojoX-Log-Log4perl-Tiny-0.01
     pathname: Y/YO/YOWCOW/MojoX-Log-Log4perl-Tiny-0.01.tar.gz
     provides:
@@ -4346,6 +4364,22 @@ DISTRIBUTIONS
       JSON::PP 2.27103
       Pod::Simple 3.09
       Time::Local 1.2
+      perl 5.010001
+  Mojolicious-Plugin-OAuth2-Server-0.42
+    pathname: L/LE/LEEJO/Mojolicious-Plugin-OAuth2-Server-0.42.tar.gz
+    provides:
+      Mojolicious::Plugin::OAuth2::Server 0.42
+    requirements:
+      Carp 0
+      ExtUtils::MakeMaker 0
+      File::Find 0
+      FindBin 0
+      Mojolicious 7.76
+      Net::OAuth2::AuthorizationServer 0.17
+      Test::Deep 0.113
+      Test::Exception 0.32
+      Test::Mojo 0
+      Test::More 0
       perl 5.010001
   Moo-2.002004
     pathname: H/HA/HAARG/Moo-2.002004.tar.gz
@@ -4809,6 +4843,29 @@ DISTRIBUTIONS
       strict 0
       vars 0
       warnings 0
+  Net-OAuth2-AuthorizationServer-0.18
+    pathname: L/LE/LEEJO/Net-OAuth2-AuthorizationServer-0.18.tar.gz
+    provides:
+      Net::OAuth2::AuthorizationServer 0.18
+      Net::OAuth2::AuthorizationServer::AuthorizationCodeGrant undef
+      Net::OAuth2::AuthorizationServer::ClientCredentialsGrant undef
+      Net::OAuth2::AuthorizationServer::Defaults undef
+      Net::OAuth2::AuthorizationServer::ImplicitGrant undef
+      Net::OAuth2::AuthorizationServer::PasswordGrant undef
+      OAuth2Functions undef
+    requirements:
+      Carp 0
+      CryptX 0.021
+      ExtUtils::MakeMaker 0
+      MIME::Base64 0
+      Mojo::JWT 0.04
+      Moo 2.000002
+      Test::Exception 0.32
+      Test::Most 0
+      Time::HiRes 0
+      Try::Tiny 0.22
+      Types::Standard 1.000005
+      perl 5.010001
   Net-SFTP-0.10
     pathname: D/DB/DBROBINS/Net-SFTP-0.10.tar.gz
     provides:
@@ -6850,6 +6907,20 @@ DISTRIBUTIONS
       Test::More 0.88
       Test::Warnings 0
       perl 5.006
+  Test-Most-0.35
+    pathname: O/OV/OVID/Test-Most-0.35.tar.gz
+    provides:
+      Test::Most 0.35
+      Test::Most::Exception 0.35
+    requirements:
+      Exception::Class 1.14
+      ExtUtils::MakeMaker 0
+      Test::Deep 0.119
+      Test::Differences 0.64
+      Test::Exception 0.43
+      Test::Harness 3.35
+      Test::More 1.302047
+      Test::Warn 0.30
   Test-NoTabs-1.4
     pathname: B/BO/BOBTFISH/Test-NoTabs-1.4.tar.gz
     provides:
@@ -7079,6 +7150,17 @@ DISTRIBUTIONS
       namespace::clean 0
       strict 0
       warnings 0
+  Test-Warn-0.36
+    pathname: B/BI/BIGJ/Test-Warn-0.36.tar.gz
+    provides:
+      Test::Warn 0.36
+    requirements:
+      Carp 1.22
+      ExtUtils::MakeMaker 0
+      Sub::Uplevel 0.12
+      Test::Builder 0.13
+      Test::Builder::Tester 1.02
+      perl 5.006
   Test-Warnings-0.026
     pathname: E/ET/ETHER/Test-Warnings-0.026.tar.gz
     provides:

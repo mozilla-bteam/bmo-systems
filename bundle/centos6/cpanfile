@@ -73,6 +73,7 @@ requires 'Module::Metadata', '1.000033';
 requires 'Module::Runtime', '0.014';
 requires 'MojoX::Log::Log4perl::Tiny', '0.01';
 requires 'Mojolicious', '7.71';
+requires 'Mojolicious::Plugin::OAuth2::Server', '0.42';
 requires 'Moo', '2.002004';
 requires 'MooX::StrictConstructor', '0.008';
 requires 'Mozilla::CA', '20160104';
@@ -82,6 +83,7 @@ requires 'PatchReader', 'v0.9.6';
 requires 'Regexp::Common';
 requires 'Role::Tiny', '2.000003';
 requires 'SOAP::Lite', '0.712';
+requires 'Scope::Guard', '0.21';
 requires 'Search::Elasticsearch';
 requires 'Sereal', '4.004';
 requires 'Sub::Quote', '2.005000';
@@ -116,6 +118,7 @@ on build => sub {
 };
 
 on test => sub {
+    requires 'Capture::Tiny';
     requires 'Perl::Critic::Freenode';
     requires 'Pod::Coverage';
     requires 'Test::More';
