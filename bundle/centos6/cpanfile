@@ -1,5 +1,5 @@
 requires 'Algorithm::BloomFilter', '0.02';
-requires 'Alien::libcmark_gfm', '0.02';
+requires 'Alien::libcmark_gfm', '3';
 requires 'Auth::GoogleAuth', '1.01';
 requires 'CGI', '4.31';
 requires 'CGI::Compile';

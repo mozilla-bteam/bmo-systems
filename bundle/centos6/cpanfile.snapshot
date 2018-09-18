@@ -159,10 +159,10 @@ DISTRIBUTIONS
       URI 0
       URI::Escape 0
       perl 5.008001
-  Alien-libcmark_gfm-0.02
-    pathname: D/DH/DHARDISON/Alien-libcmark_gfm-0.02.tar.gz
+  Alien-libcmark_gfm-3.0
+    pathname: D/DH/DHARDISON/Alien-libcmark_gfm-3.0.tar.gz
     provides:
-      Alien::libcmark_gfm 0.2
+      Alien::libcmark_gfm 3
     requirements:
       Alien::Build 1.08
       Alien::Build::MM 0.32
