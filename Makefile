@@ -10,7 +10,6 @@ centos6.tar.gz: Makefile
 		--name centos6 mozillabteam/centos6 > $@
 
 bundle/%/cpanfile bundle/%/cpanfile.snapshot: %.tar.gz
-	tar -zxf $< -C bundle/$* cpanfile cpanfile.snapshot
+	tar -zxf $< -C bundle/$* ./cpanfile ./cpanfile.snapshot
 	touch bundle/$*/{cpanfile,cpanfile.snapshot}
-
 
