@@ -17,6 +17,7 @@ bzip2
 bzip2-libs
 ca-certificates
 cairo
+cairo-devel
 checkpolicy
 chkconfig
 compat-readline5
