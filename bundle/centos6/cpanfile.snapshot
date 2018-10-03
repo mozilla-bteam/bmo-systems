@@ -480,6 +480,15 @@ DISTRIBUTIONS
     requirements:
       ExtUtils::MakeMaker 0
       Test::More 0
+  Cairo-1.106
+    pathname: X/XA/XAOC/Cairo-1.106.tar.gz
+    provides:
+      Cairo 1.106
+      Cairo::Install::Files undef
+    requirements:
+      ExtUtils::Depends 0.2
+      ExtUtils::MakeMaker 0
+      ExtUtils::PkgConfig 1
   Canary-Stability-2011
     pathname: M/ML/MLEHMANN/Canary-Stability-2011.tar.gz
     provides:
@@ -515,6 +524,13 @@ DISTRIBUTIONS
       overload 0
       strict 0
       warnings 0
+  Carp-Clan-6.06
+    pathname: K/KE/KENTNL/Carp-Clan-6.06.tar.gz
+    provides:
+      Carp::Clan 6.06
+    requirements:
+      ExtUtils::MakeMaker 0
+      Test::Exception 0
   Chart-2.4.10
     pathname: C/CH/CHARTGRP/Chart-2.4.10.tar.gz
     provides:
@@ -538,6 +554,103 @@ DISTRIBUTIONS
     requirements:
       ExtUtils::MakeMaker 0
       GD 2
+  Chart-Clicker-2.90
+    pathname: G/GP/GPHAT/Chart-Clicker-2.90.tar.gz
+    provides:
+      Chart::Clicker 2.90
+      Chart::Clicker::Axis 2.90
+      Chart::Clicker::Axis::DateTime 2.90
+      Chart::Clicker::Axis::DivisionType 2.90
+      Chart::Clicker::Axis::DivisionType::Exact 2.90
+      Chart::Clicker::Axis::DivisionType::LinearExpandGraph 2.90
+      Chart::Clicker::Axis::DivisionType::LinearRounded 2.90
+      Chart::Clicker::Component 2.90
+      Chart::Clicker::Container 2.90
+      Chart::Clicker::Context 2.90
+      Chart::Clicker::Data::DataSet 2.90
+      Chart::Clicker::Data::Marker 2.90
+      Chart::Clicker::Data::Range 2.90
+      Chart::Clicker::Data::Series 2.90
+      Chart::Clicker::Data::Series::HighLow 2.90
+      Chart::Clicker::Data::Series::Size 2.90
+      Chart::Clicker::Decoration 2.90
+      Chart::Clicker::Decoration::Annotation 2.88
+      Chart::Clicker::Decoration::Glass 2.90
+      Chart::Clicker::Decoration::Grid 2.90
+      Chart::Clicker::Decoration::Legend 2.90
+      Chart::Clicker::Decoration::Legend::Tabular 2.90
+      Chart::Clicker::Decoration::MarkerOverlay 2.90
+      Chart::Clicker::Decoration::OverAxis 2.90
+      Chart::Clicker::Decoration::Plot 2.90
+      Chart::Clicker::Drawing::ColorAllocator 2.90
+      Chart::Clicker::Positioned 2.90
+      Chart::Clicker::Renderer 2.90
+      Chart::Clicker::Renderer::Area 2.90
+      Chart::Clicker::Renderer::Bar 2.90
+      Chart::Clicker::Renderer::Bubble 2.90
+      Chart::Clicker::Renderer::CandleStick 2.90
+      Chart::Clicker::Renderer::Line 2.90
+      Chart::Clicker::Renderer::Pie 2.90
+      Chart::Clicker::Renderer::Point 2.90
+      Chart::Clicker::Renderer::PolarArea 2.90
+      Chart::Clicker::Renderer::StackedArea 2.90
+      Chart::Clicker::Renderer::StackedBar 2.90
+      Chart::Clicker::Tutorial 2.90
+    requirements:
+      Carp 0
+      Class::Load 0
+      Color::Scheme 0
+      DateTime 0
+      DateTime::Set 0
+      English 0
+      ExtUtils::MakeMaker 0
+      Geometry::Primitive::Arc 0
+      Geometry::Primitive::Circle 0
+      Geometry::Primitive::Point 0
+      Graphics::Color::RGB 0
+      Graphics::Primitive::Border 0
+      Graphics::Primitive::Brush 0
+      Graphics::Primitive::Canvas 0
+      Graphics::Primitive::Component 0
+      Graphics::Primitive::Container 0
+      Graphics::Primitive::Driver::Cairo 0
+      Graphics::Primitive::Font 0
+      Graphics::Primitive::Insets 0
+      Graphics::Primitive::Operation::Fill 0
+      Graphics::Primitive::Operation::Stroke 0
+      Graphics::Primitive::Oriented 0
+      Graphics::Primitive::Paint::Gradient::Linear 0
+      Graphics::Primitive::Paint::Gradient::Radial 0
+      Graphics::Primitive::Paint::Solid 0
+      Graphics::Primitive::Path 0
+      Graphics::Primitive::TextBox 0
+      Layout::Manager::Absolute 0
+      Layout::Manager::Axis 0
+      Layout::Manager::Compass 0
+      Layout::Manager::Flow 0
+      Layout::Manager::Grid 0
+      Layout::Manager::Single 0
+      List::Util 0
+      Math::Trig 0
+      Moose 0
+      Moose::Role 0
+      Moose::Util 0
+      Moose::Util::TypeConstraints 0
+      POSIX 0
+      Scalar::Util 0
+      constant 0
+      strict 0
+      warnings 0
+  Check-ISA-0.09
+    pathname: M/MA/MANWAR/Check-ISA-0.09.tar.gz
+    provides:
+      Check::ISA 0.09
+    requirements:
+      ExtUtils::MakeMaker 0
+      Sub::Exporter 0
+      Test::More 1.001014
+      Test::use::ok 0
+      perl 5.008
   Class-Accessor-0.34
     pathname: K/KA/KASEI/Class-Accessor-0.34.tar.gz
     provides:
@@ -672,6 +785,51 @@ DISTRIBUTIONS
     requirements:
       ExtUtils::MakeMaker 0
       Test::More 0
+  Color-Library-0.021
+    pathname: R/RO/ROKR/Color-Library-0.021.tar.gz
+    provides:
+      Color::Library 0.021
+      Color::Library::Color undef
+      Color::Library::Dictionary undef
+      Color::Library::Dictionary::HTML undef
+      Color::Library::Dictionary::IE undef
+      Color::Library::Dictionary::Mozilla undef
+      Color::Library::Dictionary::NBS_ISCC undef
+      Color::Library::Dictionary::NBS_ISCC::A undef
+      Color::Library::Dictionary::NBS_ISCC::B undef
+      Color::Library::Dictionary::NBS_ISCC::F undef
+      Color::Library::Dictionary::NBS_ISCC::H undef
+      Color::Library::Dictionary::NBS_ISCC::M undef
+      Color::Library::Dictionary::NBS_ISCC::P undef
+      Color::Library::Dictionary::NBS_ISCC::R undef
+      Color::Library::Dictionary::NBS_ISCC::RC undef
+      Color::Library::Dictionary::NBS_ISCC::S undef
+      Color::Library::Dictionary::NBS_ISCC::SC undef
+      Color::Library::Dictionary::NBS_ISCC::TC undef
+      Color::Library::Dictionary::Netscape undef
+      Color::Library::Dictionary::SVG undef
+      Color::Library::Dictionary::Tango undef
+      Color::Library::Dictionary::VACCC undef
+      Color::Library::Dictionary::WWW undef
+      Color::Library::Dictionary::Windows undef
+      Color::Library::Dictionary::X11 undef
+    requirements:
+      Class::Accessor::Fast 0
+      Class::Data::Inheritable 0
+      ExtUtils::MakeMaker 6.30
+      Module::Pluggable 0
+      Test::Most 0
+  Color-Scheme-1.07
+    pathname: R/RJ/RJBS/Color-Scheme-1.07.tar.gz
+    provides:
+      Color::Scheme 1.07
+    requirements:
+      Carp 0
+      ExtUtils::MakeMaker 0
+      List::Util 1.14
+      POSIX 1.08
+      strict 0
+      warnings 0
   Compress-Raw-Bzip2-2.074
     pathname: P/PM/PMQS/Compress-Raw-Bzip2-2.074.tar.gz
     provides:
@@ -1087,6 +1245,25 @@ DISTRIBUTIONS
     requirements:
       ExtUtils::MakeMaker 0
       perl 5.006
+  DBD-SQLite-1.58
+    pathname: I/IS/ISHIGAKI/DBD-SQLite-1.58.tar.gz
+    provides:
+      DBD::SQLite 1.58
+      DBD::SQLite::Constants undef
+      DBD::SQLite::VirtualTable 1.58
+      DBD::SQLite::VirtualTable::Cursor 1.58
+      DBD::SQLite::VirtualTable::FileContent undef
+      DBD::SQLite::VirtualTable::FileContent::Cursor undef
+      DBD::SQLite::VirtualTable::PerlData undef
+      DBD::SQLite::VirtualTable::PerlData::Cursor undef
+    requirements:
+      DBI 1.57
+      ExtUtils::MakeMaker 0
+      File::Spec 0.82
+      Test::Builder 0.86
+      Test::More 0.47
+      Tie::Hash 0
+      perl 5.006
   DBD-mysql-4.037
     pathname: M/MI/MICHIELB/DBD-mysql-4.037.tar.gz
     provides:
@@ -1328,6 +1505,18 @@ DISTRIBUTIONS
       Scalar::Util 1.01
       Storable 0
       perl 5.008
+  Data-Visitor-0.30
+    pathname: D/DO/DOY/Data-Visitor-0.30.tar.gz
+    provides:
+      Data::Visitor 0.30
+      Data::Visitor::Callback 0.30
+    requirements:
+      Class::Load 0.06
+      ExtUtils::MakeMaker 6.30
+      Moose 0.89
+      Task::Weaken 0
+      Tie::ToObject 0.01
+      namespace::clean 0.19
   DataDog-DogStatsd-0.05
     pathname: B/BI/BINARY/DataDog-DogStatsd-0.05.tar.gz
     provides:
@@ -1842,6 +2031,18 @@ DISTRIBUTIONS
       Module::Build 0
       Params::Validate 0.91
       perl 5.006
+  DateTime-Set-0.3900
+    pathname: F/FG/FGLOCK/DateTime-Set-0.3900.tar.gz
+    provides:
+      DateTime::Set 0.3900
+      DateTime::Span undef
+      DateTime::SpanSet undef
+      Set::Infinite::_recurrence undef
+    requirements:
+      DateTime 0.12
+      Params::Validate 0
+      Set::Infinite 0.59
+      Test::More 0
   DateTime-TimeZone-2.11
     pathname: D/DR/DROLSKY/DateTime-TimeZone-2.11.tar.gz
     provides:
@@ -3065,6 +3266,39 @@ DISTRIBUTIONS
       Filesys::Notify::Simple 0.12
     requirements:
       ExtUtils::MakeMaker 6.30
+  Forest-0.10
+    pathname: S/ST/STEVAN/Forest-0.10.tar.gz
+    provides:
+      Forest 0.10
+      Forest::Tree 0.10
+      Forest::Tree::Builder 0.10
+      Forest::Tree::Builder::Callback 0.10
+      Forest::Tree::Builder::SimpleTextFile 0.10
+      Forest::Tree::Constructor 0.10
+      Forest::Tree::Indexer 0.10
+      Forest::Tree::Indexer::SimpleUIDIndexer 0.10
+      Forest::Tree::Loader 0.10
+      Forest::Tree::Loader::SimpleUIDLoader 0.10
+      Forest::Tree::Pure 0.10
+      Forest::Tree::Reader 0.10
+      Forest::Tree::Reader::SimpleTextFile 0.10
+      Forest::Tree::Roles::HasNodeFormatter 0.10
+      Forest::Tree::Roles::JSONable 0.10
+      Forest::Tree::Roles::LoadWithMetaData 0.10
+      Forest::Tree::Roles::MetaData 0.10
+      Forest::Tree::Writer 0.10
+      Forest::Tree::Writer::ASCIIWithBranches 0.10
+      Forest::Tree::Writer::SimpleASCII 0.10
+      Forest::Tree::Writer::SimpleHTML 0.10
+    requirements:
+      ExtUtils::MakeMaker 6.36
+      List::Util 1.17
+      Moose 2.0000
+      MooseX::Clone 0.05
+      Path::Class 0
+      Scalar::Util 1.17
+      Test::Exception 0
+      Test::More 0
   Future-0.34
     pathname: P/PE/PEVANS/Future-0.34.tar.gz
     provides:
@@ -3137,6 +3371,110 @@ DISTRIBUTIONS
     requirements:
       ExtUtils::MakeMaker 0
       GD 1
+  Geometry-Primitive-0.24
+    pathname: G/GP/GPHAT/Geometry-Primitive-0.24.tar.gz
+    provides:
+      Geometry::Primitive 0.24
+      Geometry::Primitive::Arc undef
+      Geometry::Primitive::Bezier undef
+      Geometry::Primitive::Circle undef
+      Geometry::Primitive::Dimension undef
+      Geometry::Primitive::Ellipse undef
+      Geometry::Primitive::Equal undef
+      Geometry::Primitive::Line undef
+      Geometry::Primitive::Point undef
+      Geometry::Primitive::Polygon undef
+      Geometry::Primitive::Rectangle undef
+      Geometry::Primitive::Shape undef
+    requirements:
+      Check::ISA 0.04
+      ExtUtils::MakeMaker 6.36
+      JSON::Any 1.22
+      Math::Complex 1.56
+      Moose 0.92
+      MooseX::Clone 0.04
+      MooseX::Storage 0.23
+      Test::More 0
+  Graphics-Color-0.31
+    pathname: G/GP/GPHAT/Graphics-Color-0.31.tar.gz
+    provides:
+      Graphics::Color 0.31
+      Graphics::Color::CMYK 0.31
+      Graphics::Color::Equal 0.31
+      Graphics::Color::HSL 0.31
+      Graphics::Color::HSV 0.31
+      Graphics::Color::RGB 0.31
+      Graphics::Color::Types 0.31
+      Graphics::Color::YIQ 0.31
+      Graphics::Color::YUV 0.31
+    requirements:
+      Color::Library 0
+      ExtUtils::MakeMaker 6.30
+      Moose 0
+      Moose::Role 0
+      Moose::Util::TypeConstraints 0
+      MooseX::Aliases 0.10
+      MooseX::Clone 0
+      MooseX::Storage::Deferred 0
+      MooseX::Types 0
+      MooseX::Types::Moose 0
+  Graphics-Primitive-0.67
+    pathname: G/GP/GPHAT/Graphics-Primitive-0.67.tar.gz
+    provides:
+      Graphics::Primitive 0.67
+      Graphics::Primitive::Aligned undef
+      Graphics::Primitive::Border undef
+      Graphics::Primitive::Brush undef
+      Graphics::Primitive::Canvas undef
+      Graphics::Primitive::Component undef
+      Graphics::Primitive::ComponentList undef
+      Graphics::Primitive::Container undef
+      Graphics::Primitive::Driver undef
+      Graphics::Primitive::Driver::TextLayout undef
+      Graphics::Primitive::Font undef
+      Graphics::Primitive::Image undef
+      Graphics::Primitive::Insets undef
+      Graphics::Primitive::Operation undef
+      Graphics::Primitive::Operation::Fill undef
+      Graphics::Primitive::Operation::Stroke undef
+      Graphics::Primitive::Oriented undef
+      Graphics::Primitive::Paint undef
+      Graphics::Primitive::Paint::Gradient undef
+      Graphics::Primitive::Paint::Gradient::Linear undef
+      Graphics::Primitive::Paint::Gradient::Radial undef
+      Graphics::Primitive::Paint::Solid undef
+      Graphics::Primitive::Path undef
+      Graphics::Primitive::TextBox undef
+    requirements:
+      Data::Visitor::Callback 0.30
+      ExtUtils::MakeMaker 6.36
+      Forest 0.06
+      Geometry::Primitive 0.16
+      Graphics::Color 0.20
+      JSON::Any 1.22
+      Moose 0.90
+      MooseX::Clone 0.04
+      MooseX::Storage 0.17
+      Test::More 0
+  Graphics-Primitive-Driver-Cairo-0.47
+    pathname: G/GP/GPHAT/Graphics-Primitive-Driver-Cairo-0.47.tar.gz
+    provides:
+      Graphics::Primitive::Driver::Cairo 0.47
+      Graphics::Primitive::Driver::Cairo::TextLayout 0.47
+    requirements:
+      Cairo 0
+      Carp 0
+      ExtUtils::MakeMaker 0
+      Geometry::Primitive::Point 0
+      Geometry::Primitive::Rectangle 0
+      Graphics::Primitive::Driver 0
+      Graphics::Primitive::Driver::TextLayout 0
+      Graphics::Primitive::TextBox 0
+      IO::File 0
+      Math::Trig 0
+      Moose 0
+      Moose::Util::TypeConstraints 0
+      Text::Flow 0
   HTML-Escape-1.10
     pathname: T/TO/TOKUHIROM/HTML-Escape-1.10.tar.gz
     provides:
@@ -3340,6 +3678,19 @@ DISTRIBUTIONS
     requirements:
       ExtUtils::MakeMaker 0
       perl 5.008001
+  Hash-Util-FieldHash-Compat-0.11
+    pathname: E/ET/ETHER/Hash-Util-FieldHash-Compat-0.11.tar.gz
+    provides:
+      Hash::Util::FieldHash::Compat 0.11
+      Hash::Util::FieldHash::Compat::Heavy 0.11
+    requirements:
+      Exporter 0
+      ExtUtils::MakeMaker 0
+      constant 0
+      parent 0
+      perl 5.006
+      strict 0
+      warnings 0
   Hook-LexWrap-0.26
     pathname: E/ET/ETHER/Hook-LexWrap-0.26.tar.gz
     provides:
@@ -3572,6 +3923,17 @@ DISTRIBUTIONS
     requirements:
       ExtUtils::MakeMaker 0
       Test::More 0
+  JSON-Any-1.39
+    pathname: E/ET/ETHER/JSON-Any-1.39.tar.gz
+    provides:
+      JSON::Any 1.39
+    requirements:
+      Carp 0
+      ExtUtils::MakeMaker 0
+      constant 0
+      perl 5.008
+      strict 0
+      warnings 0
   JSON-MaybeXS-1.003008
     pathname: E/ET/ETHER/JSON-MaybeXS-1.003008.tar.gz
     provides:
@@ -3654,6 +4016,22 @@ DISTRIBUTIONS
       Mozilla::CA 20110101
       Net::HTTPS 6
       perl 5.008001
+  Layout-Manager-0.35
+    pathname: G/GP/GPHAT/Layout-Manager-0.35.tar.gz
+    provides:
+      Layout::Manager 0.35
+      Layout::Manager::Absolute undef
+      Layout::Manager::Axis undef
+      Layout::Manager::Compass undef
+      Layout::Manager::Flow undef
+      Layout::Manager::Grid undef
+      Layout::Manager::Single undef
+    requirements:
+      ExtUtils::MakeMaker 6.36
+      Geometry::Primitive 0.16
+      Graphics::Primitive 0.43
+      Moose 0.79
+      Test::More 0
   Lexical-SealRequireHints-0.010
     pathname: Z/ZE/ZEFRAM/Lexical-SealRequireHints-0.010.tar.gz
     provides:
@@ -4816,6 +5194,113 @@ DISTRIBUTIONS
       parent 0.223
       strict 1.03
       warnings 1.03
+  MooseX-Aliases-0.11
+    pathname: D/DO/DOY/MooseX-Aliases-0.11.tar.gz
+    provides:
+      MooseX::Aliases 0.11
+    requirements:
+      ExtUtils::MakeMaker 6.30
+      Moose 2.0000
+      Moose::Exporter 0
+      Moose::Role 0
+      Moose::Util::TypeConstraints 0
+      Scalar::Util 0
+  MooseX-Clone-0.06
+    pathname: E/ET/ETHER/MooseX-Clone-0.06.tar.gz
+    provides:
+      MooseX::Clone 0.06
+      MooseX::Clone::Meta::Attribute::Trait::Clone 0.06
+      MooseX::Clone::Meta::Attribute::Trait::Clone::Base 0.06
+      MooseX::Clone::Meta::Attribute::Trait::Clone::Std 0.06
+      MooseX::Clone::Meta::Attribute::Trait::Copy 0.06
+      MooseX::Clone::Meta::Attribute::Trait::NoClone 0.06
+      MooseX::Clone::Meta::Attribute::Trait::StorableClone 0.06
+    requirements:
+      Carp 0
+      Data::Visitor 0.24
+      Data::Visitor::Callback 0
+      Hash::Util::FieldHash::Compat 0
+      Module::Build::Tiny 0.039
+      Moose::Role 0
+      Storable 0
+      namespace::autoclean 0
+      perl 5.006
+  MooseX-Storage-0.52
+    pathname: E/ET/ETHER/MooseX-Storage-0.52.tar.gz
+    provides:
+      MooseX::Storage 0.52
+      MooseX::Storage::Base::WithChecksum 0.52
+      MooseX::Storage::Basic 0.52
+      MooseX::Storage::Deferred 0.52
+      MooseX::Storage::Engine 0.52
+      MooseX::Storage::Engine::IO::AtomicFile 0.52
+      MooseX::Storage::Engine::IO::File 0.52
+      MooseX::Storage::Engine::Trait::DisableCycleDetection 0.52
+      MooseX::Storage::Engine::Trait::OnlyWhenBuilt 0.52
+      MooseX::Storage::Format::JSON 0.52
+      MooseX::Storage::Format::Storable 0.52
+      MooseX::Storage::Format::YAML 0.52
+      MooseX::Storage::IO::AtomicFile 0.52
+      MooseX::Storage::IO::File 0.52
+      MooseX::Storage::IO::StorableFile 0.52
+      MooseX::Storage::Meta::Attribute::DoNotSerialize 0.52
+      MooseX::Storage::Meta::Attribute::Trait::DoNotSerialize 0.52
+      MooseX::Storage::Traits::DisableCycleDetection 0.52
+      MooseX::Storage::Traits::OnlyWhenBuilt 0.52
+      MooseX::Storage::Util 0.52
+    requirements:
+      CPAN::Meta::Requirements 2.120620
+      Carp 0
+      Data::Dumper 0
+      Digest 0
+      ExtUtils::MakeMaker 0
+      IO::AtomicFile 0
+      IO::File 0
+      JSON::MaybeXS 1.001000
+      Module::Metadata 0
+      Module::Runtime 0
+      Moose 0.99
+      Moose::Meta::Attribute 0
+      Moose::Role 0
+      Scalar::Util 0
+      Storable 0
+      String::RewritePrefix 0
+      YAML::Any 0
+      namespace::autoclean 0
+      perl 5.008
+  MooseX-Types-0.50
+    pathname: E/ET/ETHER/MooseX-Types-0.50.tar.gz
+    provides:
+      MooseX::Types 0.50
+      MooseX::Types::Base 0.50
+      MooseX::Types::CheckedUtilExports 0.50
+      MooseX::Types::Combine 0.50
+      MooseX::Types::Moose 0.50
+      MooseX::Types::TypeDecorator 0.50
+      MooseX::Types::UndefinedType 0.50
+      MooseX::Types::Util 0.50
+      MooseX::Types::Wrapper 0.50
+    requirements:
+      Carp 0
+      Carp::Clan 6.00
+      Exporter 0
+      Module::Build::Tiny 0.034
+      Module::Runtime 0
+      Moose 1.06
+      Moose::Exporter 0
+      Moose::Meta::TypeConstraint::Union 0
+      Moose::Util::TypeConstraints 0
+      Scalar::Util 1.19
+      Sub::Exporter 0
+      Sub::Exporter::ForMethods 0.100052
+      Sub::Install 0
+      Sub::Name 0
+      base 0
+      namespace::autoclean 0.16
+      overload 0
+      perl 5.008
+      strict 0
+      warnings 0
   Mozilla-CA-20160104
     pathname: A/AB/ABH/Mozilla-CA-20160104.tar.gz
     provides:
@@ -5323,6 +5808,31 @@ DISTRIBUTIONS
       Cwd 2
       ExtUtils::MakeMaker 0
       File::Temp 0.05
+  Path-Class-0.37
+    pathname: K/KW/KWILLIAMS/Path-Class-0.37.tar.gz
+    provides:
+      Path::Class 0.37
+      Path::Class::Dir 0.37
+      Path::Class::Entity 0.37
+      Path::Class::File 0.37
+    requirements:
+      Carp 0
+      Cwd 0
+      Exporter 0
+      ExtUtils::MakeMaker 6.30
+      File::Copy 0
+      File::Path 0
+      File::Spec 3.26
+      File::Temp 0
+      File::stat 0
+      IO::Dir 0
+      IO::File 0
+      Module::Build 0.3601
+      Perl::OSType 0
+      Scalar::Util 0
+      overload 0
+      parent 0
+      strict 0
   Path-Tiny-0.104
     pathname: D/DA/DAGOLDEN/Path-Tiny-0.104.tar.gz
     provides:
@@ -5733,27 +6243,27 @@ DISTRIBUTIONS
       perl 5.006
       strict 0
       warnings 0
-  Perl-Tidy-20170521
-    pathname: S/SH/SHANCOCK/Perl-Tidy-20170521.tar.gz
+  Perl-Tidy-20180220
+    pathname: S/SH/SHANCOCK/Perl-Tidy-20180220.tar.gz
     provides:
-      Perl::Tidy 20170521
-      Perl::Tidy::Debugger 20170521
-      Perl::Tidy::DevNull 20170521
-      Perl::Tidy::Diagnostics 20170521
-      Perl::Tidy::FileWriter 20170521
-      Perl::Tidy::Formatter 20170521
-      Perl::Tidy::HtmlWriter 20170521
-      Perl::Tidy::IOScalar 20170521
-      Perl::Tidy::IOScalarArray 20170521
-      Perl::Tidy::IndentationItem 20170521
-      Perl::Tidy::LineBuffer 20170521
-      Perl::Tidy::LineSink 20170521
-      Perl::Tidy::LineSource 20170521
-      Perl::Tidy::Logger 20170521
-      Perl::Tidy::Tokenizer 20170521
-      Perl::Tidy::VerticalAligner 20170521
-      Perl::Tidy::VerticalAligner::Alignment 20170521
-      Perl::Tidy::VerticalAligner::Line 20170521
+      Perl::Tidy 20180220
+      Perl::Tidy::Debugger 20180220
+      Perl::Tidy::DevNull 20180220
+      Perl::Tidy::Diagnostics 20180220
+      Perl::Tidy::FileWriter 20180220
+      Perl::Tidy::Formatter 20180220
+      Perl::Tidy::HtmlWriter 20180220
+      Perl::Tidy::IOScalar 20180220
+      Perl::Tidy::IOScalarArray 20180220
+      Perl::Tidy::IndentationItem 20180220
+      Perl::Tidy::LineBuffer 20180220
+      Perl::Tidy::LineSink 20180220
+      Perl::Tidy::LineSource 20180220
+      Perl::Tidy::Logger 20180220
+      Perl::Tidy::Tokenizer 20180220
+      Perl::Tidy::VerticalAligner 20180220
+      Perl::Tidy::VerticalAligner::Alignment 20180220
+      Perl::Tidy::VerticalAligner::Line 20180220
     requirements:
       ExtUtils::MakeMaker 0
   PerlX-Maybe-1.001
@@ -6375,6 +6885,16 @@ DISTRIBUTIONS
       File::Path 0
       XSLoader 0
       perl 5.008
+  Set-Infinite-0.65
+    pathname: F/FG/FGLOCK/Set-Infinite-0.65.tar.gz
+    provides:
+      Set::Infinite 0.65
+      Set::Infinite::Arithmetic undef
+      Set::Infinite::Basic undef
+    requirements:
+      ExtUtils::MakeMaker 0
+      Test::More 0
+      Time::Local 0
   Socket-2.023
     pathname: P/PE/PEVANS/Socket-2.023.tar.gz
     provides:
@@ -6484,6 +7004,16 @@ DISTRIBUTIONS
     requirements:
       ExtUtils::MakeMaker 0
       Test::More 0
+  String-RewritePrefix-0.007
+    pathname: R/RJ/RJBS/String-RewritePrefix-0.007.tar.gz
+    provides:
+      String::RewritePrefix 0.007
+    requirements:
+      Carp 0
+      ExtUtils::MakeMaker 6.30
+      Sub::Exporter 0.972
+      strict 0
+      warnings 0
   Struct-Dumb-0.09
     pathname: P/PE/PEVANS/Struct-Dumb-0.09.tar.gz
     provides:
@@ -6501,6 +7031,17 @@ DISTRIBUTIONS
       ExtUtils::MakeMaker 6.30
       Params::Util 0.14
       Sub::Install 0.92
+      strict 0
+      warnings 0
+  Sub-Exporter-ForMethods-0.100052
+    pathname: R/RJ/RJBS/Sub-Exporter-ForMethods-0.100052.tar.gz
+    provides:
+      Sub::Exporter::ForMethods 0.100052
+    requirements:
+      ExtUtils::MakeMaker 0
+      Scalar::Util 0
+      Sub::Exporter 0.978
+      Sub::Name 0
       strict 0
       warnings 0
   Sub-Exporter-Progressive-0.001011
@@ -7332,6 +7873,17 @@ DISTRIBUTIONS
       Exporter 0
       ExtUtils::MakeMaker 0
       perl 5.006
+  Text-Flow-0.01
+    pathname: S/ST/STEVAN/Text-Flow-0.01.tar.gz
+    provides:
+      Text::Flow 0.01
+      Text::Flow::Wrap 0.01
+    requirements:
+      List::Util 0
+      Moose 0.21
+      Test::Exception 0.21
+      Test::LongString 0
+      Test::More 0.62
   Text-Markdown-1.000031
     pathname: B/BO/BOBTFISH/Text-Markdown-1.000031.tar.gz
     provides:
@@ -7423,6 +7975,16 @@ DISTRIBUTIONS
     requirements:
       Test::More 0
       perl 5.005
+  Tie-ToObject-0.03
+    pathname: N/NU/NUFFIN/Tie-ToObject-0.03.tar.gz
+    provides:
+      Tie::ToObject 0.03
+    requirements:
+      ExtUtils::MakeMaker 0
+      Scalar::Util 0
+      Test::More 0
+      Test::use::ok 0
+      Tie::RefHash 0
   Time-Local-1.25
     pathname: D/DR/DROLSKY/Time-Local-1.25.tar.gz
     provides:
@@ -7786,6 +8348,34 @@ DISTRIBUTIONS
     requirements:
       ExtUtils::MakeMaker 0
       Test::More 0.47
+  YAML-1.26
+    pathname: T/TI/TINITA/YAML-1.26.tar.gz
+    provides:
+      YAML 1.26
+      YAML::Any 1.26
+      YAML::Dumper undef
+      YAML::Dumper::Base undef
+      YAML::Error undef
+      YAML::Loader undef
+      YAML::Loader::Base undef
+      YAML::Marshall undef
+      YAML::Mo undef
+      YAML::Node undef
+      YAML::Tag undef
+      YAML::Type::blessed undef
+      YAML::Type::code undef
+      YAML::Type::glob undef
+      YAML::Type::ref undef
+      YAML::Type::regexp undef
+      YAML::Type::undef undef
+      YAML::Types undef
+      YAML::Warning undef
+      yaml_mapping undef
+      yaml_scalar undef
+      yaml_sequence undef
+    requirements:
+      ExtUtils::MakeMaker 0
+      perl 5.008001
   bareword-filehandles-0.004
     pathname: I/IL/ILMARI/bareword-filehandles-0.004.tar.gz
     provides:

@@ -7,6 +7,7 @@ requires 'CGI::Emulate::PSGI';
 requires 'CPAN::Meta::Prereqs', '2.132830';
 requires 'CPAN::Meta::Requirements', '2.121';
 requires 'Cache::Memcached::Fast', '0.17';
+requires 'Chart::Clicker';
 requires 'Chart::Lines', 'v2.4.10';
 requires 'Class::Accessor::Fast';
 requires 'Class::XSAccessor', '1.18';
@@ -120,7 +121,9 @@ on build => sub {
 
 on test => sub {
     requires 'Capture::Tiny';
+    requires 'DBD::SQLite', '1.29';
     requires 'Perl::Critic::Freenode';
+    requires 'Perl::Tidy', '20180220';
     requires 'Pod::Coverage';
     requires 'Test::More';
     requires 'Test::Perl::Critic::Progressive';
