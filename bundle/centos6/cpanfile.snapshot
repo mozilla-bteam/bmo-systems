@@ -473,13 +473,6 @@ DISTRIBUTIONS
       perl 5.008001
       strict 0
       warnings 0
-  CSS-Minifier-XS-0.09
-    pathname: G/GT/GTERMARS/CSS-Minifier-XS-0.09.tar.gz
-    provides:
-      CSS::Minifier::XS 0.09
-    requirements:
-      ExtUtils::CBuilder 0
-      Test::More 0
   Cache-Memcached-Fast-0.23
     pathname: K/KR/KROKI/Cache-Memcached-Fast-0.23.tar.gz
     provides:
@@ -3899,14 +3892,6 @@ DISTRIBUTIONS
       IO::WrapTie::Slave 2.111
     requirements:
       ExtUtils::MakeMaker 0
-  IPC-Run3-0.048
-    pathname: R/RJ/RJBS/IPC-Run3-0.048.tar.gz
-    provides:
-      IPC::Run3 0.048
-    requirements:
-      ExtUtils::MakeMaker 0
-      Test::More 0.31
-      Time::HiRes 0
   IPC-System-Simple-1.25
     pathname: P/PJ/PJF/IPC-System-Simple-1.25.tar.gz
     provides:
@@ -4012,14 +3997,6 @@ DISTRIBUTIONS
       ExtUtils::MakeMaker 6.52
       Types::Serialiser 0
       common::sense 0
-  JavaScript-Minifier-XS-0.11
-    pathname: G/GT/GTERMARS/JavaScript-Minifier-XS-0.11.tar.gz
-    provides:
-      JavaScript::Minifier::XS 0.11
-    requirements:
-      ExtUtils::CBuilder 0
-      Test::More 0
-      perl v5.6.0
   LWP-MediaTypes-6.02
     pathname: G/GA/GAAS/LWP-MediaTypes-6.02.tar.gz
     provides:
@@ -4091,6 +4068,17 @@ DISTRIBUTIONS
       Linux::Smaps::VMA 0.13
     requirements:
       ExtUtils::MakeMaker 0
+  Linux-Smaps-Tiny-0.10
+    pathname: A/AV/AVAR/Linux-Smaps-Tiny-0.10.tar.gz
+    provides:
+      Linux::Smaps::Tiny 0.10
+      Linux::Smaps::Tiny::PP 0.10
+    requirements:
+      Exporter 0
+      ExtUtils::MakeMaker 6.30
+      XSLoader 0
+      strict 0
+      warnings 0
   List-MoreUtils-0.425
     pathname: R/RE/REHSACK/List-MoreUtils-0.425.tar.gz
     provides:
@@ -4765,35 +4753,6 @@ DISTRIBUTIONS
       Pod::Simple 3.09
       Time::Local 1.2
       perl 5.010001
-  Mojolicious-Plugin-AssetPack-2.06
-    pathname: J/JH/JHTHORSEN/Mojolicious-Plugin-AssetPack-2.06.tar.gz
-    provides:
-      Mojolicious::Plugin::AssetPack 2.06
-      Mojolicious::Plugin::AssetPack::Asset undef
-      Mojolicious::Plugin::AssetPack::Asset::Null undef
-      Mojolicious::Plugin::AssetPack::Pipe undef
-      Mojolicious::Plugin::AssetPack::Pipe::CoffeeScript undef
-      Mojolicious::Plugin::AssetPack::Pipe::Combine undef
-      Mojolicious::Plugin::AssetPack::Pipe::Css undef
-      Mojolicious::Plugin::AssetPack::Pipe::Favicon undef
-      Mojolicious::Plugin::AssetPack::Pipe::Fetch undef
-      Mojolicious::Plugin::AssetPack::Pipe::JavaScript undef
-      Mojolicious::Plugin::AssetPack::Pipe::Jpeg undef
-      Mojolicious::Plugin::AssetPack::Pipe::Less undef
-      Mojolicious::Plugin::AssetPack::Pipe::Png undef
-      Mojolicious::Plugin::AssetPack::Pipe::Riotjs undef
-      Mojolicious::Plugin::AssetPack::Pipe::RollupJs undef
-      Mojolicious::Plugin::AssetPack::Pipe::Sass undef
-      Mojolicious::Plugin::AssetPack::Pipe::TypeScript undef
-      Mojolicious::Plugin::AssetPack::Pipe::Vuejs undef
-      Mojolicious::Plugin::AssetPack::Store undef
-      Mojolicious::Plugin::AssetPack::Util undef
-      Mojolicious::Plugin::AssetPack::Util::_chdir undef
-    requirements:
-      ExtUtils::MakeMaker 0
-      File::Which 1.21
-      IPC::Run3 0.048
-      Mojolicious 7.17
   Mojolicious-Plugin-OAuth2-Server-0.42
     pathname: L/LE/LEEJO/Mojolicious-Plugin-OAuth2-Server-0.42.tar.gz
     provides:
