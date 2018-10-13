@@ -6898,38 +6898,38 @@ DISTRIBUTIONS
       namespace::clean 0
       overload 0
       warnings 0
-  Selenium-Remote-Driver-1.20
-    pathname: G/GE/GEMPESAW/Selenium-Remote-Driver-1.20.tar.gz
+  Selenium-Remote-Driver-1.30
+    pathname: G/GE/GEMPESAW/Selenium-Remote-Driver-1.30.tar.gz
     provides:
-      Selenium::ActionChains 1.20
-      Selenium::CanStartBinary 1.20
-      Selenium::CanStartBinary::FindBinary 1.20
-      Selenium::CanStartBinary::ProbePort 1.20
-      Selenium::Chrome 1.20
-      Selenium::Firefox 1.20
-      Selenium::Firefox::Binary 1.20
-      Selenium::Firefox::Profile 1.20
-      Selenium::InternetExplorer 1.20
-      Selenium::PhantomJS 1.20
-      Selenium::Remote::Commands 1.20
-      Selenium::Remote::Driver 1.20
-      Selenium::Remote::Driver::CanSetWebdriverContext 1.20
-      Selenium::Remote::Driver::Firefox::Profile 1.20
-      Selenium::Remote::ErrorHandler 1.20
-      Selenium::Remote::Finders 1.20
-      Selenium::Remote::Mock::Commands 1.20
-      Selenium::Remote::Mock::RemoteConnection 1.20
-      Selenium::Remote::RemoteConnection 1.20
-      Selenium::Remote::WDKeys 1.20
-      Selenium::Remote::WebElement 1.20
-      Selenium::Waiter 1.20
-      Test::Selenium::Chrome 1.20
-      Test::Selenium::Firefox 1.20
-      Test::Selenium::InternetExplorer 1.20
-      Test::Selenium::PhantomJS 1.20
-      Test::Selenium::Remote::Driver 1.20
-      Test::Selenium::Remote::Role::DoesTesting 1.20
-      Test::Selenium::Remote::WebElement 1.20
+      Selenium::ActionChains 1.30
+      Selenium::CanStartBinary 1.30
+      Selenium::CanStartBinary::FindBinary 1.30
+      Selenium::CanStartBinary::ProbePort 1.30
+      Selenium::Chrome 1.30
+      Selenium::Firefox 1.30
+      Selenium::Firefox::Binary 1.30
+      Selenium::Firefox::Profile 1.30
+      Selenium::InternetExplorer 1.30
+      Selenium::PhantomJS 1.30
+      Selenium::Remote::Commands 1.30
+      Selenium::Remote::Driver 1.30
+      Selenium::Remote::Driver::CanSetWebdriverContext 1.30
+      Selenium::Remote::Driver::Firefox::Profile 1.30
+      Selenium::Remote::ErrorHandler 1.30
+      Selenium::Remote::Finders 1.30
+      Selenium::Remote::Mock::Commands 1.30
+      Selenium::Remote::Mock::RemoteConnection 1.30
+      Selenium::Remote::RemoteConnection 1.30
+      Selenium::Remote::WDKeys 1.30
+      Selenium::Remote::WebElement 1.30
+      Selenium::Waiter 1.30
+      Test::Selenium::Chrome 1.30
+      Test::Selenium::Firefox 1.30
+      Test::Selenium::InternetExplorer 1.30
+      Test::Selenium::PhantomJS 1.30
+      Test::Selenium::Remote::Driver 1.30
+      Test::Selenium::Remote::Role::DoesTesting 1.30
+      Test::Selenium::Remote::WebElement 1.30
     requirements:
       Archive::Zip 0
       Carp 0
