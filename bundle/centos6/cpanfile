@@ -1,6 +1,7 @@
 requires 'Algorithm::BloomFilter', '0.02';
 requires 'Alien::libcmark_gfm', '3';
 requires 'Auth::GoogleAuth', '1.01';
+requires 'BSD::Resource';
 requires 'CGI', '4.31';
 requires 'CGI::Compile';
 requires 'CGI::Emulate::PSGI';
@@ -78,6 +79,7 @@ requires 'Mojolicious::Plugin::OAuth2::Server', '0.42';
 requires 'Moo', '2.002004';
 requires 'MooX::StrictConstructor', '0.008';
 requires 'Mozilla::CA', '20160104';
+requires 'Net::DNS';
 requires 'Net::SFTP';
 requires 'Package::Stash', '0.37';
 requires 'Parse::CPAN::Meta', '1.44';
