@@ -4759,6 +4759,14 @@ DISTRIBUTIONS
       Pod::Simple 3.09
       Time::Local 1.2
       perl 5.010001
+  Mojolicious-Plugin-ForwardedFor-0.001
+    pathname: D/DB/DBOOK/Mojolicious-Plugin-ForwardedFor-0.001.tar.gz
+    provides:
+      Mojolicious::Plugin::ForwardedFor 0.001
+    requirements:
+      Module::Build::Tiny 0.034
+      Mojolicious 7.0
+      perl 5.010001
   Mojolicious-Plugin-OAuth2-Server-0.42
     pathname: L/LE/LEEJO/Mojolicious-Plugin-OAuth2-Server-0.42.tar.gz
     provides:
