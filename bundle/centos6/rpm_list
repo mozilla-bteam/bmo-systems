@@ -35,6 +35,7 @@ desktop-file-utils
 diffutils
 ed
 expat
+expat-devel
 file
 file-libs
 filesystem
