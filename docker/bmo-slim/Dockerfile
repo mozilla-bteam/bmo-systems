@@ -5,7 +5,7 @@ ENV TINI_VERSION v0.16.1
 
 RUN yum update -y && \
     yum install -y centos-release-scl && \
-    yum install -y perl perl-core mod_perl httpd \
+    yum install -y perl perl-core \
                         wget tar openssl mysql mysql-libs gd \
                         openssh sclo-git25-git nc patchutils \
                         patch graphviz xz && \
@@ -18,8 +18,7 @@ RUN yum update -y && \
     chmod +x /usr/local/sbin/tini && \
     mkdir -p /opt/bmo/build && \
     rpm -qa > /tmp/rpms.list && \
-    yum install -y gcc mod_perl-devel && \
-    cpanm -l /opt/bmo/build --notest Apache2::SizeLimit && \
+    yum install -y gcc && \
     yum erase -y $(rpm -qa | diff -u - /tmp/rpms.list | sed -n '/^-[^-]/ s/^-//p') && \
     rm -rf /opt/bmo/build/lib/perl5/{CPAN,Parse,JSON,ExtUtils} && \
     mkdir /usr/local/share/perl5 && \

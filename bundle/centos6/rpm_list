@@ -84,8 +84,6 @@ hdparm
 hicolor-icon-theme
 hiera
 htop
-httpd
-httpd-tools
 hunspell
 hunspell-en
 hwdata
@@ -199,8 +197,6 @@ make
 mdadm
 microcode_ctl
 mlocate
-mod_perl
-mod_perl-devel
 mpfr
 mpfr-devel
 mtr
