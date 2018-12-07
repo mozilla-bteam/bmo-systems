@@ -52,6 +52,7 @@ jobs:
             - "*/vendor.tar.gz"
       - store_artifacts:
           path: '/root/.cpanm/work/*/build.log'
+
   bmo-slim:
     working_directory: /build
     docker:
@@ -75,7 +76,80 @@ jobs:
               bmo/LIBS.txt \
               bmo/PACKAGES.txt
             docker-build
-  
+  bmo-slim:
+    working_directory: /build
+    docker:
+      - image: docker:17.06.1-ce
+        environment:
+          DOCKERHUB_REPO: mozillabteam/bmo-slim
+          PATH: /build/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin
+    steps:
+      - setup_remote_docker
+      - checkout
+      - attach_workspace:
+          at: /build/upload
+      - run:
+          working_directory: /build/docker/bmo-slim
+          command: |
+            tar -zxf /build/upload/bmo/vendor.tar.gz \
+              bmo/vendor/bin \
+              bmo/local \
+              bmo/cpanfile \
+              bmo/cpanfile.snapshot \
+              bmo/LIBS.txt \
+              bmo/PACKAGES.txt
+            docker-build
+
+  centos7:
+    working_directory: /build
+    docker:
+      - image: centos:7.6.1810
+        environment: 
+          PATH: /build/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin
+          NAME: bmo7 # named this for historical reasons
+    steps:
+      - checkout
+      - run:
+          name: install rpms
+          command: /build/bundle/centos6/install-rpms
+      - run:
+          name: copy cpanfile and cpanfile.snapshot
+          command: cp bundle/$CIRCLE_JOB/cpanfile* .
+      - run: build-prepare
+      - run: build-stage1
+      - run: build-stage2
+      - run: build-vendor-bundle $NAME
+      - persist_to_workspace:
+          root: /build/upload
+          paths:
+            - "*/vendor.tar.gz"
+      - store_artifacts:
+          path: '/root/.cpanm/work/*/build.log'
+
+  bmo-slim-next:
+    working_directory: /build
+    docker:
+      - image: docker:17.06.1-ce
+        environment:
+          DOCKERHUB_REPO: mozillabteam/bmo-slim-next
+          PATH: /build/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin
+    steps:
+      - setup_remote_docker
+      - checkout
+      - attach_workspace:
+          at: /build/upload
+      - run:
+          working_directory: /build/docker/bmo-slim-next
+          command: |
+            tar -zxf /build/upload/bmo7/vendor.tar.gz \
+              bmo7/vendor/bin \
+              bmo7/local \
+              bmo7/cpanfile \
+              bmo7/cpanfile.snapshot \
+              bmo7/LIBS.txt \
+              bmo7/PACKAGES.txt
+            docker-build
+
   docker-centos6:
     working_directory: /build
     docker:
@@ -105,12 +179,22 @@ workflows:
           filters:
             branches:
               only: master
+      - centos7:
+          filters:
+            branches:
+              only: master
       - bmo-slim:
           filters:
             branches:
               only: master
           requires:
             - centos6
+      - bmo-slim-next:
+          filters:
+            branches:
+              only: master
+          requires:
+            - centos7
       - upload:
           filters:
             branches:
