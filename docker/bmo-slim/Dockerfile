@@ -22,9 +22,6 @@ RUN yum update -y && \
     yum erase -y $(rpm -qa | diff -u - /tmp/rpms.list | sed -n '/^-[^-]/ s/^-//p') && \
     rm -rf /opt/bmo/build/lib/perl5/{CPAN,Parse,JSON,ExtUtils} && \
     mkdir /usr/local/share/perl5 && \
-    mv /opt/bmo/build/lib/perl5/x86_64-linux-thread-multi/ /usr/local/lib64/perl5/ && \
-    mv /opt/bmo/build/lib/perl5/Linux /usr/local/share/perl5/ && \
-    rm -vfr /opt/bmo/build && \
     rm /tmp/rpms.list /usr/local/bin/cpanm && \
     yum clean all -y && \
     useradd -u 10001 -U app -m && \
