@@ -40,8 +40,6 @@ requires 'Encode::Detect';
 requires 'FFI::Platypus';
 requires 'File::Copy::Recursive';
 requires 'File::MimeInfo::Magic';
-requires 'File::Slurp', '9999.13';
-requires 'File::Slurper', '0.012';
 requires 'File::Which';
 requires 'Future', '0.34';
 requires 'GD', '1.20';

@@ -530,13 +530,15 @@ DISTRIBUTIONS
       overload 0
       strict 0
       warnings 0
-  Carp-Clan-6.06
-    pathname: K/KE/KENTNL/Carp-Clan-6.06.tar.gz
+  Carp-Clan-6.07
+    pathname: E/ET/ETHER/Carp-Clan-6.07.tar.gz
     provides:
-      Carp::Clan 6.06
+      Carp::Clan 6.07
     requirements:
       ExtUtils::MakeMaker 0
-      Test::Exception 0
+      overload 0
+      perl 5.006
+      strict 0
   Chart-2.4.10
     pathname: C/CH/CHARTGRP/Chart-2.4.10.tar.gz
     provides:
@@ -1251,13 +1253,14 @@ DISTRIBUTIONS
     requirements:
       ExtUtils::MakeMaker 0
       perl 5.006
-  DBD-SQLite-1.58
-    pathname: I/IS/ISHIGAKI/DBD-SQLite-1.58.tar.gz
+  DBD-SQLite-1.60
+    pathname: I/IS/ISHIGAKI/DBD-SQLite-1.60.tar.gz
     provides:
-      DBD::SQLite 1.58
+      DBD::SQLite 1.60
       DBD::SQLite::Constants undef
-      DBD::SQLite::VirtualTable 1.58
-      DBD::SQLite::VirtualTable::Cursor 1.58
+      DBD::SQLite::GetInfo undef
+      DBD::SQLite::VirtualTable 1.60
+      DBD::SQLite::VirtualTable::Cursor 1.60
       DBD::SQLite::VirtualTable::FileContent undef
       DBD::SQLite::VirtualTable::FileContent::Cursor undef
       DBD::SQLite::VirtualTable::PerlData undef
@@ -4638,8 +4641,8 @@ DISTRIBUTIONS
       Module::Build::Tiny 0.035
       Mojolicious 0
       perl 5.008001
-  Mojolicious-8.02
-    pathname: S/SR/SRI/Mojolicious-8.02.tar.gz
+  Mojolicious-8.09
+    pathname: S/SR/SRI/Mojolicious-8.09.tar.gz
     provides:
       Mojo undef
       Mojo::Asset undef
@@ -4659,6 +4662,7 @@ DISTRIBUTIONS
       Mojo::DOM::CSS undef
       Mojo::DOM::HTML undef
       Mojo::Date undef
+      Mojo::DynamicMethods undef
       Mojo::EventEmitter undef
       Mojo::Exception undef
       Mojo::File undef
@@ -4708,7 +4712,7 @@ DISTRIBUTIONS
       Mojo::UserAgent::Transactor undef
       Mojo::Util undef
       Mojo::WebSocket undef
-      Mojolicious 8.02
+      Mojolicious 8.09
       Mojolicious::Command undef
       Mojolicious::Command::Author::cpanify undef
       Mojolicious::Command::Author::generate undef
@@ -4756,7 +4760,7 @@ DISTRIBUTIONS
       ExtUtils::MakeMaker 0
       IO::Socket::IP 0.37
       JSON::PP 2.27103
-      Pod::Simple 3.09
+      List::Util 1.41
       Time::Local 1.2
       perl 5.010001
   Mojolicious-Plugin-ForwardedFor-0.001
@@ -5333,10 +5337,10 @@ DISTRIBUTIONS
       ExtUtils::MakeMaker 0
       Test 0
       perl 5.006
-  Net-DNS-1.18
-    pathname: N/NL/NLNETLABS/Net-DNS-1.18.tar.gz
+  Net-DNS-1.19
+    pathname: N/NL/NLNETLABS/Net-DNS-1.19.tar.gz
     provides:
-      Net::DNS 1.18
+      Net::DNS 1.19
       Net::DNS::Domain 1698
       Net::DNS::DomainName 1605
       Net::DNS::DomainName1035 1605
@@ -5349,7 +5353,7 @@ DISTRIBUTIONS
       Net::DNS::Packet 1714
       Net::DNS::Parameters 1714
       Net::DNS::Question 1714
-      Net::DNS::RR 1714
+      Net::DNS::RR 1718
       Net::DNS::RR::A 1597
       Net::DNS::RR::AAAA 1597
       Net::DNS::RR::AFSDB 1597
@@ -5371,7 +5375,7 @@ DISTRIBUTIONS
       Net::DNS::RR::GPOS 1528
       Net::DNS::RR::HINFO 1597
       Net::DNS::RR::HIP 1597
-      Net::DNS::RR::IPSECKEY 1597
+      Net::DNS::RR::IPSECKEY 1718
       Net::DNS::RR::ISDN 1597
       Net::DNS::RR::KEY 1528
       Net::DNS::RR::KX 1597
@@ -5392,17 +5396,17 @@ DISTRIBUTIONS
       Net::DNS::RR::NSEC3PARAM 1597
       Net::DNS::RR::NULL 1528
       Net::DNS::RR::OPENPGPKEY 1597
-      Net::DNS::RR::OPT 1605
-      Net::DNS::RR::OPT::CHAIN 1605
-      Net::DNS::RR::OPT::CLIENT_SUBNET 1605
-      Net::DNS::RR::OPT::COOKIE 1605
-      Net::DNS::RR::OPT::DAU 1605
-      Net::DNS::RR::OPT::DHU 1605
-      Net::DNS::RR::OPT::EXPIRE 1605
-      Net::DNS::RR::OPT::KEY_TAG 1605
-      Net::DNS::RR::OPT::N3U 1605
-      Net::DNS::RR::OPT::PADDING 1605
-      Net::DNS::RR::OPT::TCP_KEEPALIVE 1605
+      Net::DNS::RR::OPT 1717
+      Net::DNS::RR::OPT::CHAIN 1717
+      Net::DNS::RR::OPT::CLIENT_SUBNET 1717
+      Net::DNS::RR::OPT::COOKIE 1717
+      Net::DNS::RR::OPT::DAU 1717
+      Net::DNS::RR::OPT::DHU 1717
+      Net::DNS::RR::OPT::EXPIRE 1717
+      Net::DNS::RR::OPT::KEY_TAG 1717
+      Net::DNS::RR::OPT::N3U 1717
+      Net::DNS::RR::OPT::PADDING 1717
+      Net::DNS::RR::OPT::TCP_KEEPALIVE 1717
       Net::DNS::RR::PTR 1597
       Net::DNS::RR::PX 1597
       Net::DNS::RR::RP 1597
@@ -5416,19 +5420,19 @@ DISTRIBUTIONS
       Net::DNS::RR::SSHFP 1597
       Net::DNS::RR::TKEY 1528
       Net::DNS::RR::TLSA 1597
-      Net::DNS::RR::TSIG 1597
+      Net::DNS::RR::TSIG 1718
       Net::DNS::RR::TXT 1597
       Net::DNS::RR::URI 1597
       Net::DNS::RR::X25 1597
-      Net::DNS::Resolver 1714
-      Net::DNS::Resolver::Base 1709
+      Net::DNS::Resolver 1717
+      Net::DNS::Resolver::Base 1719
       Net::DNS::Resolver::MSWin32 1568
       Net::DNS::Resolver::Recurse 1709
       Net::DNS::Resolver::UNIX 1573
       Net::DNS::Resolver::android 1568
-      Net::DNS::Resolver::cygwin 1568
+      Net::DNS::Resolver::cygwin 1719
       Net::DNS::Resolver::os2 1568
-      Net::DNS::Resolver::os390 1579
+      Net::DNS::Resolver::os390 1719
       Net::DNS::Text 1698
       Net::DNS::Update 1714
       Net::DNS::ZoneFile 1709
@@ -6383,27 +6387,27 @@ DISTRIBUTIONS
       perl 5.006
       strict 0
       warnings 0
-  Perl-Tidy-20180220
-    pathname: S/SH/SHANCOCK/Perl-Tidy-20180220.tar.gz
+  Perl-Tidy-20181120
+    pathname: S/SH/SHANCOCK/Perl-Tidy-20181120.tar.gz
     provides:
-      Perl::Tidy 20180220
-      Perl::Tidy::Debugger 20180220
-      Perl::Tidy::DevNull 20180220
-      Perl::Tidy::Diagnostics 20180220
-      Perl::Tidy::FileWriter 20180220
-      Perl::Tidy::Formatter 20180220
-      Perl::Tidy::HtmlWriter 20180220
-      Perl::Tidy::IOScalar 20180220
-      Perl::Tidy::IOScalarArray 20180220
-      Perl::Tidy::IndentationItem 20180220
-      Perl::Tidy::LineBuffer 20180220
-      Perl::Tidy::LineSink 20180220
-      Perl::Tidy::LineSource 20180220
-      Perl::Tidy::Logger 20180220
-      Perl::Tidy::Tokenizer 20180220
-      Perl::Tidy::VerticalAligner 20180220
-      Perl::Tidy::VerticalAligner::Alignment 20180220
-      Perl::Tidy::VerticalAligner::Line 20180220
+      Perl::Tidy 20181120
+      Perl::Tidy::Debugger 20181120
+      Perl::Tidy::DevNull 20181120
+      Perl::Tidy::Diagnostics 20181120
+      Perl::Tidy::FileWriter 20181120
+      Perl::Tidy::Formatter 20181120
+      Perl::Tidy::HtmlWriter 20181120
+      Perl::Tidy::IOScalar 20181120
+      Perl::Tidy::IOScalarArray 20181120
+      Perl::Tidy::IndentationItem 20181120
+      Perl::Tidy::LineBuffer 20181120
+      Perl::Tidy::LineSink 20181120
+      Perl::Tidy::LineSource 20181120
+      Perl::Tidy::Logger 20181120
+      Perl::Tidy::Tokenizer 20181120
+      Perl::Tidy::VerticalAligner 20181120
+      Perl::Tidy::VerticalAligner::Alignment 20181120
+      Perl::Tidy::VerticalAligner::Line 20181120
     requirements:
       ExtUtils::MakeMaker 0
   PerlX-Maybe-1.001
@@ -6898,38 +6902,38 @@ DISTRIBUTIONS
       namespace::clean 0
       overload 0
       warnings 0
-  Selenium-Remote-Driver-1.30
-    pathname: G/GE/GEMPESAW/Selenium-Remote-Driver-1.30.tar.gz
+  Selenium-Remote-Driver-1.20
+    pathname: G/GE/GEMPESAW/Selenium-Remote-Driver-1.20.tar.gz
     provides:
-      Selenium::ActionChains 1.30
-      Selenium::CanStartBinary 1.30
-      Selenium::CanStartBinary::FindBinary 1.30
-      Selenium::CanStartBinary::ProbePort 1.30
-      Selenium::Chrome 1.30
-      Selenium::Firefox 1.30
-      Selenium::Firefox::Binary 1.30
-      Selenium::Firefox::Profile 1.30
-      Selenium::InternetExplorer 1.30
-      Selenium::PhantomJS 1.30
-      Selenium::Remote::Commands 1.30
-      Selenium::Remote::Driver 1.30
-      Selenium::Remote::Driver::CanSetWebdriverContext 1.30
-      Selenium::Remote::Driver::Firefox::Profile 1.30
-      Selenium::Remote::ErrorHandler 1.30
-      Selenium::Remote::Finders 1.30
-      Selenium::Remote::Mock::Commands 1.30
-      Selenium::Remote::Mock::RemoteConnection 1.30
-      Selenium::Remote::RemoteConnection 1.30
-      Selenium::Remote::WDKeys 1.30
-      Selenium::Remote::WebElement 1.30
-      Selenium::Waiter 1.30
-      Test::Selenium::Chrome 1.30
-      Test::Selenium::Firefox 1.30
-      Test::Selenium::InternetExplorer 1.30
-      Test::Selenium::PhantomJS 1.30
-      Test::Selenium::Remote::Driver 1.30
-      Test::Selenium::Remote::Role::DoesTesting 1.30
-      Test::Selenium::Remote::WebElement 1.30
+      Selenium::ActionChains 1.20
+      Selenium::CanStartBinary 1.20
+      Selenium::CanStartBinary::FindBinary 1.20
+      Selenium::CanStartBinary::ProbePort 1.20
+      Selenium::Chrome 1.20
+      Selenium::Firefox 1.20
+      Selenium::Firefox::Binary 1.20
+      Selenium::Firefox::Profile 1.20
+      Selenium::InternetExplorer 1.20
+      Selenium::PhantomJS 1.20
+      Selenium::Remote::Commands 1.20
+      Selenium::Remote::Driver 1.20
+      Selenium::Remote::Driver::CanSetWebdriverContext 1.20
+      Selenium::Remote::Driver::Firefox::Profile 1.20
+      Selenium::Remote::ErrorHandler 1.20
+      Selenium::Remote::Finders 1.20
+      Selenium::Remote::Mock::Commands 1.20
+      Selenium::Remote::Mock::RemoteConnection 1.20
+      Selenium::Remote::RemoteConnection 1.20
+      Selenium::Remote::WDKeys 1.20
+      Selenium::Remote::WebElement 1.20
+      Selenium::Waiter 1.20
+      Test::Selenium::Chrome 1.20
+      Test::Selenium::Firefox 1.20
+      Test::Selenium::InternetExplorer 1.20
+      Test::Selenium::PhantomJS 1.20
+      Test::Selenium::Remote::Driver 1.20
+      Test::Selenium::Remote::Role::DoesTesting 1.20
+      Test::Selenium::Remote::WebElement 1.20
     requirements:
       Archive::Zip 0
       Carp 0
@@ -8488,11 +8492,11 @@ DISTRIBUTIONS
     requirements:
       ExtUtils::MakeMaker 0
       Test::More 0.47
-  YAML-1.26
-    pathname: T/TI/TINITA/YAML-1.26.tar.gz
+  YAML-1.27
+    pathname: T/TI/TINITA/YAML-1.27.tar.gz
     provides:
-      YAML 1.26
-      YAML::Any 1.26
+      YAML 1.27
+      YAML::Any 1.27
       YAML::Dumper undef
       YAML::Dumper::Base undef
       YAML::Error undef
