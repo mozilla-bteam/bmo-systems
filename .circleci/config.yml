@@ -27,6 +27,36 @@ jobs:
             for file in */vendor.tar.gz; do
               aws s3 cp $file s3://$S3_BUCKET/$file;
             done
+
+  perl:
+    working_directory: /build
+    docker:
+      - image: perl:5.28.0-slim
+        environment: 
+          PATH: /build/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin
+    steps:
+      - checkout
+      - run:
+          name: install packages
+          command: /build/bundle/$CIRCLE_JOB/install-debs
+      - run:
+          name: copy cpanfile and cpanfile.snapshot
+          command: cp bundle/$CIRCLE_JOB/cpanfile* .
+      - run:
+          name: install Carton
+          command: cpanm --notest Carton
+      - run:
+          name: build stage 1
+          command: |-
+            carton install
+            patch-crypt-openpgp
+            carton bundle
+      - run: build-vendor-bundle $CIRCLE_JOB
+      - persist_to_workspace:
+          root: /build/upload
+          paths:
+            - "*/vendor.tar.gz"
+
   centos6:
     working_directory: /build
     docker:
@@ -38,7 +68,7 @@ jobs:
       - checkout
       - run:
           name: install rpms
-          command: /build/bundle/centos6/install-rpms
+          command: /build/bundle/$CIRCLE_JOB/install-rpms
       - run:
           name: copy cpanfile and cpanfile.snapshot
           command: cp bundle/$CIRCLE_JOB/cpanfile* .
@@ -53,29 +83,6 @@ jobs:
       - store_artifacts:
           path: '/root/.cpanm/work/*/build.log'
 
-  bmo-slim:
-    working_directory: /build
-    docker:
-      - image: docker:17.06.1-ce
-        environment:
-          DOCKERHUB_REPO: mozillabteam/bmo-slim
-          PATH: /build/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin
-    steps:
-      - setup_remote_docker
-      - checkout
-      - attach_workspace:
-          at: /build/upload
-      - run:
-          working_directory: /build/docker/bmo-slim
-          command: |
-            tar -zxf /build/upload/bmo/vendor.tar.gz \
-              bmo/vendor/bin \
-              bmo/local \
-              bmo/cpanfile \
-              bmo/cpanfile.snapshot \
-              bmo/LIBS.txt \
-              bmo/PACKAGES.txt
-            docker-build
   bmo-slim:
     working_directory: /build
     docker:
@@ -141,3 +148,4 @@ workflows:
               only: master
           requires:
             - centos6
+            - perl
