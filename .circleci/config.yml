@@ -136,6 +136,10 @@ workflows:
           filters:
             branches:
               only: master
+      - perl:
+          filters:
+            branches:
+              only: master
       - bmo-slim:
           filters:
             branches:
