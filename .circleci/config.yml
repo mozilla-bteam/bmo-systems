@@ -48,7 +48,7 @@ jobs:
       - run:
           name: build stage 1
           command: |-
-            carton install
+            carton install --deployment
             patch-crypt-openpgp
             carton bundle
       - run: build-vendor-bundle $CIRCLE_JOB
