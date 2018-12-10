@@ -107,6 +107,45 @@ jobs:
               bmo/PACKAGES.txt
             docker-build
 
+  bmo-tiny:
+    working_directory: /build
+    docker:
+      - image: docker:17.06.1-ce
+        environment:
+          DOCKERHUB_REPO: mozillabteam/bmo-tiny
+          PATH: /build/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin
+    steps:
+      - setup_remote_docker
+      - checkout
+      - attach_workspace:
+          at: /build/upload
+      - run:
+          working_directory: /build/docker/bmo-tiny
+          command: |
+            tar -zxf /build/upload/perl/vendor.tar.gz \
+              perl/local \
+              perl/cpanfile \
+              perl/cpanfile.snapshot \
+              perl/LIBS.txt \
+              perl/PACKAGES.txt
+            mv perl bmo
+            docker-build
+
+  docker-perl:
+    working_directory: /build
+    docker:
+      - image: docker:17.06.1-ce
+        environment:
+          DOCKERHUB_REPO: mozillabteam/perl
+          PATH: /build/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin
+    steps:
+      - setup_remote_docker
+      - checkout
+      - run:
+          name: build docker container
+          command: |
+            docker-build -f bundle/perl/Dockerfile
+
   docker-centos6:
     working_directory: /build
     docker:
@@ -146,6 +185,12 @@ workflows:
               only: master
           requires:
             - centos6
+      - bmo-tiny:
+          filters:
+            branches:
+              only: master
+          requires:
+            - perl
       - upload:
           filters:
             branches:
