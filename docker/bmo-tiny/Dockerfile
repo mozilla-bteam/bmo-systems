@@ -6,7 +6,7 @@ RUN apt-get update && \
         libssl1.0.2 libpangoft2-1.0-0 libatk1.0-0 \
         libexpat1 libfontconfig1 libglib2.0-0 libgd3 \
         libpangocairo-1.0-0 libmariadbclient18 \
-        libgtk2.0-0 libgtk2.0-0 curl patch diff && \
+        libgtk2.0-0 libgtk2.0-0 curl patch diffutils && \
     apt-get clean && \
     curl -L https://github.com/dylanwh/tocotrienol/releases/download/1.0.6/tct-centos6.tar.xz > /usr/local/bin/tct.tar.xz && \
     tar -C /usr/local/bin -xvf /usr/local/bin/tct.tar.xz && \
