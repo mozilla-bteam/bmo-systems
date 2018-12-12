@@ -1,12 +1,5 @@
 # carton snapshot format: version 1.0
 DISTRIBUTIONS
-  Acme-1.11111111111
-    pathname: I/IN/INGY/Acme-1.11111111111.tar.gz
-    provides:
-      Acme 1.11111111111
-    requirements:
-      ExtUtils::MakeMaker 6.30
-      Spiffy 0
   Algorithm-BloomFilter-0.02
     pathname: S/SM/SMUELLER/Algorithm-BloomFilter-0.02.tar.gz
     provides:
@@ -146,6 +139,18 @@ DISTRIBUTIONS
       URI 0
       URI::Escape 0
       perl 5.006
+  Alien-GMP-1.14
+    pathname: P/PL/PLICEASE/Alien-GMP-1.14.tar.gz
+    provides:
+      Alien::GMP 1.14
+    requirements:
+      Alien::Base 1.46
+      Alien::Build 1.46
+      Alien::Build::MM 0.32
+      Devel::CheckLib 0
+      ExtUtils::CBuilder 0
+      ExtUtils::MakeMaker 6.52
+      perl 5.006
   Alien-cmake3-0.04
     pathname: P/PL/PLICEASE/Alien-cmake3-0.04.tar.gz
     provides:
@@ -196,7 +201,9 @@ DISTRIBUTIONS
       ExtUtils::MakeMaker 0
       MIME::Base64 0
       Math::BigInt 1.78
+      Math::BigInt::GMP 0
       Math::Prime::Util 0.64
+      Math::Prime::Util::GMP 0
       Sort::Versions 0
       Test::More 0.45
       Tie::EncryptedHash 0
@@ -812,6 +819,14 @@ DISTRIBUTIONS
       Module::Build::Tiny 0.035
       URI::Escape 0
       perl 5.008001
+  Cpanel-JSON-XS-4.08
+    pathname: R/RU/RURBAN/Cpanel-JSON-XS-4.08.tar.gz
+    provides:
+      Cpanel::JSON::XS 4.08
+      Cpanel::JSON::XS::Type undef
+    requirements:
+      ExtUtils::MakeMaker 0
+      Pod::Text 2.08
   Crypt-Argon2-0.005
     pathname: L/LE/LEONT/Crypt-Argon2-0.005.tar.gz
     provides:
@@ -843,6 +858,12 @@ DISTRIBUTIONS
       Crypt::CBC 2.33
     requirements:
       Digest::MD5 2.00
+      ExtUtils::MakeMaker 0
+  Crypt-Curve25519-0.06
+    pathname: A/AJ/AJGB/Crypt-Curve25519-0.06.tar.gz
+    provides:
+      Crypt::Curve25519 0.06
+    requirements:
       ExtUtils::MakeMaker 0
   Crypt-DES-2.07
     pathname: D/DP/DPARIS/Crypt-DES-2.07.tar.gz
@@ -1963,6 +1984,15 @@ DISTRIBUTIONS
       ExtUtils::MakeMaker 0
       Test::More 0
       perl 5.004
+  Digest-BubbleBabble-0.02
+    pathname: B/BT/BTROTT/Digest-BubbleBabble-0.02.tar.gz
+    provides:
+      Digest::BubbleBabble 0.02
+    requirements:
+      ExtUtils::MakeMaker 6.42
+      Filter::Util::Call 0
+      Test::More 0
+      perl 5.008001
   Digest-HMAC-1.03
     pathname: G/GA/GAAS/Digest-HMAC-1.03.tar.gz
     provides:
@@ -3116,6 +3146,7 @@ DISTRIBUTIONS
       IO::Socket::SSL::Utils 2.014
     requirements:
       ExtUtils::MakeMaker 0
+      Mozilla::CA 0
       Net::SSLeay 1.46
       Scalar::Util 0
   IO-String-1.08
@@ -3180,6 +3211,7 @@ DISTRIBUTIONS
       JSON::MaybeXS 1.004000
     requirements:
       Carp 0
+      Cpanel::JSON::XS 2.3310
       ExtUtils::MakeMaker 0
       JSON::PP 2.27300
       Scalar::Util 0
@@ -3568,6 +3600,59 @@ DISTRIBUTIONS
       Net::Domain 1.05
       Net::SMTP 1.03
       Test::More 0
+  Math-BigInt-1.999816
+    pathname: P/PJ/PJACKLAM/Math-BigInt-1.999816.tar.gz
+    provides:
+      Math::BigFloat 1.999816
+      Math::BigInt 1.999816
+      Math::BigInt::Calc 1.999816
+      Math::BigInt::Lib 1.999816
+    requirements:
+      ExtUtils::MakeMaker 6.58
+      Math::Complex 1.39
+      perl 5.006001
+  Math-BigInt-GMP-1.6006
+    pathname: P/PJ/PJACKLAM/Math-BigInt-GMP-1.6006.tar.gz
+    provides:
+      Math::BigInt::GMP 1.6006
+    requirements:
+      ExtUtils::MakeMaker 6.58
+      Math::BigInt 1.999812
+      XSLoader 0.02
+      perl 5.006001
+  Math-GMP-2.19
+    pathname: S/SH/SHLOMIF/Math-GMP-2.19.tar.gz
+    provides:
+      Math::GMP 2.19
+    requirements:
+      Alien::GMP 1.08
+      AutoLoader 0
+      Carp 0
+      DynaLoader 0
+      Exporter 0
+      ExtUtils::MakeMaker 0
+      overload 0
+      perl 5.010
+      strict 0
+      vars 0
+      warnings 0
+  Math-Int64-0.54
+    pathname: S/SA/SALVA/Math-Int64-0.54.tar.gz
+    provides:
+      Math::Int64 0.54
+      Math::Int64::die_on_overflow 0.54
+      Math::Int64::native_if_available 0.54
+      Math::UInt64 0.54
+    requirements:
+      Exporter 0
+      ExtUtils::MakeMaker 0
+      XSLoader 0
+      constant 0
+      overload 0
+      perl 5.006
+      strict 0
+      warnings 0
+      warnings::register 0
   Math-Prime-Util-0.73
     pathname: D/DA/DANAJ/Math-Prime-Util-0.73.tar.gz
     provides:
@@ -3586,10 +3671,23 @@ DISTRIBUTIONS
       ExtUtils::MakeMaker 0
       Math::BigFloat 1.59
       Math::BigInt 1.88
+      Math::Prime::Util::GMP 0.50
       Tie::Array 0
       XSLoader 0.01
       base 0
       constant 0
+      perl 5.006002
+  Math-Prime-Util-GMP-0.51
+    pathname: D/DA/DANAJ/Math-Prime-Util-GMP-0.51.tar.gz
+    provides:
+      Math::Prime::Util::GMP 0.51
+    requirements:
+      Carp 0
+      Exporter 5.57
+      ExtUtils::MakeMaker 0
+      Fcntl 0
+      XSLoader 0.01
+      base 0
       perl 5.006002
   Math-Random-ISAAC-1.004
     pathname: J/JA/JAWNSY/Math-Random-ISAAC-1.004.tar.gz
@@ -4649,6 +4747,114 @@ DISTRIBUTIONS
       Try::Tiny 0.22
       Types::Standard 1.000005
       perl 5.010001
+  Net-SFTP-0.12
+    pathname: L/LK/LKINLEY/Net-SFTP-0.12.tar.gz
+    provides:
+      Net::SFTP 0.12
+      Net::SFTP::Attributes undef
+      Net::SFTP::Buffer undef
+      Net::SFTP::Constants undef
+      Net::SFTP::Util undef
+    requirements:
+      ExtUtils::MakeMaker 0
+      Math::Int64 0.54
+      Net::SSH::Perl 2.12
+  Net-SSH-Perl-2.14
+    pathname: S/SC/SCHWIGON/Net-SSH-Perl-2.14.tar.gz
+    provides:
+      Net::SSH::Perl 2.14
+      Net::SSH::Perl::Agent undef
+      Net::SSH::Perl::Auth undef
+      Net::SSH::Perl::Auth::ChallengeResponse undef
+      Net::SSH::Perl::Auth::KeyboardInt undef
+      Net::SSH::Perl::Auth::KeyboardInteractive undef
+      Net::SSH::Perl::Auth::Password undef
+      Net::SSH::Perl::Auth::PublicKey undef
+      Net::SSH::Perl::Auth::RSA undef
+      Net::SSH::Perl::Auth::Rhosts undef
+      Net::SSH::Perl::Auth::Rhosts_RSA undef
+      Net::SSH::Perl::AuthMgr undef
+      Net::SSH::Perl::Buffer undef
+      Net::SSH::Perl::Channel undef
+      Net::SSH::Perl::ChannelMgr undef
+      Net::SSH::Perl::Cipher undef
+      Net::SSH::Perl::Cipher::AES128_CBC undef
+      Net::SSH::Perl::Cipher::AES128_CTR undef
+      Net::SSH::Perl::Cipher::AES192_CBC undef
+      Net::SSH::Perl::Cipher::AES192_CTR undef
+      Net::SSH::Perl::Cipher::AES256_CBC undef
+      Net::SSH::Perl::Cipher::AES256_CTR undef
+      Net::SSH::Perl::Cipher::AES_CBC undef
+      Net::SSH::Perl::Cipher::AES_CTR undef
+      Net::SSH::Perl::Cipher::Blowfish undef
+      Net::SSH::Perl::Cipher::CBC undef
+      Net::SSH::Perl::Cipher::CFB undef
+      Net::SSH::Perl::Cipher::CTR undef
+      Net::SSH::Perl::Cipher::ChachaPoly undef
+      Net::SSH::Perl::Cipher::DES undef
+      Net::SSH::Perl::Cipher::DES3 undef
+      Net::SSH::Perl::Cipher::DES3::EDE3 undef
+      Net::SSH::Perl::Cipher::IDEA undef
+      Net::SSH::Perl::Cipher::RC4 undef
+      Net::SSH::Perl::Comp undef
+      Net::SSH::Perl::Comp::Zlib undef
+      Net::SSH::Perl::Config undef
+      Net::SSH::Perl::Constants undef
+      Net::SSH::Perl::Handle undef
+      Net::SSH::Perl::Handle::SSH1 undef
+      Net::SSH::Perl::Handle::SSH2 undef
+      Net::SSH::Perl::Kex undef
+      Net::SSH::Perl::Kex::C25519 undef
+      Net::SSH::Perl::Kex::DH undef
+      Net::SSH::Perl::Kex::DH1 undef
+      Net::SSH::Perl::Kex::DH14SHA1 undef
+      Net::SSH::Perl::Kex::DH14SHA256 undef
+      Net::SSH::Perl::Kex::DH16SHA512 undef
+      Net::SSH::Perl::Kex::DH18SHA512 undef
+      Net::SSH::Perl::Kex::DHGEX undef
+      Net::SSH::Perl::Kex::DHGEXSHA1 undef
+      Net::SSH::Perl::Kex::DHGEXSHA256 undef
+      Net::SSH::Perl::Key undef
+      Net::SSH::Perl::Key::DSA undef
+      Net::SSH::Perl::Key::ECDSA undef
+      Net::SSH::Perl::Key::ECDSA256 undef
+      Net::SSH::Perl::Key::ECDSA384 undef
+      Net::SSH::Perl::Key::ECDSA521 undef
+      Net::SSH::Perl::Key::Ed25519 undef
+      Net::SSH::Perl::Key::RSA undef
+      Net::SSH::Perl::Key::RSA1 undef
+      Net::SSH::Perl::Mac undef
+      Net::SSH::Perl::Mac::MD5 undef
+      Net::SSH::Perl::Mac::SHA1 undef
+      Net::SSH::Perl::Mac::SHA2_256 undef
+      Net::SSH::Perl::Mac::SHA2_512 undef
+      Net::SSH::Perl::Packet undef
+      Net::SSH::Perl::Proxy undef
+      Net::SSH::Perl::SSH1 undef
+      Net::SSH::Perl::SSH2 undef
+      Net::SSH::Perl::Subsystem::Client undef
+      Net::SSH::Perl::Subsystem::Server undef
+      Net::SSH::Perl::Util undef
+      Net::SSH::Perl::Util::Authfile undef
+      Net::SSH::Perl::Util::Hosts undef
+      Net::SSH::Perl::Util::RSA undef
+      Net::SSH::Perl::Util::SSH1MP undef
+      Net::SSH::Perl::Util::SSH1Misc undef
+      Net::SSH::Perl::Util::Term undef
+      Net::SSH::Perl::Util::Win32 undef
+    requirements:
+      Crypt::Curve25519 0.05
+      Crypt::IDEA 0
+      CryptX 0.032
+      Digest::BubbleBabble 0.01
+      Digest::MD5 0
+      ExtUtils::MakeMaker 0
+      File::HomeDir 0
+      File::Spec 0
+      IO::Socket 0
+      Math::GMP 1.04
+      Scalar::Util 0
+      String::CRC32 1.2
   Net-SSLeay-1.85
     pathname: M/MI/MIKEM/Net-SSLeay-1.85.tar.gz
     provides:
@@ -6179,13 +6385,6 @@ DISTRIBUTIONS
       strict 0
       version 0.83
       warnings 0
-  Spiffy-0.46
-    pathname: I/IN/INGY/Spiffy-0.46.tar.gz
-    provides:
-      Spiffy 0.46
-      Spiffy::mixin undef
-    requirements:
-      ExtUtils::MakeMaker 6.30
   Stream-Buffered-0.03
     pathname: D/DO/DOY/Stream-Buffered-0.03.tar.gz
     provides:
@@ -6196,6 +6395,12 @@ DISTRIBUTIONS
     requirements:
       ExtUtils::MakeMaker 6.30
       IO::File 1.14
+  String-CRC32-1.7
+    pathname: L/LE/LEEJO/String-CRC32-1.7.tar.gz
+    provides:
+      String::CRC32 1.7
+    requirements:
+      ExtUtils::MakeMaker 0
   String-Format-1.18
     pathname: S/SR/SREZIC/String-Format-1.18.tar.gz
     provides:
@@ -7341,7 +7546,7 @@ DISTRIBUTIONS
       HTTP::Request 6
       HTTP::Request::Common 6
       HTTP::Response 6
-      HTTP::Status 6
+      HTTP::Status 6.18
       IO::Select 0
       IO::Socket 0
       LWP::MediaTypes 6
