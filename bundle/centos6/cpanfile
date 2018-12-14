@@ -50,6 +50,7 @@ requires 'HTML::Escape', '1.10';
 requires 'HTML::Parser', '3.67';
 requires 'HTML::Scrubber';
 requires 'HTML::Tree';
+requires 'HTTP::BrowserDetect';
 requires 'IO::Async', '0.71';
 requires 'IO::Compress::Gzip';
 requires 'IO::Scalar';
