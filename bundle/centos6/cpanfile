@@ -128,6 +128,7 @@ on test => sub {
     requires 'Perl::Critic::Freenode';
     requires 'Perl::Tidy', '20180220';
     requires 'Pod::Coverage';
+    requires 'Selenium::Remote::Driver', '1.31';
     requires 'Test2::V0';
     requires 'Test::More';
     requires 'Test::Perl::Critic::Progressive';
