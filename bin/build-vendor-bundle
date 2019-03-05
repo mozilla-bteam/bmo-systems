@@ -14,6 +14,7 @@ rm -vfr local/man local/cache
 find local -name '*.pod' -print0 | xargs -0 rm -vf
 find local -name '*.so'  -print0 | xargs -0 strip
 mkdir -p /build/upload/$NAME
+patch -d local -p1 < /build/patches/mojo-old-perl-warnings.patch
 tar --transform "s@^@$NAME/@" \
     -zcf /build/upload/$NAME/vendor.tar.gz \
     PACKAGES.txt \

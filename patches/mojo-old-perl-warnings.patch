@@ -1,0 +1,42 @@
+diff -Naur local-old/lib/perl5/Mojo/DOM/CSS.pm local/lib/perl5/Mojo/DOM/CSS.pm
+--- local-old/lib/perl5/Mojo/DOM/CSS.pm	2018-11-22 12:21:53.000000000 -0800
++++ local/lib/perl5/Mojo/DOM/CSS.pm	2019-03-05 10:02:11.141628248 -0800
+@@ -120,7 +120,7 @@
+     # Tag
+     elsif ($css =~ /\G((?:$ESCAPE_RE\s|\\.|[^,.#:[ >~+])+)/gco) {
+       my $alias = (my $name = $1) =~ s/^([^|]*)\|// && $1 ne '*' ? $1 : undef;
+-      my $ns = length $alias ? $ns{$alias} // return [['invalid']] : $alias;
++      my $ns = length($alias//'') ? $ns{$alias} // return [['invalid']] : $alias;
+       push @$last, ['tag', $name eq '*' ? undef : _name($name), _unescape($ns)];
+     }
+ 
+diff -Naur local-old/lib/perl5/Mojo/IOLoop/Stream.pm local/lib/perl5/Mojo/IOLoop/Stream.pm
+--- local-old/lib/perl5/Mojo/IOLoop/Stream.pm	2019-03-05 09:47:55.942643096 -0800
++++ local/lib/perl5/Mojo/IOLoop/Stream.pm	2019-03-05 10:01:31.207857403 -0800
+@@ -34,7 +34,7 @@
+ sub is_writing {
+   my $self = shift;
+   return undef unless $self->{handle};
+-  return !!length($self->{buffer}) || $self->has_subscribers('drain');
++  return !!length($self->{buffer}//'') || $self->has_subscribers('drain');
+ }
+ 
+ sub new { shift->SUPER::new(handle => shift, timeout => 15) }
+@@ -115,7 +115,7 @@
+ 
+   # Handle errors only when reading (to avoid timing problems)
+   my $handle = $self->{handle};
+-  if (length $self->{buffer}) {
++  if (defined $self->{buffer} && length $self->{buffer}) {
+     return undef
+       unless defined(my $written = $handle->syswrite($self->{buffer}));
+     $self->{written} += $written;
+@@ -123,7 +123,7 @@
+   }
+ 
+   # Clear the buffer to free the underlying SV* memory
+-  undef $self->{buffer}, $self->emit('drain') unless length $self->{buffer};
++  undef $self->{buffer}, $self->emit('drain') unless length($self->{buffer} // '');
+   return undef if $self->is_writing;
+   return $self->close if $self->{graceful};
+   $self->reactor->watch($handle, !$self->{paused}, 0) if $self->{handle};
