@@ -58,6 +58,7 @@ requires 'IO::Scalar';
 requires 'IPC::System::Simple';
 requires 'JSON::MaybeXS', '1.003008';
 requires 'JSON::RPC', '== 1.01';
+requires 'JSON::Validator', '3.05';
 requires 'JSON::XS', '2.0';
 requires 'LWP::Protocol::https', '6.07';
 requires 'LWP::UserAgent', '6.26';

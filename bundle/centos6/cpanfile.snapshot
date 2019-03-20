@@ -4251,6 +4251,18 @@ DISTRIBUTIONS
       Router::Simple 0
       Test::More 0
       parent 0
+  JSON-Validator-3.06
+    pathname: J/JH/JHTHORSEN/JSON-Validator-3.06.tar.gz
+    provides:
+      JSON::Validator 3.06
+      JSON::Validator::Error undef
+      JSON::Validator::Formats undef
+      JSON::Validator::Joi undef
+      JSON::Validator::Ref undef
+    requirements:
+      ExtUtils::MakeMaker 0
+      Mojolicious 7.28
+      perl 5.010001
   JSON-XS-3.02
     pathname: M/ML/MLEHMANN/JSON-XS-3.02.tar.gz
     provides:
