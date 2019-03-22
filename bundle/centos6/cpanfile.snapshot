@@ -7210,6 +7210,17 @@ DISTRIBUTIONS
       ExtUtils::MakeMaker 0
       Test::More 0
       Time::Local 0
+  Set-Object-1.39
+    pathname: R/RU/RURBAN/Set-Object-1.39.tar.gz
+    provides:
+      Set::Object 1.39
+      Set::Object::TieArray 1.39
+      Set::Object::TieHash 1.39
+      Set::Object::Weak undef
+    requirements:
+      ExtUtils::MakeMaker 0
+      Scalar::Util 0
+      Test::More 0
   Socket-2.023
     pathname: P/PE/PEVANS/Socket-2.023.tar.gz
     provides:
