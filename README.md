@@ -30,33 +30,36 @@ bmo-systems repo is responsible for:
 
 ## Add perl dependencies to BMO
 
-Adding dependencies to BMO (or bugzilla in general) involves adding them to Makefile.PL. Getting these dependencies deployed to our infrastructure is more complicated.
+Adding dependencies to BMO (or bugzilla in general) involves adding them to Makefile.PL.
 
-For each type of bundle we produce, you need to run the docker container mozillabteam/PLATFORM. Currently PLATFORM is centos6 and ubuntu14. From inside the container, run the following:
+Assuming you have the modified Makefile.PL on a branch of a particular user, you can use "make" to get the updated cpanfile and cpanfile.snapshot files.
+
+The example below is how we added some extra dependencies.
 
 ```bash
-   source /build/env.sh
-   git clone --depth 1 https://github.com/mozilla-bteam/bmo.git
-   cd bmo
-   cp ../cpanfile.snapshot .
-   $PERL Makefile.PL
-   make cpanfile GEN_CPANFILE_ARGS="-D bmo"
-   $PERL $CARTON install
+make BRANCH=report-ping-simple-docid REPO=dylanwh/bmo all
 ```
 
-After that, use 'docker cp' to copy *build/bmo/cpanfile and /build/bmo/cpanfile.snapshot to bundle/PLATFORM* and commit them.
+Typically if any dependencies are removed in this step, it means they're improperly specified in Makefile.PL. You'll want to figure out if they're really needed or not.
+
+
+Commit the updated cpanfile and cpanfile.snapshot -- but review the changes carefully!
 
 
 <a id="org1c70e6d"></a>
 
 ## Upgrade perl dependencies
 
-This is the same as adding a dependency, except instead of "$PERL $CARTON install" you run "$PERL $CARTON update".
+This is the same as adding a dependency.
+
+Commit the updated cpanfile and cpanfile.snapshot -- but review the changes carefully!
 
 
 <a id="orgf7f04d6"></a>
 
 ## Make a new release of bmo-slim
+
+You need to tag releases of bmo-slim after updating or adding any dependency.
 
 CircleCI will build all pushes the master branch (and it ignores all others). If all the jobs are passing and complete, execute the following:
 
