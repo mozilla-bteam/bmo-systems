@@ -11,5 +11,6 @@ centos6.tar.gz: Makefile
 
 bundle/%/cpanfile bundle/%/cpanfile.snapshot: %.tar.gz
 	tar -zxf $< -C bundle/$* ./cpanfile ./cpanfile.snapshot
-	touch bundle/$*/{cpanfile,cpanfile.snapshot}
+	touch bundle/$*/cpanfile
+	touch bundle/$*/cpanfile.snapshot
 
